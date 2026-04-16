@@ -9,11 +9,7 @@ const nextConfig: NextConfig = {
   output: 'export',
   basePath,
   assetPrefix: basePath,
-  env: {
-    NEXT_PUBLIC_BASE_PATH: basePath,
-  },
   images: {
-    formats: ['image/avif', 'image/webp'],
     loader: 'custom',
     loaderFile: './lib/image-loader.ts',
   },
