@@ -11,9 +11,10 @@ export function NetworkCanvas() {
 
     let cleanup: (() => void) | undefined
 
+    const basePath = process.env.NODE_ENV === 'production' ? '/portfolio-next1' : ''
     import('@/lib/network-canvas').then(({ initNetworkCanvas }) => {
       if (!canvasRef.current) return
-      cleanup = initNetworkCanvas(canvasRef.current, '#hero')
+      cleanup = initNetworkCanvas(canvasRef.current, '#hero', basePath)
     })
 
     return () => {
