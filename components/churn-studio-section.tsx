@@ -182,7 +182,7 @@ export function ChurnStudioSection() {
                 variants={fadeUpChild}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, margin: '-60px 0px -60px 0px' }}
+                viewport={{ once: false, margin: '60px 0px 60px 0px' }}
                 className="flex flex-col items-start justify-start gap-0.5 rounded-sm border border-border-subtle bg-[linear-gradient(160deg,rgba(255,255,255,0.034)_0%,rgba(255,255,255,0.014)_100%)] p-[10px_clamp(12px,1.2vw,16px)] shadow-rest transition-all duration-[280ms] ease-out-expo hover:-translate-y-[var(--lift-card)] hover:border-transparent hover:shadow-elevated"
               >
                 <span className="text-gradient mb-0.5 block w-full font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] leading-[1.2]">

@@ -29,7 +29,7 @@ export const fadeUpChild: Variants = {
   hidden: {
     opacity: 0,
     y: 20,
-    transition: { duration: 0.3, ease: easings.outExpo },
+    transition: { duration: 0.6, ease: easings.outExpo },
   },
   visible: {
     opacity: 1,

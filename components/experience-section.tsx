@@ -30,7 +30,7 @@ export function ExperienceSection() {
               variants={fadeUpChild}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, margin: '-60px 0px -60px 0px' }}
+              viewport={{ once: false, margin: '60px 0px 60px 0px' }}
               className={cn('relative', idx < experience.length - 1 && 'mb-9')}
             >
               {/* Marker */}

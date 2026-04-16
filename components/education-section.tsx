@@ -28,7 +28,7 @@ export function EducationSection() {
               variants={fadeUpChild}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, margin: '-60px 0px -60px 0px' }}
+              viewport={{ once: false, margin: '60px 0px 60px 0px' }}
               className={cn(
                 'relative flex flex-col gap-2 py-[clamp(12px,1.8vw,18px)] pr-0 pb-[clamp(14px,2vw,20px)] pl-[clamp(15px,1.4vw,20px)]',
                 item.isWip && 'opacity-55',

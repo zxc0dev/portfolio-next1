@@ -21,7 +21,7 @@ export function Reveal({
   once = false,
 }: RevealProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once, margin: '-60px 0px -60px 0px' })
+  const isInView = useInView(ref, { once, margin: '60px 0px 60px 0px' })
 
   const directionMap = {
     up: { y: 24 },
@@ -40,7 +40,7 @@ export function Reveal({
           : { opacity: 0, ...directionMap[direction] }
       }
       transition={{
-        duration: isInView ? durations.reveal : 0.3,
+        duration: isInView ? durations.reveal : 0.6,
         ease: easings.outExpo,
         delay: isInView ? delay : 0,
       }}

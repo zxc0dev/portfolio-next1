@@ -53,7 +53,7 @@ export function ProjectsSection() {
               variants={fadeUpChild}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: false, margin: '-60px 0px -60px 0px' }}
+              viewport={{ once: false, margin: '60px 0px 60px 0px' }}
               className={cn(
                 'border-b border-border-subtle py-[clamp(28px,3vw,40px)]',
                 idx === 0 && 'pt-0',
