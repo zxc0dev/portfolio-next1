@@ -7,6 +7,7 @@ export interface Project {
   isConfidential: boolean
   isWip: boolean
   dateRange?: string
+  dataset?: string
   description?: string
   steps: {
     label: string
@@ -47,6 +48,7 @@ export const projects: Project[] = [
         metric: '4 distinct customer segments',
       },
     ],
+    dataset: 'UCI Online Retail II — 541 910 transactions, 8 fields',
     tags: ['Python', 'SQL', 'Scikit-learn', 'Power BI'],
     summary: [
       {
@@ -89,6 +91,7 @@ export const projects: Project[] = [
         metric: '0.84 ROC-AUC',
       },
     ],
+    dataset: 'Kaggle Telco Churn — 7 043 customers, 21 features',
     tags: ['Python', 'Scikit-learn', 'XGBoost', 'Power BI'],
     summary: [
       {
@@ -138,6 +141,7 @@ export const projects: Project[] = [
         text: 'In progress — targeting improved forecast accuracy and reduced inventory waste.',
       },
     ],
+    dataset: 'Internal warehouse exports — SKU-level daily sales',
     tags: ['Python', 'SQL', 'Scikit-learn'],
     summary: [
       {

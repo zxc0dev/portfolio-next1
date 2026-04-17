@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Download, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 
 import { useLenis } from 'lenis/react'
 import { ButtonLink } from '@/components/ui/button'
@@ -53,19 +53,10 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('projects')
-              if (el && lenis) lenis.scrollTo(el, { offset: -74 })
+              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
             }}
           >
             View My Work
-          </ButtonLink>
-          <ButtonLink
-            variant="ghost"
-            size="default"
-            href="/pavlo_popovych_data_analyst_resume.pdf"
-            download
-          >
-            <Download className="h-4 w-4" />
-            Download Resume
           </ButtonLink>
           <ButtonLink
             variant="ghost"
@@ -74,7 +65,7 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('contact')
-              if (el && lenis) lenis.scrollTo(el, { offset: -74 })
+              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
             }}
           >
             <Mail className="h-4 w-4" />
@@ -94,7 +85,7 @@ export function Hero() {
           }}
           onClick={() => {
             const el = document.getElementById('projects')
-            if (el && lenis) lenis.scrollTo(el, { offset: -74 })
+            if (el && lenis) lenis.scrollTo(el, { offset: -92 })
           }}
           className="ml-auto mt-10 hidden text-muted transition-colors duration-[280ms] hover:text-accent cursor-pointer lg:flex"
           aria-label="Scroll down"

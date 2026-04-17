@@ -105,6 +105,16 @@ export function ProjectsSection() {
                       {project.tags.join(', ')}
                     </p>
                   </div>
+                  {project.dataset && (
+                    <div>
+                      <span className="mb-1.5 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-white/35">
+                        Dataset
+                      </span>
+                      <p className="text-[0.92rem] leading-[1.7] text-foreground">
+                        {project.dataset}
+                      </p>
+                    </div>
+                  )}
                   {project.dateRange && (
                     <div>
                       <span className="mb-1.5 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-muted opacity-72">

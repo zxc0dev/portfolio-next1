@@ -86,10 +86,9 @@ export function ContactSection() {
         />
 
         <Reveal className="ml-[42px] max-md:ml-0">
-          <div className="gradient-border overflow-hidden rounded-md border border-border-subtle bg-[linear-gradient(160deg,rgba(255,255,255,0.034)_0%,rgba(255,255,255,0.014)_100%)] shadow-rest transition-all duration-[280ms] ease-out-expo hover:-translate-y-[var(--lift-card)] hover:border-transparent hover:shadow-elevated">
-            <div className="grid grid-cols-[1.35fr_1fr] max-md:grid-cols-1">
+          <div className="grid grid-cols-[1.35fr_1fr] items-start gap-[clamp(40px,6vw,80px)] max-md:grid-cols-1">
               {/* Left — form */}
-              <div className="flex flex-col p-[clamp(36px,5vw,56px)]">
+              <div className="flex flex-col">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Send a message
                 </span>
@@ -213,7 +212,7 @@ export function ContactSection() {
               </div>
 
               {/* Right — channels */}
-              <div className="border-l border-white/[0.055] bg-black/16 p-[clamp(36px,5vw,56px)] max-md:border-l-0 max-md:border-t max-md:border-white/[0.055]">
+              <div className="max-md:pt-2">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Or reach out directly
                 </span>
@@ -243,7 +242,6 @@ export function ContactSection() {
                 </div>
               </div>
             </div>
-          </div>
         </Reveal>
       </div>
     </section>

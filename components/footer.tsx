@@ -50,7 +50,7 @@ export function Footer() {
                 className="inline-block rounded-lg font-mono text-[1.1rem] font-bold tracking-[-0.02em] text-foreground transition-transform duration-[280ms] ease-out-expo hover:-translate-y-0.5 cursor-pointer"
               >
                 <span className="text-gradient">&lt;</span>
-                zxrc0
+                zxc0
                 <span className="text-accent">.</span>
                 dev
                 <span className="text-gradient">/&gt;</span>

@@ -61,7 +61,7 @@ export function ExperienceSection() {
                     key={detail.label}
                     className="relative mb-2 pl-4 text-[1.08rem] leading-[1.72] text-secondary text-wrap-pretty before:absolute before:left-0 before:top-[0.82em] before:h-1 before:w-1 before:rounded-full before:bg-accent"
                   >
-                    <strong className="font-semibold text-foreground">
+                    <strong className="text-[1.14rem] font-semibold text-foreground">
                       {detail.label}:
                     </strong>{' '}
                     {detail.text}

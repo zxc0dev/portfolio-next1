@@ -31,7 +31,7 @@ export function Nav() {
           className="shrink-0 rounded-lg font-mono text-[1.1rem] font-semibold tracking-[-0.02em] text-foreground transition-transform duration-[280ms] ease-out-expo hover:-translate-y-0.5 cursor-pointer"
         >
           <span className="text-gradient">&lt;</span>
-          zxrc0
+          zxc0
           <span className="text-accent">.</span>
           dev
           <span className="text-gradient">/&gt;</span>
@@ -54,12 +54,20 @@ export function Nav() {
           ))}
         </ul>
 
-        {/* Right — email */}
+        {/* Right — email + resume */}
         <a
           href="mailto:pavlo.v.popovych@outlook.com"
           className="group relative ml-auto hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
         >
           Email
+          <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-accent-3 transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
+        </a>
+        <a
+          href="/pavlo_popovych_data_analyst_resume.pdf"
+          download
+          className="group relative hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
+        >
+          Resume
           <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-accent-3 transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
         </a>
 
@@ -108,6 +116,14 @@ export function Nav() {
                 onClick={() => setMobileOpen(false)}
               >
                 Email
+              </a>
+              <a
+                href="/pavlo_popovych_data_analyst_resume.pdf"
+                download
+                className="rounded-sm px-3 py-2 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
+                onClick={() => setMobileOpen(false)}
+              >
+                Resume
               </a>
             </div>
           </motion.div>
