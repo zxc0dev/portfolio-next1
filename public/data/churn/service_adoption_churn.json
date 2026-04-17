@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "service": "Online Security",
+      "withService": 14.6,
+      "withoutService": 41.8
+    },
+    {
+      "service": "Online Backup",
+      "withService": 21.6,
+      "withoutService": 39.9
+    },
+    {
+      "service": "Device Protection",
+      "withService": 22.5,
+      "withoutService": 39.1
+    },
+    {
+      "service": "Tech Support",
+      "withService": 15.2,
+      "withoutService": 41.6
+    },
+    {
+      "service": "Streaming Tv",
+      "withService": 30.1,
+      "withoutService": 33.5
+    },
+    {
+      "service": "Streaming Movies",
+      "withService": 30.0,
+      "withoutService": 33.7
+    }
+  ]
+}

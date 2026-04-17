@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "driver": "Month-to-month",
+      "weightedChurn": 23.5,
+      "signal": "50%+ churn in first 5 months"
+    },
+    {
+      "driver": "No online security",
+      "weightedChurn": 20.8,
+      "signal": "Low service engagement"
+    },
+    {
+      "driver": "No tech support",
+      "weightedChurn": 20.6,
+      "signal": "Acute with fiber optic"
+    },
+    {
+      "driver": "Fiber optic",
+      "weightedChurn": 18.4,
+      "signal": "Price sensitivity gap"
+    },
+    {
+      "driver": "No partner",
+      "weightedChurn": 17.1,
+      "signal": "Less anchored customers"
+    },
+    {
+      "driver": "Electronic check",
+      "weightedChurn": 15.2,
+      "signal": "Payment friction risk"
+    }
+  ]
+}

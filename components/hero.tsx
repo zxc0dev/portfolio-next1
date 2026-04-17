@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Mail } from 'lucide-react'
+import { Mail, Layers } from 'lucide-react'
 
 import { useLenis } from 'lenis/react'
 import { ButtonLink } from '@/components/ui/button'
@@ -53,9 +53,10 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('projects')
-              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
+              if (el && lenis) lenis.scrollTo(el, { offset: 0 })
             }}
           >
+            <Layers className="h-4 w-4" />
             View My Work
           </ButtonLink>
           <ButtonLink
@@ -65,7 +66,7 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('contact')
-              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
+              if (el && lenis) lenis.scrollTo(el, { offset: 0 })
             }}
           >
             <Mail className="h-4 w-4" />

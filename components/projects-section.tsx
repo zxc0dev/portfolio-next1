@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { Github, Lock } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { SectionHeader } from '@/components/section-header'
@@ -8,6 +9,21 @@ import { ButtonLink, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { projects } from '@/data/projects'
 import { fadeUpChild } from '@/animations/variants'
+
+const ChurnDashboard = dynamic(
+  () => import('@/components/churn-dashboard').then((m) => m.ChurnDashboard),
+  { ssr: false, loading: () => (
+    <div className="flex min-h-[400px] items-center justify-center">
+      <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/20">
+        Loading dashboard…
+      </span>
+    </div>
+  ) },
+)
+
+const DASHBOARD_MAP: Record<string, React.ComponentType> = {
+  churn: ChurnDashboard,
+}
 
 export function ProjectsSection() {
   return (
@@ -86,15 +102,24 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Row 2: Live Dashboard placeholder */}
-              <div className="mt-5 flex min-h-[1000px] items-center justify-center rounded-lg border border-border-subtle bg-white/[0.018]">
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/20">
-                  Live Dashboard
-                </span>
-              </div>
+              {/* Row 2: Live Dashboard */}
+              {(() => {
+                const Dashboard = DASHBOARD_MAP[project.slug]
+                return Dashboard ? (
+                  <div className="mt-5">
+                    <Dashboard />
+                  </div>
+                ) : (
+                  <div className="mt-5 flex min-h-[400px] items-center justify-center rounded-lg border border-border-subtle bg-white/[0.018]">
+                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/20">
+                      Live Dashboard
+                    </span>
+                  </div>
+                )
+              })()}
 
               {/* Row 3: Tech Stack + Date  |  Description */}
-              <div className="mt-8 grid grid-cols-[200px_1fr] items-start gap-[clamp(40px,8vw,96px)] max-md:grid-cols-1">
+              <div className="mt-8 grid grid-cols-[200px_1fr] items-start gap-[clamp(60px,12vw,144px)] max-md:grid-cols-1">
                 {/* Left: stack + date */}
                 <div className="flex flex-col gap-3.5">
                   <div>

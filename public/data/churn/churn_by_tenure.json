@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "band": "0\u20135",
+      "customers": 1360,
+      "churnRate": 54.7
+    },
+    {
+      "band": "6\u201312",
+      "customers": 815,
+      "churnRate": 36.0
+    },
+    {
+      "band": "13\u201324",
+      "customers": 1024,
+      "churnRate": 28.7
+    },
+    {
+      "band": "25\u201336",
+      "customers": 832,
+      "churnRate": 21.6
+    },
+    {
+      "band": "37\u201348",
+      "customers": 762,
+      "churnRate": 19.0
+    },
+    {
+      "band": "49\u201360",
+      "customers": 832,
+      "churnRate": 14.4
+    },
+    {
+      "band": "61\u201372",
+      "customers": 1407,
+      "churnRate": 6.6
+    }
+  ]
+}

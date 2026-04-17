@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "range": "$0\u201320",
+      "total": 611,
+      "churned": 55,
+      "churnRate": 9.0
+    },
+    {
+      "range": "$20\u201340",
+      "total": 1220,
+      "churned": 158,
+      "churnRate": 13.0
+    },
+    {
+      "range": "$40\u201360",
+      "total": 1068,
+      "churned": 276,
+      "churnRate": 25.8
+    },
+    {
+      "range": "$60\u201380",
+      "total": 1457,
+      "churned": 470,
+      "churnRate": 32.3
+    },
+    {
+      "range": "$80\u2013100",
+      "total": 1768,
+      "churned": 653,
+      "churnRate": 36.9
+    },
+    {
+      "range": "$100\u2013120",
+      "total": 908,
+      "churned": 257,
+      "churnRate": 28.3
+    }
+  ]
+}

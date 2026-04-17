@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "type": "DSL",
+      "total": 2416,
+      "churned": 459,
+      "retained": 1957,
+      "churnRate": 19.0
+    },
+    {
+      "type": "Fiber optic",
+      "total": 3096,
+      "churned": 1297,
+      "retained": 1799,
+      "churnRate": 41.9
+    },
+    {
+      "type": "No",
+      "total": 1520,
+      "churned": 113,
+      "retained": 1407,
+      "churnRate": 7.4
+    }
+  ]
+}

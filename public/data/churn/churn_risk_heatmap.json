@@ -1,0 +1,130 @@
+{
+  "data": [
+    {
+      "tenure": "0\u20135",
+      "contract": "Month-to-month",
+      "churnRate": 56.1,
+      "count": 1318
+    },
+    {
+      "tenure": "0\u20135",
+      "contract": "One year",
+      "churnRate": 12.9,
+      "count": 31
+    },
+    {
+      "tenure": "0\u20135",
+      "contract": "Two year",
+      "churnRate": 0.0,
+      "count": 11
+    },
+    {
+      "tenure": "6\u201312",
+      "contract": "Month-to-month",
+      "churnRate": 42.0,
+      "count": 676
+    },
+    {
+      "tenure": "6\u201312",
+      "contract": "One year",
+      "churnRate": 9.8,
+      "count": 92
+    },
+    {
+      "tenure": "6\u201312",
+      "contract": "Two year",
+      "churnRate": 0.0,
+      "count": 47
+    },
+    {
+      "tenure": "13\u201324",
+      "contract": "Month-to-month",
+      "churnRate": 37.7,
+      "count": 737
+    },
+    {
+      "tenure": "13\u201324",
+      "contract": "One year",
+      "churnRate": 8.1,
+      "count": 197
+    },
+    {
+      "tenure": "13\u201324",
+      "contract": "Two year",
+      "churnRate": 0.0,
+      "count": 90
+    },
+    {
+      "tenure": "25\u201336",
+      "contract": "Month-to-month",
+      "churnRate": 32.5,
+      "count": 486
+    },
+    {
+      "tenure": "25\u201336",
+      "contract": "One year",
+      "churnRate": 8.0,
+      "count": 250
+    },
+    {
+      "tenure": "25\u201336",
+      "contract": "Two year",
+      "churnRate": 2.1,
+      "count": 96
+    },
+    {
+      "tenure": "37\u201348",
+      "contract": "Month-to-month",
+      "churnRate": 33.5,
+      "count": 316
+    },
+    {
+      "tenure": "37\u201348",
+      "contract": "One year",
+      "churnRate": 13.1,
+      "count": 268
+    },
+    {
+      "tenure": "37\u201348",
+      "contract": "Two year",
+      "churnRate": 2.2,
+      "count": 178
+    },
+    {
+      "tenure": "49\u201360",
+      "contract": "Month-to-month",
+      "churnRate": 27.8,
+      "count": 234
+    },
+    {
+      "tenure": "49\u201360",
+      "contract": "One year",
+      "churnRate": 13.7,
+      "count": 321
+    },
+    {
+      "tenure": "49\u201360",
+      "contract": "Two year",
+      "churnRate": 4.0,
+      "count": 277
+    },
+    {
+      "tenure": "61\u201372",
+      "contract": "Month-to-month",
+      "churnRate": 22.2,
+      "count": 108
+    },
+    {
+      "tenure": "61\u201372",
+      "contract": "One year",
+      "churnRate": 12.1,
+      "count": 313
+    },
+    {
+      "tenure": "61\u201372",
+      "contract": "Two year",
+      "churnRate": 3.1,
+      "count": 986
+    }
+  ]
+}

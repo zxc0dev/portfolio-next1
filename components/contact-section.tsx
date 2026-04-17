@@ -213,6 +213,11 @@ export function ContactSection() {
 
               {/* Right — channels */}
               <div className="max-md:pt-2">
+                {/* Separator line — visible on mobile, vertical on desktop handled by border */}
+                <div className="mb-6 hidden h-px w-full bg-[linear-gradient(90deg,transparent,rgba(242,242,242,0.18),transparent)] opacity-75 max-md:block" />
+                <div className="relative max-md:hidden">
+                  <div className="absolute -left-[clamp(20px,3vw,40px)] top-0 bottom-0 w-px bg-[linear-gradient(180deg,transparent,rgba(242,242,242,0.18),transparent)] opacity-75" />
+                </div>
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Or reach out directly
                 </span>

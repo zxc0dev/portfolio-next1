@@ -8,8 +8,8 @@ import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
   { label: 'GitHub', href: 'https://github.com/zxrc0dev', external: true },
-  { label: 'Medium', href: 'https://medium.com/@zxrcodev', external: true },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/pavlo-popovych', external: true },
+  { label: 'Email', href: 'mailto:pavlo.v.popovych@outlook.com', external: false },
 ]
 
 export function Nav() {
@@ -43,8 +43,7 @@ export function Nav() {
             <li key={link.label}>
               <a
                 href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 className="group relative py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground"
               >
                 {link.label}
@@ -54,18 +53,11 @@ export function Nav() {
           ))}
         </ul>
 
-        {/* Right — email + resume */}
-        <a
-          href="mailto:pavlo.v.popovych@outlook.com"
-          className="group relative ml-auto hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
-        >
-          Email
-          <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-accent-3 transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
-        </a>
+        {/* Right — resume */}
         <a
           href="/pavlo_popovych_data_analyst_resume.pdf"
           download
-          className="group relative hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
+          className="group relative ml-auto hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
         >
           Resume
           <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-accent-3 transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
@@ -102,21 +94,13 @@ export function Nav() {
                 <a
                   key={link.label}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                   className="rounded-sm px-3 py-2 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <a
-                href="mailto:pavlo.v.popovych@outlook.com"
-                className="rounded-sm px-3 py-2 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
-                onClick={() => setMobileOpen(false)}
-              >
-                Email
-              </a>
               <a
                 href="/pavlo_popovych_data_analyst_resume.pdf"
                 download

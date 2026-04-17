@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "method": "Electronic check",
+      "total": 2365,
+      "churned": 1071,
+      "retained": 1294,
+      "churnRate": 45.3
+    },
+    {
+      "method": "Mailed check",
+      "total": 1604,
+      "churned": 308,
+      "retained": 1296,
+      "churnRate": 19.2
+    },
+    {
+      "method": "Bank transfer (automatic)",
+      "total": 1542,
+      "churned": 258,
+      "retained": 1284,
+      "churnRate": 16.7
+    },
+    {
+      "method": "Credit card (automatic)",
+      "total": 1521,
+      "churned": 232,
+      "retained": 1289,
+      "churnRate": 15.3
+    }
+  ]
+}

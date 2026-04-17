@@ -1,0 +1,24 @@
+{
+  "cards": [
+    {
+      "label": "Total Customers",
+      "value": "7,032",
+      "foot": "Dataset size"
+    },
+    {
+      "label": "Overall Churn",
+      "value": "26.6%",
+      "foot": "1,869 churned"
+    },
+    {
+      "label": "Avg Monthly",
+      "value": "$64.8",
+      "foot": "Monthly charges"
+    },
+    {
+      "label": "M2M Share",
+      "value": "55.1%",
+      "foot": "Month-to-month"
+    }
+  ]
+}
