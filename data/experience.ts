@@ -12,7 +12,7 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
   {
     title: 'Production Data Analysis & Reporting',
-    company: 'Foxconn',
+    company: 'Foxconn · Hungary',
     date: 'Mar 2023 – Oct 2024',
     isCurrent: false,
     details: [
@@ -36,7 +36,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     title: 'Quality Operator',
-    company: 'Foxconn',
+    company: 'Foxconn · Hungary',
     date: 'Jan 2023 – Mar 2023',
     isCurrent: false,
     details: [

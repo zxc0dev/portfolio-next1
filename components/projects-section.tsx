@@ -1,6 +1,5 @@
-'use client'
+﻿'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { Github, Lock } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -9,28 +8,6 @@ import { ButtonLink, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { projects } from '@/data/projects'
 import { fadeUpChild } from '@/animations/variants'
-
-function StepDot({ index }: { index: number }) {
-  if (index === 2) {
-    return (
-      <span className="text-gradient absolute -left-[21px] top-[10px] h-2 w-2 rounded-full bg-foreground shadow-[0_0_6px_rgba(242,242,242,0.25)]" />
-    )
-  }
-  return (
-    <span
-      className={cn(
-        'absolute -left-[21px] top-[10px] h-2 w-2 rounded-full border-[1.5px] bg-background',
-        index === 0 && 'border-white/35',
-        index === 1 && 'border-white/50',
-      )}
-      style={
-        index === 1
-          ? { background: 'radial-gradient(circle, rgba(242,242,242,0.65) 30%, transparent 31%)' }
-          : undefined
-      }
-    />
-  )
-}
 
 export function ProjectsSection() {
   return (
@@ -61,15 +38,15 @@ export function ProjectsSection() {
                 project.isWip && 'opacity-55',
               )}
             >
-              {/* Head: title + links */}
-              <div className="mb-[18px] flex items-start justify-between gap-4">
+              {/* Row 1: Title + Buttons */}
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3
-                  className="relative z-1 font-bold leading-[1.32] tracking-[-0.025em] text-wrap-balance"
+                  className="font-bold leading-[1.32] tracking-[-0.025em] text-wrap-balance"
                   style={{ fontSize: 'clamp(1.38rem, 1.3vw + 0.9rem, 1.64rem)' }}
                 >
                   {project.title}
                 </h3>
-                <div className="ml-3 flex shrink-0 flex-wrap items-center gap-2">
+                <div className="flex shrink-0 flex-wrap items-center gap-2">
                   <Link
                     href={`/projects/${project.slug}`}
                     className={cn(buttonVariants({ variant: 'chip', size: 'chip' }), 'no-underline')}
@@ -101,7 +78,7 @@ export function ProjectsSection() {
                     </ButtonLink>
                   )}
                   {project.isConfidential && (
-                    <span className="inline-flex items-center gap-2 rounded-sm border border-white/7 bg-white/[0.01] px-[11px] py-2.5 text-[0.72rem] font-semibold tracking-[0.025em] text-white/50 gradient-border cursor-not-allowed">
+                    <span className="inline-flex cursor-not-allowed items-center gap-2 rounded-sm border border-white/7 bg-white/[0.01] px-[11px] py-2.5 font-mono text-[0.72rem] font-semibold tracking-[0.025em] text-white/50 gradient-border">
                       <Lock className="h-[15px] w-[15px] opacity-60" />
                       <span>Client Project</span>
                     </span>
@@ -109,61 +86,48 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Media + Steps */}
-              <div className="mb-[22px] grid grid-cols-[minmax(0,5fr)_minmax(0,6fr)] items-stretch gap-8 max-md:grid-cols-1 max-md:gap-5">
-                {/* Image */}
-                <div className="relative aspect-video w-full max-w-[700px] self-start overflow-hidden rounded-md border border-border bg-black/35 shadow-[0_8px_32px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.035)] transition-all duration-[280ms] ease-out-expo hover:border-border-hover hover:shadow-[0_12px_34px_rgba(0,0,0,0.4)]">
-                  <Image
-                    src={project.image}
-                    alt={project.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 45vw"
-                    className="object-cover"
-                    loading="lazy"
-                  />
-                </div>
+              {/* Row 2: Live Dashboard placeholder */}
+              <div className="mt-5 flex min-h-[1000px] items-center justify-center rounded-lg border border-border-subtle bg-white/[0.018]">
+                <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/20">
+                  Live Dashboard
+                </span>
+              </div>
 
-                {/* Steps */}
-                <div className="relative flex h-full flex-col gap-1 pl-[18px]">
-                  <div className="absolute top-1.5 bottom-1.5 left-0 w-0.5 rounded-full bg-gradient-to-b from-white/12 via-white/22 to-white/12" />
-                  {project.steps.map((step, stepIdx) => (
-                    <div key={step.label} className="relative block">
-                      <StepDot index={stepIdx} />
-                      <span
-                        className={cn(
-                          'mb-1 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] leading-[1.15]',
-                          stepIdx === 2 ? 'text-gradient' : 'text-white/65',
-                        )}
-                      >
-                        {step.label}
+              {/* Row 3: Tech Stack + Date  |  Description */}
+              <div className="mt-8 grid grid-cols-[200px_1fr] items-start gap-[clamp(40px,8vw,96px)] max-md:grid-cols-1">
+                {/* Left: stack + date */}
+                <div className="flex flex-col gap-3.5">
+                  <div>
+                    <span className="mb-1.5 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-white/35">
+                      Tech Stack
+                    </span>
+                    <p className="text-[0.92rem] leading-[1.7] text-foreground">
+                      {project.tags.join(', ')}
+                    </p>
+                  </div>
+                  {project.dateRange && (
+                    <div>
+                      <span className="mb-1.5 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-muted opacity-72">
+                        Date
                       </span>
-                      <p className="mb-2.5 text-[1.08rem] leading-[1.72] text-secondary text-wrap-pretty">
-                        {step.metric ? (
-                          <>
-                            {step.text.split(step.metric)[0]}
-                            <strong className="text-gradient font-bold tabular-nums">
-                              {step.metric}
-                            </strong>
-                            {step.text.split(step.metric)[1]}
-                          </>
-                        ) : (
-                          step.text
-                        )}
+                      <p className="font-mono text-[0.82rem] tabular-nums text-foreground">
+                        {project.dateRange}
                       </p>
                     </div>
-                  ))}
+                  )}
+                </div>
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap items-center gap-2 border-t border-border-subtle pt-3.5">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-pill border border-white/9 bg-white/[0.055] px-3 py-1.5 font-mono text-[0.69rem] tracking-[0.02em] text-white/84 transition-all duration-[180ms] ease-out-expo hover:-translate-y-px hover:border-white/22 hover:bg-white/11 hover:text-white/96 hover:shadow-[0_6px_16px_rgba(242,242,242,0.1)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                {/* Right: description */}
+                <div className="pt-1">
+                  {project.description ? (
+                    <p className="text-[1.08rem] leading-[1.72] text-secondary text-wrap-pretty">
+                      {project.description}
+                    </p>
+                  ) : (
+                    <p className="text-[1.08rem] leading-[1.72] text-white/22 italic">
+                      Description coming soon.
+                    </p>
+                  )}
                 </div>
               </div>
             </motion.article>
@@ -173,3 +137,4 @@ export function ProjectsSection() {
     </section>
   )
 }
+

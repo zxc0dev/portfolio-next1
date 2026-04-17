@@ -18,8 +18,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <ReactLenis
       root
       options={{
-        lerp: prefersReduced ? 1 : 0.18,
-        duration: prefersReduced ? 0 : 0.9,
+        lerp: prefersReduced ? 1 : 0.09,
+        duration: prefersReduced ? 0 : 0.7,
         smoothWheel: !prefersReduced,
       }}
     >

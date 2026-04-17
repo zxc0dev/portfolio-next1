@@ -16,8 +16,8 @@ export function EducationSection() {
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader
           number="04"
-          title="Education"
-          subtitle="Credentials & continuous learning"
+          title="Certificates and Credentials"
+          subtitle="Continuous Learning"
           className="mb-[clamp(20px,2.5vw,32px)]"
         />
 

@@ -20,7 +20,7 @@ export function BackToTop() {
           transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
           onClick={() => lenis?.scrollTo(0, { duration: 1.2 })}
           className={cn(
-            'fixed right-8 bottom-8 z-90 flex h-[46px] w-[46px] items-center justify-center',
+            'fixed right-8 bottom-8 z-90 flex h-[46px] w-[34px] items-center justify-center',
             'rounded-md border border-border bg-elevated text-muted',
             'shadow-soft backdrop-blur-[12px]',
             'transition-all duration-[280ms] ease-out-expo',

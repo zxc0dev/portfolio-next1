@@ -53,7 +53,7 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('projects')
-              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
+              if (el && lenis) lenis.scrollTo(el, { offset: -74 })
             }}
           >
             View My Work
@@ -74,7 +74,7 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('contact')
-              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
+              if (el && lenis) lenis.scrollTo(el, { offset: -74 })
             }}
           >
             <Mail className="h-4 w-4" />
@@ -94,7 +94,7 @@ export function Hero() {
           }}
           onClick={() => {
             const el = document.getElementById('projects')
-            if (el && lenis) lenis.scrollTo(el, { offset: -92 })
+            if (el && lenis) lenis.scrollTo(el, { offset: -74 })
           }}
           className="ml-auto mt-10 hidden text-muted transition-colors duration-[280ms] hover:text-accent cursor-pointer lg:flex"
           aria-label="Scroll down"

@@ -61,22 +61,17 @@ export function AboutSection() {
 
             <Reveal delay={0.04}>
               <p className="mb-4 max-w-[68ch] text-[1.23rem] leading-[1.85] text-foreground">
-                I have 1.5+ years of on-site experience in electronics manufacturing at
+                I am Pavlo and so to add I like data. I have 1.5+ years of on-site experience in electronics manufacturing at
                 Foxconn, where I improved production-line pass rates and developed automation
                 scripts that eliminated hours of manual work. That production-floor experience
                 has sharpened the way I approach problems.
               </p>
             </Reveal>
-            <Reveal delay={0.08}>
-              <p className="max-w-[68ch] text-[1.23rem] leading-[1.85] text-foreground">
-                Over time, I&apos;ve found that my strongest interest lies in manufacturing,
-                logistics and operations.
-              </p>
-            </Reveal>
+
           </div>
 
           {/* Stack */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 border-l border-white/10 pl-[clamp(28px,3.5vw,44px)] max-lg:border-l-0 max-lg:pl-0">
             <Reveal>
               <h3 className="text-[1.12rem] font-bold tracking-[-0.02em]">Core Stack</h3>
             </Reveal>

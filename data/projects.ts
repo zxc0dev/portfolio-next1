@@ -6,6 +6,8 @@ export interface Project {
   githubUrl: string | null
   isConfidential: boolean
   isWip: boolean
+  dateRange?: string
+  description?: string
   steps: {
     label: string
     text: string
@@ -27,6 +29,9 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/zxrc0dev/customer-rfm-segmentation-dashboard',
     isConfidential: false,
     isWip: false,
+    dateRange: 'Sep 2025 – Nov 2025',
+    description:
+      'Segmented a 541,910-transaction retail dataset into four actionable customer groups using RFM scoring and K-Means clustering. The resulting Power BI dashboard surfaces each segment’s revenue contribution, churn risk, and recommended marketing action — giving the business a clear, data-backed playbook for customer lifecycle management.',
     steps: [
       {
         label: 'Problem',
@@ -66,6 +71,9 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/zxrc0dev/telecom-customer-churn-prediction',
     isConfidential: false,
     isWip: false,
+    dateRange: 'Nov 2025 – Feb 2026',
+    description:
+      'Built a full ML pipeline on 7,000+ telecom customer records to predict churn before it happens. After extensive EDA, five engineered features and four classifiers were evaluated; XGBoost achieved 0.84 ROC-AUC with 0.80 recall. Findings were translated into a structured retention plan covering contract migration incentives, onboarding touchpoints, and targeted outreach for high-risk fiber cohorts.',
     steps: [
       {
         label: 'Problem',
@@ -106,49 +114,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'sales',
-    title: 'Small Business Sales Analytics Platform',
-    image: '/images/sales-project.webp',
-    imageAlt: 'Small Business Sales Analytics Platform preview',
-    githubUrl: null,
-    isConfidential: true,
-    isWip: false,
-    steps: [
-      {
-        label: 'Problem',
-        text: 'A local business lacked visibility into sales patterns, leading to growing dead stock and poor capital allocation.',
-      },
-      {
-        label: 'Action',
-        text: 'Designed a PostgreSQL database with automated ETL pipeline to ingest transaction data. Analyzed sales to identify top SKUs and demand trends.',
-      },
-      {
-        label: 'Result',
-        text: 'Reduced dead stock by ~20% and improved inventory turnover through data-driven capital reallocation.',
-        metric: '~20%',
-      },
-    ],
-    tags: ['Python', 'PostgreSQL', 'ETL'],
-    summary: [
-      {
-        heading: 'The Challenge',
-        text: 'This project built a reliable data storage and processing pipeline for a small local shop that generated transaction data but did not store it in a structured form for later analysis.',
-      },
-      {
-        heading: 'Relational Database Design',
-        text: 'PostgreSQL was chosen as the core database. A relational schema captured core business entities and relationships with normalized tables.',
-      },
-      {
-        heading: 'Python ETL Pipeline',
-        text: 'A Python ETL pipeline validated, transformed, and wrangled records before loading them into PostgreSQL, keeping stored data consistent and analysis-ready.',
-      },
-      {
-        heading: 'Sales Analysis and Outcomes',
-        text: 'Using Pandas, the team identified top-performing SKUs, demand trends, and underperforming inventory. The business reduced dead stock by approximately 20% and improved inventory turnover.',
-      },
-    ],
-  },
-  {
     slug: 'forecasting',
     title: 'Supply Chain Demand Forecasting',
     image: '/images/forecast_project.webp',
@@ -156,6 +121,9 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/zxrc0dev/supply-chain-demand-forecasting',
     isConfidential: false,
     isWip: true,
+    dateRange: 'Feb 2026 – Present',
+    description:
+      'End-to-end SKU-level demand forecasting pipeline currently in development. Pulling historical transaction data via SQL, engineering lag and seasonality features, and training Python predictive models to reduce overstock and stockout events across the supply chain.',
     steps: [
       {
         label: 'Problem',
