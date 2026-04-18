@@ -20,6 +20,7 @@ import heatmapRaw from '@/public/data/churn/churn_risk_heatmap.json'
 import paymentRaw from '@/public/data/churn/payment_method_churn.json'
 import serviceRaw from '@/public/data/churn/service_adoption_churn.json'
 import chargesRaw from '@/public/data/churn/monthly_charges_churn.json'
+import { Reveal } from '@/components/reveal'
 
 echarts.use([
   BarChart,
@@ -124,14 +125,14 @@ function TenureChart() {
     },
     legend: {
       show: true,
-      top: 4,
+      top: 0,
       right: 0,
       itemWidth: 10,
       itemHeight: 10,
       textStyle: { color: PALETTE.white50, fontSize: 11, fontFamily: 'var(--font-mono), monospace' },
       itemGap: 18,
     },
-    grid: { top: 40, right: 50, bottom: 32, left: 50, containLabel: false },
+    grid: { top: 48, right: 56, bottom: 36, left: 56, containLabel: false },
     xAxis: {
       type: 'category',
       data: tenureRaw.data.map((d) => d.band),
@@ -213,7 +214,7 @@ function DriversChart() {
         return `<div style="font-weight:600;margin-bottom:4px;color:${PALETTE.white94}">${p.name}</div><div style="color:${PALETTE.white70}">Weighted churn: <span style="font-weight:600;color:${PALETTE.white94}">${p.value}%</span></div>${item ? `<div style="color:${PALETTE.white50};font-size:11px;margin-top:4px">${item.signal}</div>` : ''}`
       },
     },
-    grid: { top: 8, right: 50, bottom: 8, left: 10, containLabel: true },
+    grid: { top: 8, right: 56, bottom: 8, left: 10, containLabel: true },
     xAxis: {
       type: 'value',
       axisLabel: { ...axisLabel, formatter: '{value}%' },
@@ -223,7 +224,7 @@ function DriversChart() {
     yAxis: {
       type: 'category',
       data: data.map((d) => d.driver),
-      axisLabel: { ...axisLabel, fontSize: 11, width: 120, overflow: 'truncate' },
+      axisLabel: { ...axisLabel, fontSize: 11, width: 140, overflow: 'truncate' },
       axisLine,
       axisTick: { show: false },
     },
@@ -274,7 +275,7 @@ function HeatmapChart_() {
         return `<div style="font-weight:600;margin-bottom:4px;color:${PALETTE.white94}">${CONTRACTS[ci]}</div><div style="color:${PALETTE.white70}">Tenure: ${tenureBands[ti]} mo</div><div style="color:${PALETTE.white70}">Churn: <span style="font-weight:600;color:${PALETTE.white94}">${val}%</span></div>${item ? `<div style="color:${PALETTE.white50};font-size:11px">n=${item.count}</div>` : ''}`
       },
     },
-    grid: { top: 8, right: 12, bottom: 40, left: 10, containLabel: true },
+    grid: { top: 8, right: 12, bottom: 48, left: 10, containLabel: true },
     xAxis: {
       type: 'category',
       data: tenureBands,
@@ -283,7 +284,7 @@ function HeatmapChart_() {
       axisTick: { show: false },
       name: 'Tenure (months)',
       nameLocation: 'middle',
-      nameGap: 28,
+      nameGap: 34,
       nameTextStyle: { color: PALETTE.white35, fontSize: 10, fontFamily: 'var(--font-mono), monospace' },
     },
     yAxis: {
@@ -351,14 +352,14 @@ function PaymentChart() {
     },
     legend: {
       show: true,
-      top: 4,
+      top: 0,
       right: 0,
       itemWidth: 10,
       itemHeight: 10,
       textStyle: { color: PALETTE.white50, fontSize: 11, fontFamily: 'var(--font-mono), monospace' },
       itemGap: 18,
     },
-    grid: { top: 36, right: 12, bottom: 44, left: 10, containLabel: true },
+    grid: { top: 42, right: 12, bottom: 52, left: 10, containLabel: true },
     xAxis: {
       type: 'category',
       data: paymentRaw.data.map((d) => d.method),
@@ -413,14 +414,14 @@ function ServiceChart() {
     },
     legend: {
       show: true,
-      top: 4,
+      top: 0,
       right: 0,
       itemWidth: 10,
       itemHeight: 10,
       textStyle: { color: PALETTE.white50, fontSize: 11, fontFamily: 'var(--font-mono), monospace' },
       itemGap: 18,
     },
-    grid: { top: 36, right: 12, bottom: 44, left: 10, containLabel: true },
+    grid: { top: 42, right: 12, bottom: 52, left: 10, containLabel: true },
     xAxis: {
       type: 'category',
       data: serviceRaw.data.map((d) => d.service),
@@ -481,7 +482,7 @@ function ChargesChart() {
         return `<div style="font-weight:600;margin-bottom:4px;color:${PALETTE.white94}">${p.name}</div><div style="color:${PALETTE.white70}">Churn rate: <span style="font-weight:600;color:${PALETTE.white94}">${p.value}%</span></div>${item ? `<div style="color:${PALETTE.white50};font-size:11px">${item.churned} of ${item.total} customers</div>` : ''}`
       },
     },
-    grid: { top: 16, right: 12, bottom: 32, left: 10, containLabel: true },
+    grid: { top: 24, right: 12, bottom: 36, left: 10, containLabel: true },
     xAxis: {
       type: 'category',
       data: chargesRaw.data.map((d) => d.range),
@@ -526,10 +527,11 @@ export function ChurnDashboard() {
   return (
     <div className="flex flex-col gap-[clamp(24px,3vw,36px)]">
       {/* KPI Strip */}
+      <Reveal>
       <div className="grid grid-cols-4 gap-[clamp(8px,1vw,12px)] max-md:grid-cols-2 max-sm:grid-cols-1">
-        {kpiRaw.cards.map((kpi) => (
+        {kpiRaw.cards.map((kpi, i) => (
+          <Reveal key={kpi.label} delay={i * 0.04}>
           <div
-            key={kpi.label}
             className="flex flex-col items-start gap-0.5 rounded-sm p-[10px_clamp(12px,1.2vw,16px)] transition-all duration-[280ms] ease-out-expo"
           >
             <span className="text-gradient mb-0.5 block w-full font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] leading-[1.2]">
@@ -542,10 +544,13 @@ export function ChurnDashboard() {
               {kpi.foot}
             </span>
           </div>
+          </Reveal>
         ))}
       </div>
+      </Reveal>
 
       {/* Main chart: Lifecycle Risk Curve */}
+      <Reveal delay={0.04}>
       <div>
         <div className="mb-3">
           <p className="text-gradient mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em]">
@@ -560,10 +565,12 @@ export function ChurnDashboard() {
         </div>
         <TenureChart />
       </div>
+      </Reveal>
 
       {/* Split view: Drivers + Heatmap */}
       <div className="grid grid-cols-[1fr_1fr] items-start gap-[clamp(20px,2.5vw,32px)] max-lg:grid-cols-1">
         {/* Churn Drivers */}
+        <Reveal delay={0.04}>
         <div>
           <div className="mb-3">
             <p className="text-gradient mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em]">
@@ -578,8 +585,10 @@ export function ChurnDashboard() {
           </div>
           <DriversChart />
         </div>
+        </Reveal>
 
         {/* Heatmap */}
+        <Reveal delay={0.08}>
         <div>
           <div className="mb-3">
             <p className="text-gradient mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em]">
@@ -594,11 +603,13 @@ export function ChurnDashboard() {
           </div>
           <HeatmapChart_ />
         </div>
+        </Reveal>
       </div>
 
       {/* Split view: Service Adoption + Payment Method */}
       <div className="grid grid-cols-[1fr_1fr] items-start gap-[clamp(20px,2.5vw,32px)] max-lg:grid-cols-1">
         {/* Service Adoption */}
+        <Reveal delay={0.04}>
         <div>
           <div className="mb-3">
             <p className="text-gradient mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em]">
@@ -613,8 +624,10 @@ export function ChurnDashboard() {
           </div>
           <ServiceChart />
         </div>
+        </Reveal>
 
         {/* Payment Method */}
+        <Reveal delay={0.08}>
         <div>
           <div className="mb-3">
             <p className="text-gradient mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em]">
@@ -629,9 +642,11 @@ export function ChurnDashboard() {
           </div>
           <PaymentChart />
         </div>
+        </Reveal>
       </div>
 
       {/* Monthly Charges */}
+      <Reveal delay={0.04}>
       <div>
         <div className="mb-3">
           <p className="text-gradient mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em]">
@@ -646,6 +661,7 @@ export function ChurnDashboard() {
         </div>
         <ChargesChart />
       </div>
+      </Reveal>
     </div>
   )
 }

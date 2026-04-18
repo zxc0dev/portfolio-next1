@@ -18,9 +18,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <ReactLenis
       root
       options={{
-        lerp: prefersReduced ? 1 : 0.09,
+        lerp: prefersReduced ? 1 : 0.1,
         duration: prefersReduced ? 0 : 0.7,
         smoothWheel: !prefersReduced,
+        autoResize: true,
       }}
     >
       <ScrollManager />

@@ -9,7 +9,6 @@ const SECTIONS = [
   'experience',
   'about',
   'education',
-  'churn-studio',
   'contact',
 ]
 

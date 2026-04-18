@@ -75,19 +75,20 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
+      className="section-divider relative bg-surface-alt py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader
-          number="06"
+          number="05"
           title="Let's Talk"
           subtitle="How to reach me"
           className="mb-[clamp(20px,2.5vw,32px)]"
         />
 
-        <Reveal className="ml-[42px] max-md:ml-0">
+        <div className="ml-[42px] max-md:ml-0">
           <div className="grid grid-cols-[1.35fr_1fr] items-start gap-[clamp(40px,6vw,80px)] max-md:grid-cols-1">
               {/* Left — form */}
+              <Reveal>
               <div className="flex flex-col">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Send a message
@@ -210,21 +211,18 @@ export function ContactSection() {
                   )}
                 </form>
               </div>
+              </Reveal>
 
-              {/* Right — channels */}
-              <div className="max-md:pt-2">
-                {/* Separator line — visible on mobile, vertical on desktop handled by border */}
-                <div className="mb-6 hidden h-px w-full bg-[linear-gradient(90deg,transparent,rgba(242,242,242,0.18),transparent)] opacity-75 max-md:block" />
-                <div className="relative max-md:hidden">
-                  <div className="absolute -left-[clamp(20px,3vw,40px)] top-0 bottom-0 w-px bg-[linear-gradient(180deg,transparent,rgba(242,242,242,0.18),transparent)] opacity-75" />
-                </div>
+              {/* Separator */}
+              <Reveal delay={0.06}>
+              <div className="border-l border-white/10 pl-[clamp(20px,3vw,40px)] max-md:border-l-0 max-md:pl-0 max-md:border-t max-md:border-white/10 max-md:pt-6">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Or reach out directly
                 </span>
                 <div className="flex flex-col gap-2">
-                  {CHANNELS.map((ch) => (
+                  {CHANNELS.map((ch, i) => (
+                    <Reveal key={ch.label} delay={0.08 + i * 0.04}>
                     <a
-                      key={ch.label}
                       href={ch.href}
                       target={ch.external ? '_blank' : undefined}
                       rel={ch.external ? 'noopener noreferrer' : undefined}
@@ -243,11 +241,13 @@ export function ContactSection() {
                       </div>
                       <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted opacity-38 transition-all duration-[280ms] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-85" />
                     </a>
+                    </Reveal>
                   ))}
                 </div>
               </div>
+              </Reveal>
             </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   )

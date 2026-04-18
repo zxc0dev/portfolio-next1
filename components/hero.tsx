@@ -53,7 +53,7 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('projects')
-              if (el && lenis) lenis.scrollTo(el, { offset: 0 })
+              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
             }}
           >
             <Layers className="h-4 w-4" />
@@ -66,7 +66,7 @@ export function Hero() {
             onClick={(e) => {
               e.preventDefault()
               const el = document.getElementById('contact')
-              if (el && lenis) lenis.scrollTo(el, { offset: 0 })
+              if (el && lenis) lenis.scrollTo(el, { offset: -92 })
             }}
           >
             <Mail className="h-4 w-4" />
@@ -75,7 +75,7 @@ export function Hero() {
         </motion.div>
 
         {/* Scroll indicator */}
-        <motion.button
+        <motion.div
           variants={{
             hidden: { opacity: 0, y: -28 },
             visible: {
@@ -84,12 +84,8 @@ export function Hero() {
               transition: { duration: 1, ease: [0.33, 1, 0.68, 1], delay: 0.3 },
             },
           }}
-          onClick={() => {
-            const el = document.getElementById('projects')
-            if (el && lenis) lenis.scrollTo(el, { offset: -92 })
-          }}
-          className="ml-auto mt-10 hidden text-muted transition-colors duration-[280ms] hover:text-accent cursor-pointer lg:flex"
-          aria-label="Scroll down"
+          className="mt-10 hidden lg:flex justify-end text-muted pointer-events-none"
+          aria-hidden="true"
         >
           <svg
             width="24"
@@ -104,7 +100,7 @@ export function Hero() {
             <path d="M12 4v46" />
             <path d="m19 46-7 8-7-8" />
           </svg>
-        </motion.button>
+        </motion.div>
       </motion.div>
 
     </header>

@@ -10,7 +10,7 @@ export const fadeIn: Variants = {
 }
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 14 },
   visible: {
     opacity: 1,
     y: 0,
@@ -28,8 +28,8 @@ export const fadeUpStagger: Variants = {
 export const fadeUpChild: Variants = {
   hidden: {
     opacity: 0,
-    y: 20,
-    transition: { duration: 0.6, ease: easings.outExpo },
+    y: 14,
+    transition: { duration: 0.3, ease: easings.outExpo },
   },
   visible: {
     opacity: 1,
@@ -39,7 +39,7 @@ export const fadeUpChild: Variants = {
 }
 
 export const heroEntrance: Variants = {
-  hidden: { opacity: 0, x: 48, y: 6, filter: 'blur(4px)' },
+  hidden: { opacity: 0, x: 28, y: 4, filter: 'blur(3px)' },
   visible: {
     opacity: 1,
     x: 0,
