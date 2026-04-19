@@ -35,8 +35,8 @@ const CHANNELS = [
   },
   {
     label: 'GitHub',
-    value: 'github.com/zxrc0dev',
-    href: 'https://github.com/zxrc0dev',
+    value: 'github.com/zxc0dev',
+    href: 'https://github.com/zxc0dev',
     icon: Github,
     external: true,
   },
@@ -75,7 +75,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="section-divider relative bg-surface-alt py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
+      className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader

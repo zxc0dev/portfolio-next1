@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useUIStore } from '@/stores/ui-store'
+import { useAppStore } from '@/stores/app-store'
 
 const SECTIONS = [
   'hero',
@@ -13,7 +13,7 @@ const SECTIONS = [
 ]
 
 export function useActiveSection() {
-  const setActiveSection = useUIStore((s) => s.setActiveSection)
+  const setActiveSection = useAppStore((s) => s.setActiveSection)
 
   useEffect(() => {
     const observer = new IntersectionObserver(

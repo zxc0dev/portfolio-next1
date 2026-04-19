@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { inter, jetbrainsMono } from '@/lib/fonts'
 import { Providers } from '@/components/providers'
 import { ScrollProgress } from '@/components/scroll-progress'
-import { NetworkCanvas } from '@/components/network-canvas'
-import { Loader } from '@/components/loader'
 import { InteractionLock } from '@/components/interaction-lock'
 import '@/styles/globals.css'
 
@@ -56,13 +54,10 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
     >
         <body className="flex min-h-svh flex-col bg-background font-sans text-foreground antialiased">
         <Providers>
           <InteractionLock />
-          <Loader />
-          <NetworkCanvas />
           <ScrollProgress />
           {children}
         </Providers>

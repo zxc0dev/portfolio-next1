@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 import { useLenis } from 'lenis/react'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'GitHub', href: 'https://github.com/zxrc0dev', external: true },
+  { label: 'GitHub', href: 'https://github.com/zxc0dev', external: true },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/pavlo-popovych', external: true },
   { label: 'Email', href: 'mailto:pavlo.v.popovych@outlook.com', external: false },
 ]

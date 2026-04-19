@@ -1,17 +1,18 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView } from 'motion/react'
 import { Mail, Layers } from 'lucide-react'
 
 import { useLenis } from 'lenis/react'
 import { ButtonLink } from '@/components/ui/button'
+import { Reveal } from '@/components/reveal'
 import { heroEntrance } from '@/animations/variants'
 import { heroOrchestration } from '@/animations/orchestration'
 
 export function Hero() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const isInView = useInView(ref, { once: false, margin: '-10%' })
   const lenis = useLenis()
 
   return (
@@ -20,10 +21,6 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-svh items-center justify-center overflow-hidden px-7 pt-[140px] pb-[clamp(88px,10vw,140px)]"
     >
-      {/* Ambient orbs */}
-      <div className="pointer-events-none absolute -top-[20%] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(242,242,242,0.04)_0%,transparent_70%)] blur-[80px] animate-[orbFloat1_10s_ease-in-out_infinite_alternate]" />
-      <div className="pointer-events-none absolute -right-[10%] -bottom-[10%] h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(242,242,242,0.025)_0%,transparent_70%)] blur-[80px] animate-[orbFloat2_12s_ease-in-out_infinite_alternate]" />
-
       <motion.div
         variants={heroOrchestration}
         initial="hidden"
@@ -31,17 +28,20 @@ export function Hero() {
         className="relative z-2 w-full max-w-[1360px] text-left px-[clamp(20px,4vw,48px)]"
       >
         {/* Hero statement */}
+        <Reveal>
         <motion.div variants={heroEntrance} className="mb-14">
           <h1
-            className="font-sans font-normal leading-[1.10] tracking-[-0.02em] text-foreground"
-            style={{ fontSize: 'clamp(2.6rem, 5.2vw, 4.4rem)' }}
+            className="font-sans font-[300] leading-[1.08] tracking-[-0.025em] text-foreground"
+            style={{ fontSize: 'clamp(2.4rem, 5vw, 4.4rem)' }}
           >
               I&apos;m Pavlo — a data analyst and I love finding structure and patterns in
               complex things.
           </h1>
         </motion.div>
+        </Reveal>
 
         {/* CTA buttons */}
+        <Reveal delay={0.08}>
         <motion.div
           variants={heroEntrance}
           className="flex flex-wrap items-center justify-start gap-3.5 gap-y-3"
@@ -73,8 +73,10 @@ export function Hero() {
             Get in Touch
           </ButtonLink>
         </motion.div>
+        </Reveal>
 
         {/* Scroll indicator */}
+        <Reveal delay={0.16}>
         <motion.div
           variants={{
             hidden: { opacity: 0, y: -28 },
@@ -101,6 +103,7 @@ export function Hero() {
             <path d="m19 46-7 8-7-8" />
           </svg>
         </motion.div>
+        </Reveal>
       </motion.div>
 
     </header>

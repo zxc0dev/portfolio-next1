@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView } from 'motion/react'
 import { cn } from '@/lib/utils'
 import { easings, durations } from '@/tokens'
 
@@ -21,18 +21,19 @@ export function Reveal({
   once = false,
 }: RevealProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once, margin: '0px 0px -60px 0px' })
+  const isInView = useInView(ref, { once, margin: '0px 0px -20px 0px' })
 
   const directionMap = {
-    up: { y: 14 },
-    left: { x: -18 },
-    right: { x: 18 },
+    up: { y: 10 },
+    left: { x: -14 },
+    right: { x: 14 },
     none: {},
   }
 
   return (
     <motion.div
       ref={ref}
+      transformTemplate={(_, generated) => `${generated} translateZ(0)`}
       initial={{ opacity: 0, ...directionMap[direction] }}
       animate={
         isInView
@@ -45,7 +46,7 @@ export function Reveal({
         delay: isInView ? delay : 0,
       }}
       className={cn(className)}
-      style={{ willChange: 'opacity, transform' }}
+      style={{ willChange: 'opacity, transform', backfaceVisibility: 'hidden' }}
     >
       {children}
     </motion.div>

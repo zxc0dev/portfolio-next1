@@ -1,7 +1,4 @@
-'use client'
-
 import { MapPin, Languages } from 'lucide-react'
-import Balancer from 'react-wrap-balancer'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 
@@ -20,7 +17,7 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="section-divider relative bg-surface-alt py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
+      className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader
@@ -39,10 +36,8 @@ export function AboutSection() {
                   className="font-bold leading-[1.26] tracking-[-0.025em] text-foreground text-wrap-balance"
                   style={{ fontSize: 'clamp(1.66rem, 1.55vw + 1rem, 1.96rem)' }}
                 >
-                  <Balancer>
-                    A data analyst who turns{' '}
-                    <span className="text-gradient">complexity into clarity.</span>
-                  </Balancer>
+                  A data analyst who turns{' '}
+                  <span className="text-gradient">complexity into clarity.</span>
                 </h3>
                 <div className="flex flex-col items-start gap-1.5 font-mono text-[0.72rem] tracking-[0.06em]">
                   <span className="flex items-center gap-1.5 text-muted">
@@ -60,7 +55,7 @@ export function AboutSection() {
             </Reveal>
 
             <Reveal delay={0.04}>
-              <p className="mb-4 max-w-[68ch] text-[1.23rem] leading-[1.85] text-foreground">
+              <p className="mb-4 max-w-[68ch] text-[1.3rem] leading-[1.82] text-secondary">
                 I am Pavlo and so to add I like data. I have 1.5+ years of on-site experience in electronics manufacturing at
                 Foxconn, where I improved production-line pass rates and developed automation
                 scripts that eliminated hours of manual work. That production-floor experience

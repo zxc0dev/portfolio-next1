@@ -1,6 +1,7 @@
 export interface Project {
   slug: string
   title: string
+  type?: string
   githubUrl: string | null
   isConfidential: boolean
   isWip: boolean
@@ -14,7 +15,8 @@ export const projects: Project[] = [
   {
     slug: 'rfm',
     title: 'Customer RFM Segmentation',
-    githubUrl: 'https://github.com/zxrc0dev/customer-rfm-segmentation-dashboard',
+    type: 'Data Analysis',
+    githubUrl: 'https://github.com/zxc0dev/customer-rfm-segmentation-dashboard',
     isConfidential: false,
     isWip: false,
     dateRange: 'Sep 2025 \u2013 Nov 2025',
@@ -26,7 +28,8 @@ export const projects: Project[] = [
   {
     slug: 'churn',
     title: 'Telecom Customer Churn Prediction',
-    githubUrl: 'https://github.com/zxrc0dev/telecom-customer-churn-prediction',
+    type: 'ML Pipeline',
+    githubUrl: 'https://github.com/zxc0dev/telecom-customer-churn-prediction',
     isConfidential: false,
     isWip: false,
     dateRange: 'Nov 2025 \u2013 Feb 2026',
@@ -38,7 +41,8 @@ export const projects: Project[] = [
   {
     slug: 'forecasting',
     title: 'Supply Chain Demand Forecasting',
-    githubUrl: 'https://github.com/zxrc0dev/supply-chain-demand-forecasting',
+    type: 'Forecasting',
+    githubUrl: 'https://github.com/zxc0dev/supply-chain-demand-forecasting',
     isConfidential: false,
     isWip: true,
     dateRange: 'Feb 2026 \u2013 Present',

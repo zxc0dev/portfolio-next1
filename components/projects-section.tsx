@@ -1,22 +1,8 @@
-﻿'use client'
-
-import dynamic from 'next/dynamic'
-import { Github, Lock, ExternalLink } from 'lucide-react'
+﻿import { Github, Lock, ExternalLink } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
-import { cn } from '@/lib/utils'
 import { projects } from '@/data/projects'
-
-const ChurnDashboard = dynamic(
-  () => import('@/components/churn-dashboard').then((m) => m.ChurnDashboard),
-  { ssr: false, loading: () => (
-    <div className="flex min-h-[400px] items-center justify-center">
-      <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/20">
-        Loading dashboard…
-      </span>
-    </div>
-  ) },
-)
+import { ChurnDashboard } from '@/components/churn/lazy-dashboard'
 
 const DASHBOARD_MAP: Record<string, React.ComponentType> = {
   churn: ChurnDashboard,
@@ -26,7 +12,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="section-divider relative bg-surface-alt py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
+      className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader
@@ -36,22 +22,17 @@ export function ProjectsSection() {
           className="mb-[clamp(20px,2.5vw,32px)]"
         />
 
-        <div className="ml-[42px] flex flex-col max-md:ml-0">
-          {projects.map((project, idx) => (
+        <div className="ml-[42px] flex flex-col gap-[clamp(48px,5vw,72px)] max-md:ml-0">
+          {projects.map((project) => (
             <article
               key={project.slug}
-              className={cn(
-                'border-b border-border-subtle py-[clamp(28px,3vw,40px)]',
-                idx === 0 && 'pt-0',
-                idx === projects.length - 1 && 'border-b-0',
-              )}
             >
               {/* Row 1: Title + Buttons */}
               <Reveal>
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <h3
                   className="font-bold leading-[1.32] tracking-[-0.025em] text-wrap-balance"
-                  style={{ fontSize: 'clamp(1.38rem, 1.3vw + 0.9rem, 1.64rem)' }}
+                  style={{ fontSize: 'clamp(1.8rem, 1.7vw + 1.1rem, 2.13rem)' }}
                 >
                   {project.title}
                 </h3>
@@ -61,11 +42,11 @@ export function ProjectsSection() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-2 rounded-md border border-border bg-white/[0.012] px-3.5 py-2.5 font-mono text-[0.72rem] font-[560] tracking-[0.02em] text-secondary transition-all duration-[220ms] ease-out-expo gradient-border hover:text-foreground hover:bg-white/[0.026] hover:-translate-y-px hover:border-border-hover hover:shadow-[0_4px_10px_rgba(242,242,242,0.08)]"
+                      className="group inline-flex items-center gap-1.5 font-mono text-[0.78rem] tracking-[0.04em] text-white transition-all duration-[220ms] ease-out-expo hover:text-foreground"
                     >
-                      <Github className="h-[15px] w-[15px]" />
-                      <span>View on GitHub</span>
-                      <ExternalLink className="h-3 w-3 opacity-40 transition-opacity duration-[180ms] group-hover:opacity-75" />
+                      <Github className="h-[14px] w-[14px] opacity-70 transition-opacity duration-[180ms] group-hover:opacity-100" />
+                      <span className="border-b border-white/0 transition-[border-color] duration-[220ms] group-hover:border-white/30">View on GitHub</span>
+                      <ExternalLink className="h-[11px] w-[11px] opacity-0 -translate-y-px translate-x-[-2px] transition-all duration-[180ms] group-hover:opacity-60 group-hover:translate-x-0" />
                     </a>
                   )}
                   {project.isConfidential && (
@@ -89,7 +70,7 @@ export function ProjectsSection() {
                   </Reveal>
                 ) : (
                   <Reveal delay={0.04}>
-                  <div className="mt-5 flex min-h-[400px] items-center justify-center rounded-lg border border-border-subtle bg-white/[0.018]">
+                  <div className="mt-5 flex min-h-[400px] items-center justify-center">
                     <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/20">
                       Live Dashboard
                     </span>
@@ -102,45 +83,27 @@ export function ProjectsSection() {
               <Reveal delay={0.06}>
               <div className="mt-8 grid grid-cols-[340px_1fr] items-start gap-[clamp(60px,12vw,144px)] max-md:grid-cols-1">
                 {/* Left: stack + date */}
-                <div className="flex flex-col gap-3.5">
-                  <div className="flex items-baseline gap-3">
-                    <span className="shrink-0 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-white/35">
-                      Tech Stack
-                    </span>
-                    <p className="text-[0.92rem] leading-[1.7] text-foreground">
-                      {project.tags.join(', ')}
-                    </p>
-                  </div>
-                  {project.dataset && (
-                    <div className="flex items-baseline gap-3">
-                      <span className="shrink-0 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-white/35">
-                        Dataset
-                      </span>
-                      <p className="text-[0.92rem] leading-[1.7] text-foreground">
-                        {project.dataset}
-                      </p>
-                    </div>
-                  )}
-                  {project.dateRange && (
-                    <div className="flex items-baseline gap-3">
-                      <span className="shrink-0 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-muted opacity-72">
-                        Date
-                      </span>
-                      <p className="font-mono text-[0.82rem] tabular-nums text-foreground">
-                        {project.dateRange}
-                      </p>
-                    </div>
-                  )}
-                </div>
+                <dl className="grid grid-cols-[80px_1fr] gap-x-6 gap-y-2.5 items-baseline">
+                  <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-white/40">Stack</dt>
+                  <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-white/90">{project.tags.join(', ')}</dd>
+                  {project.dataset && (<>
+                    <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-white/40">Dataset</dt>
+                    <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-white/90">{project.dataset}</dd>
+                  </>)}
+                  {project.dateRange && (<>
+                    <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-white/40">Date</dt>
+                    <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-white/90">{project.dateRange}</dd>
+                  </>)}
+                </dl>
 
                 {/* Right: description */}
                 <div className="pt-1">
                   {project.description ? (
-                    <p className="text-[1.08rem] leading-[1.72] text-secondary text-wrap-pretty">
+                    <p className="text-[1.05rem] leading-[1.72] text-secondary text-wrap-pretty">
                       {project.description}
                     </p>
                   ) : (
-                    <p className="text-[1.08rem] leading-[1.72] text-white/22 italic">
+                    <p className="text-[1.05rem] leading-[1.72] text-white/22 italic">
                       Description coming soon.
                     </p>
                   )}

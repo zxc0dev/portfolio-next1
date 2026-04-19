@@ -1,10 +1,10 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInteractionStore } from '@/stores/interaction-store'
+import { motion } from 'motion/react'
+import { useAppStore } from '@/stores/app-store'
 
 export function ScrollProgress() {
-  const progress = useInteractionStore((s) => s.scrollProgress)
+  const progress = useAppStore((s) => s.scrollProgress)
 
   return (
     <motion.div

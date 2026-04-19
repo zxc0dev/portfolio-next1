@@ -1,8 +1,9 @@
 import type { NextConfig } from 'next'
 
-const isProd = process.env.NODE_ENV === 'production'
+// For local development, skip basePath. Set GITHUB_PAGES=true when building for GitHub Pages deployment.
+const isGitHubPages = process.env.GITHUB_PAGES === 'true'
 const repoName = 'portfolio-next1'
-const basePath = isProd ? `/${repoName}` : ''
+const basePath = isGitHubPages ? `/${repoName}` : ''
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,

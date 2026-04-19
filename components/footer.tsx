@@ -18,7 +18,7 @@ const NAV_LINKS = [
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: 'https://github.com/zxrc0dev', icon: Github },
+  { label: 'GitHub', href: 'https://github.com/zxc0dev', icon: Github },
   { label: 'Medium', href: 'https://medium.com/@zxrcodev', icon: MediumIcon },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/pavlo-popovych', icon: Linkedin },
   { label: 'Email', href: 'mailto:pavlo.v.popovych@outlook.com', icon: Mail },
@@ -34,9 +34,6 @@ export function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-[linear-gradient(180deg,rgba(0,0,0,0.35)_0%,rgba(0,0,0,0.35)_100%)]">
-      {/* Glow orb */}
-      <div className="pointer-events-none absolute -top-[120px] left-1/2 h-[400px] w-[600px] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(242,242,242,0.06)_0%,rgba(242,242,242,0.03)_40%,transparent_70%)] blur-[40px]" />
-
       {/* Top border */}
       <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent_6%,rgba(242,242,242,0.09)_30%,rgba(242,242,242,0.12)_50%,rgba(242,242,242,0.09)_70%,transparent_94%)]" />
 

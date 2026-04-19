@@ -1,13 +1,13 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { ArrowUp } from 'lucide-react'
 import { useLenis } from 'lenis/react'
-import { useUIStore } from '@/stores/ui-store'
+import { useAppStore } from '@/stores/app-store'
 import { cn } from '@/lib/utils'
 
 export function BackToTop() {
-  const visible = useUIStore((s) => s.backToTopVisible)
+  const visible = useAppStore((s) => s.backToTopVisible)
   const lenis = useLenis()
 
   return (

@@ -207,106 +207,10 @@
   opacity: 0.32;
 }
 
-.section-divider {
-  position: relative;
-}
-
-.section-divider::before,
-.section-divider::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 6%,
-    rgba(242, 242, 242, 0.05) 10%,
-    rgba(242, 242, 242, 0.09) 50%,
-    rgba(242, 242, 242, 0.05) 90%,
-    transparent 94%
-  );
-}
-
-.section-divider::before {
-  top: 0;
-}
-.section-divider::after {
-  bottom: 0;
-}
-
-/* ─── Hero Ambient Keyframes ───────────────────────────────────────────── */
-@keyframes orbFloat1 {
-  0% {
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-  100% {
-    transform: translateX(-45%) translateY(-30px) scale(1.1);
-  }
-}
-
-@keyframes orbFloat2 {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-  100% {
-    transform: translateY(20px) scale(1.15);
-  }
-}
-
 /* ─── Focus Visible ────────────────────────────────────────────────────── */
 :focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-}
-
-/* ─── Loader ───────────────────────────────────────────────────────────── */
-.loader-content-exit {
-  opacity: 0;
-  transform: translateY(-18px) scale(0.96);
-}
-
-.loader-exit {
-  opacity: 0;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  pointer-events: none;
-}
-
-@keyframes loaderRingSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loaderOrbitSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loaderLogoBreathe {
-  0%,
-  100% {
-    opacity: 0.78;
-    text-shadow: 0 0 32px rgba(242, 242, 242, 0.12);
-  }
-  50% {
-    opacity: 1;
-    text-shadow:
-      0 0 44px rgba(242, 242, 242, 0.25),
-      0 0 80px rgba(242, 242, 242, 0.08);
-  }
-}
-
-@keyframes loaderAmbientPulse {
-  0% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.12);
-  }
 }
 
 /* ─── Reduced Motion ───────────────────────────────────────────────────── */

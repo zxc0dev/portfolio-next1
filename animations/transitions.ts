@@ -1,4 +1,4 @@
-import type { Transition } from 'framer-motion'
+import type { Transition } from 'motion/react'
 import { easings, durations } from '@/tokens'
 
 export const springDefault: Transition = {

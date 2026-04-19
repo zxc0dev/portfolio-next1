@@ -7,7 +7,7 @@ export const durations = {
   fast: 0.18,
   base: 0.28,
   slow: 0.42,
-  reveal: 0.72,
+  reveal: 0.9,
   heroEntrance: 1.1,
   pageTransition: 0.35,
 }
