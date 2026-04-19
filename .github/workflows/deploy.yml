@@ -35,6 +35,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          GITHUB_PAGES: true
           NEXT_PUBLIC_FORMSPREE_ID: ${{ secrets.NEXT_PUBLIC_FORMSPREE_ID }}
 
       - name: Add .nojekyll
