@@ -55,7 +55,7 @@ export function Nav() {
 
         {/* Right — resume */}
         <a
-          href="/pavlo_popovych_data_analyst_resume.pdf"
+          href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/pavlo_popovych_data_analyst_resume.pdf`}
           download
           className="group relative ml-auto hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
         >
@@ -102,7 +102,7 @@ export function Nav() {
                 </a>
               ))}
               <a
-                href="/pavlo_popovych_data_analyst_resume.pdf"
+                href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/pavlo_popovych_data_analyst_resume.pdf`}
                 download
                 className="rounded-sm px-3 py-2 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
