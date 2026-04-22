@@ -32,19 +32,16 @@ export function AboutSection() {
           <div className="flex flex-col">
             <Reveal>
               <div className="mb-6 flex flex-col gap-2.5">
-                <h3
-                  className="font-bold leading-[1.26] tracking-[-0.025em] text-foreground text-wrap-balance"
+              <h3
+                  className="font-bold leading-[1.26] tracking-[-0.025em] text-foreground text-wrap-balance flex flex-col gap-2"
                   style={{ fontSize: 'clamp(1.66rem, 1.55vw + 1rem, 1.96rem)' }}
                 >
-                  A data analyst who turns{' '}
-                  <span className="text-gradient">complexity into clarity.</span>
+                  <span>
+                    A data analyst who turns{' '}
+                    <span className="text-gradient">complexity into clarity.</span>
+                  </span>
+                  <span>What a clich&eacute;, huh? But it&apos;s true of me.</span>
                 </h3>
-                <p
-                  className="font-[400] leading-[1.26] tracking-[-0.025em] text-secondary text-wrap-balance"
-                  style={{ fontSize: 'clamp(1.66rem, 1.55vw + 1rem, 1.96rem)' }}
-                >
-                  What a clich&eacute;, huh? But it&apos;s true of me.
-                </p>
                 <div className="flex flex-col items-start gap-1.5 font-mono text-[0.72rem] tracking-[0.06em]">
                   <span className="flex items-center gap-1.5 text-muted">
                     <MapPin className="h-3.5 w-3.5 shrink-0 opacity-88" />
@@ -60,32 +57,42 @@ export function AboutSection() {
               </div>
             </Reveal>
 
-            <Reveal delay={0.04}>
-              <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.16rem] leading-[1.82] text-secondary">
+            <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.16rem] leading-[1.82] text-secondary">
+              <Reveal delay={0.04}>
                 <p>I am Pavlo. I like data. Specifically: analytics and engineering.</p>
+              </Reveal>
+              <Reveal delay={0.08}>
                 <p>
                   I have 1.5+ years of on-site experience in electronics manufacturing at Foxconn,
                   where I improved production-line pass rates and developed automation scripts that
                   eliminated hours of manual work.
                 </p>
+              </Reveal>
+              <Reveal delay={0.12}>
                 <p>
                   I possess a natural curiosity for how systems are built. I don&apos;t just follow
                   tutorials; instead building end-to-end projects from the ground up to understand
                   the structure behind it all. I take a First Principles approach, Platonic in its
                   focus on the essence of a problem in order to help me with that.
                 </p>
+              </Reveal>
+              <Reveal delay={0.16}>
                 <p>
                   Also I&apos;m a firm believer that the only way to master a craft is through the
                   kind of deliberate practice Anders Ericsson championed:
                 </p>
+              </Reveal>
+              <Reveal delay={0.2}>
                 <ul className="flex flex-col gap-1.5 pl-0 list-none">
                   <li>&#8212;&nbsp;Relentless, but not to the point of killing interest.</li>
                   <li>&#8212;&nbsp;Focused, but not so much that you miss your own mistakes.</li>
                   <li>&#8212;&nbsp;Corrective, but not to the point of paralysis.</li>
                 </ul>
+              </Reveal>
+              <Reveal delay={0.24}>
                 <p>Anyway, enough text. I&apos;ll let the projects speak for themselves.</p>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
 
           </div>
 

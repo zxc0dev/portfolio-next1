@@ -21,7 +21,7 @@ export function Reveal({
   once = false,
 }: RevealProps) {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once, margin: '0px 0px -20px 0px' })
+  const isInView = useInView(ref, { once, margin: '0px 0px 100px 0px' })
 
   const directionMap = {
     up: { y: 10 },
