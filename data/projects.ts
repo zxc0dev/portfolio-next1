@@ -44,10 +44,10 @@ export const projects: Project[] = [
     type: 'Forecasting',
     githubUrl: 'https://github.com/zxc0dev/supply-chain-demand-forecasting',
     isConfidential: false,
-    isWip: true,
+    isWip: false,
     dateRange: 'Feb 2026 \u2013 Present',
     description:
-      'End-to-end SKU-level demand forecasting pipeline currently in development. Pulling historical transaction data via SQL, engineering lag and seasonality features, and training Python predictive models to reduce overstock and stockout events across the supply chain.',
+      'End-to-end SKU-level demand forecasting pipeline. Pulls historical transaction data via SQL, engineers lag and seasonality features, and trains Python predictive models to reduce overstock and stockout events across the supply chain.',
     dataset: 'Internal warehouse exports \u2014 SKU-level daily sales',
     tags: ['Python', 'SQL', 'Scikit-learn'],
   },

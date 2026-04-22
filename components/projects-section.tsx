@@ -1,4 +1,4 @@
-﻿import { Github, Lock, ExternalLink } from 'lucide-react'
+﻿import { Github, Lock, ExternalLink, Construction } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 import { projects } from '@/data/projects'
@@ -16,26 +16,35 @@ export function ProjectsSection() {
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader
-          number="01"
+          number="02"
           title="Projects"
           subtitle="Selected work"
           className="mb-[clamp(20px,2.5vw,32px)]"
         />
 
-        <div className="ml-[42px] flex flex-col gap-[clamp(48px,5vw,72px)] max-md:ml-0">
+        <div className="ml-[42px] flex flex-col divide-y divide-border/60 max-md:ml-0">
           {projects.map((project) => (
             <article
               key={project.slug}
+              className="py-[clamp(48px,5vw,72px)] first:pt-0"
             >
               {/* Row 1: Title + Buttons */}
               <Reveal>
               <div className="flex flex-wrap items-center justify-between gap-3">
-                <h3
-                  className="font-bold leading-[1.32] tracking-[-0.025em] text-wrap-balance"
-                  style={{ fontSize: 'clamp(1.8rem, 1.7vw + 1.1rem, 2.13rem)' }}
-                >
-                  {project.title}
-                </h3>
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3
+                    className="font-bold leading-[1.32] tracking-[-0.025em] text-wrap-balance"
+                    style={{ fontSize: 'clamp(1.8rem, 1.7vw + 1.1rem, 2.13rem)' }}
+                  >
+                    {project.title}
+                  </h3>
+                  {project.isWip && (
+                    <span className="inline-flex items-center gap-1.5 rounded-pill border border-warning/30 bg-warning/[0.08] px-3 py-1 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-warning">
+                      <Construction className="h-3 w-3" />
+                      In Progress
+                    </span>
+                  )}
+                </div>
                 <div className="flex shrink-0 flex-wrap items-center gap-2">
                   {project.githubUrl && !project.isConfidential && (
                     <a
@@ -62,18 +71,11 @@ export function ProjectsSection() {
               {/* Row 2: Live Dashboard */}
               {(() => {
                 const Dashboard = DASHBOARD_MAP[project.slug]
-                return Dashboard ? (
+                if (!Dashboard) return null
+                return (
                   <Reveal delay={0.04}>
                   <div className="mt-5">
                     <Dashboard />
-                  </div>
-                  </Reveal>
-                ) : (
-                  <Reveal delay={0.04}>
-                  <div className="mt-5 flex min-h-[400px] items-center justify-center">
-                    <span className="font-mono text-[0.7rem] uppercase tracking-[0.14em] text-white/20">
-                      Live Dashboard
-                    </span>
                   </div>
                   </Reveal>
                 )

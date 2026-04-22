@@ -5,9 +5,9 @@ import { useAppStore } from '@/stores/app-store'
 
 const SECTIONS = [
   'hero',
+  'about',
   'projects',
   'experience',
-  'about',
   'education',
   'contact',
 ]

@@ -17,13 +17,13 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
+      className="relative pt-[clamp(64px,6vw,80px)] pb-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader
-          number="03"
+          number="01"
           title="About Me"
-          subtitle="How I work"
+          subtitle="Who I Am"
           className="mb-[clamp(20px,2.5vw,32px)]"
         />
 
@@ -39,6 +39,12 @@ export function AboutSection() {
                   A data analyst who turns{' '}
                   <span className="text-gradient">complexity into clarity.</span>
                 </h3>
+                <p
+                  className="font-[400] leading-[1.26] tracking-[-0.025em] text-secondary text-wrap-balance"
+                  style={{ fontSize: 'clamp(1.66rem, 1.55vw + 1rem, 1.96rem)' }}
+                >
+                  What a clich&eacute;, huh? But it&apos;s true of me.
+                </p>
                 <div className="flex flex-col items-start gap-1.5 font-mono text-[0.72rem] tracking-[0.06em]">
                   <span className="flex items-center gap-1.5 text-muted">
                     <MapPin className="h-3.5 w-3.5 shrink-0 opacity-88" />
@@ -55,12 +61,30 @@ export function AboutSection() {
             </Reveal>
 
             <Reveal delay={0.04}>
-              <p className="mb-4 max-w-[68ch] text-[1.3rem] leading-[1.82] text-secondary">
-                I am Pavlo and so to add I like data. I have 1.5+ years of on-site experience in electronics manufacturing at
-                Foxconn, where I improved production-line pass rates and developed automation
-                scripts that eliminated hours of manual work. That production-floor experience
-                has sharpened the way I approach problems.
-              </p>
+              <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.16rem] leading-[1.82] text-secondary">
+                <p>I am Pavlo. I like data. Specifically: analytics and engineering.</p>
+                <p>
+                  I have 1.5+ years of on-site experience in electronics manufacturing at Foxconn,
+                  where I improved production-line pass rates and developed automation scripts that
+                  eliminated hours of manual work.
+                </p>
+                <p>
+                  I possess a natural curiosity for how systems are built. I don&apos;t just follow
+                  tutorials; instead building end-to-end projects from the ground up to understand
+                  the structure behind it all. I take a First Principles approach, Platonic in its
+                  focus on the essence of a problem in order to help me with that.
+                </p>
+                <p>
+                  Also I&apos;m a firm believer that the only way to master a craft is through the
+                  kind of deliberate practice Anders Ericsson championed:
+                </p>
+                <ul className="flex flex-col gap-1.5 pl-0 list-none">
+                  <li>&#8212;&nbsp;Relentless, but not to the point of killing interest.</li>
+                  <li>&#8212;&nbsp;Focused, but not so much that you miss your own mistakes.</li>
+                  <li>&#8212;&nbsp;Corrective, but not to the point of paralysis.</li>
+                </ul>
+                <p>Anyway, enough text. I&apos;ll let the projects speak for themselves.</p>
+              </div>
             </Reveal>
 
           </div>

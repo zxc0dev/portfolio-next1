@@ -11,10 +11,10 @@ const MediumIcon = () => (
 )
 
 const NAV_LINKS = [
+  { label: 'About Me', id: 'about', icon: User },
   { label: 'Projects', id: 'projects', icon: LayoutGrid },
   { label: 'Experience', id: 'experience', icon: Briefcase },
-  { label: 'About Me', id: 'about', icon: User },
-  { label: 'Education', id: 'education', icon: GraduationCap },
+  { label: 'Certifications', id: 'education', icon: GraduationCap },
 ]
 
 const SOCIAL_LINKS = [

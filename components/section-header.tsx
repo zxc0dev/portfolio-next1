@@ -19,7 +19,7 @@ export function SectionHeader({ number, title, subtitle, className }: SectionHea
       <div className="flex flex-col gap-1.5">
         <Reveal delay={0.04}>
           <h2
-            className="relative inline-block font-sans leading-[1.08] font-bold tracking-[-0.04em] text-wrap-balance"
+            className="relative block font-sans leading-[1.08] font-bold tracking-[-0.04em] text-wrap-balance"
             style={{ fontSize: 'clamp(2.2rem, 2.8vw + 1rem, 3rem)' }}
           >
             {title}

@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     siteName: 'Pavlo Popovych',
     images: [
       {
-        url: '/images/cw-meta.avif',
-        width: 1200,
-        height: 630,
+        url: '/images/cw-meta.png',
+        width: 1536,
+        height: 1024,
         alt: 'Pavlo Popovych — Data Analyst',
       },
     ],

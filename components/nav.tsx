@@ -28,7 +28,7 @@ export function Nav() {
         {/* Logo */}
         <button
           onClick={() => scrollTo('hero')}
-          className="shrink-0 rounded-lg font-mono text-[1.1rem] font-semibold tracking-[-0.02em] text-foreground transition-transform duration-[280ms] ease-out-expo hover:-translate-y-0.5 cursor-pointer"
+          className="shrink-0 rounded-lg font-mono text-[1.1rem] font-bold tracking-[-0.02em] text-foreground transition-transform duration-[280ms] ease-out-expo hover:-translate-y-0.5 cursor-pointer"
         >
           <span className="text-gradient">&lt;</span>
           zxc0

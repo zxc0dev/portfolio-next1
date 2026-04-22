@@ -39,12 +39,11 @@ export const fadeUpChild: Variants = {
 }
 
 export const heroEntrance: Variants = {
-  hidden: { opacity: 0, x: 28, y: 4, filter: 'blur(3px)' },
+  hidden: { opacity: 0, x: 28, y: 4 },
   visible: {
     opacity: 1,
     x: 0,
     y: 0,
-    filter: 'blur(0px)',
     transition: { duration: durations.heroEntrance, ease: easings.outExpo },
   },
 }

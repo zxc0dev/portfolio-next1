@@ -13,9 +13,9 @@ export default function HomePage() {
       <Nav />
       <main className="flex-1">
         <Hero />
+        <AboutSection />
         <ProjectsSection />
         <ExperienceSection />
-        <AboutSection />
         <EducationSection />
         <ContactSection />
       </main>

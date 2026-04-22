@@ -11,7 +11,7 @@ export function ExperienceSection() {
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <SectionHeader
-          number="02"
+          number="03"
           title="Experience"
           subtitle="Where I've made an impact"
           className="mb-[clamp(20px,2.5vw,32px)]"

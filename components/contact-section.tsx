@@ -55,7 +55,11 @@ export function ContactSection() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xzdaozee'
+      const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID
+      if (!formspreeId) {
+        setStatus('error')
+        return
+      }
       const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -98,7 +102,7 @@ export function ContactSection() {
                   back to you.
                 </p>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+                <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col gap-3 overflow-hidden">
                   {/* Honeypot */}
                   <div className="absolute -left-[5000px]" aria-hidden="true">
                     <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />

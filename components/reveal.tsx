@@ -33,7 +33,6 @@ export function Reveal({
   return (
     <motion.div
       ref={ref}
-      transformTemplate={(_, generated) => `${generated} translateZ(0)`}
       initial={{ opacity: 0, ...directionMap[direction] }}
       animate={
         isInView
@@ -45,8 +44,11 @@ export function Reveal({
         ease: easings.outExpo,
         delay: isInView ? delay : 0,
       }}
+      transformTemplate={(_, generated) =>
+        generated === 'none' ? 'translateZ(0px)' : `${generated} translateZ(0px)`
+      }
       className={cn(className)}
-      style={{ willChange: 'opacity, transform', backfaceVisibility: 'hidden' }}
+      style={{ backfaceVisibility: 'hidden' }}
     >
       {children}
     </motion.div>

@@ -18,9 +18,12 @@ export function EducationSection() {
           className="mb-[clamp(20px,2.5vw,32px)]"
         />
 
-        <div className="ml-[42px] grid grid-cols-2 gap-[clamp(14px,1.8vw,22px)] max-md:ml-0 max-md:grid-cols-1">
+        <div className="ml-[42px] flex flex-col gap-[clamp(14px,1.8vw,22px)] max-md:ml-0">
           {education.map((item, idx) => (
-            <Reveal key={item.title} delay={idx * 0.04}>
+            <Reveal
+              key={item.title}
+              delay={idx * 0.04}
+            >
             <div
               className="relative flex flex-col gap-2 py-[clamp(12px,1.8vw,18px)] pr-0 pb-[clamp(14px,2vw,20px)] pl-[clamp(15px,1.4vw,20px)]"
             >
