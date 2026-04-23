@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { inter, jetbrainsMono } from '@/lib/fonts'
 import { Providers } from '@/components/providers'
 import { ScrollProgress } from '@/components/scroll-progress'
-import { InteractionLock } from '@/components/interaction-lock'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -55,9 +54,8 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
-        <body className="flex min-h-svh flex-col bg-background font-sans text-foreground antialiased">
+      <body className="flex min-h-svh flex-col bg-background font-sans text-foreground antialiased">
         <Providers>
-          <InteractionLock />
           <ScrollProgress />
           {children}
         </Providers>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -42,6 +42,14 @@ const CHANNELS = [
   },
 ]
 
+const inputBase = cn(
+  'w-full min-h-[48px] rounded-md border bg-white/[0.014] px-4 py-[13px]',
+  'text-[0.97rem] leading-[1.4] text-foreground caret-accent outline-none',
+  'placeholder:text-white/64 transition-all duration-[280ms]',
+  'hover:border-border-hover hover:bg-white/[0.022]',
+  'focus:border-white/38 focus:bg-white/[0.03] focus:[box-shadow:var(--focus-ring)]',
+)
+
 export function ContactSection() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const {
@@ -49,28 +57,18 @@ export function ContactSection() {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<ContactFormData>({
-    resolver: zodResolver(contactSchema),
-  })
+  } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) })
 
   const onSubmit = async (data: ContactFormData) => {
     try {
       const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID
-      if (!formspreeId) {
-        setStatus('error')
-        return
-      }
+      if (!formspreeId) { setStatus('error'); return }
       const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
-      if (res.ok) {
-        setStatus('success')
-        reset()
-      } else {
-        setStatus('error')
-      }
+      if (res.ok) { setStatus('success'); reset() } else { setStatus('error') }
     } catch {
       setStatus('error')
     }
@@ -91,20 +89,20 @@ export function ContactSection() {
 
         <div className="ml-[42px] max-md:ml-0">
           <div className="grid grid-cols-[1.35fr_1fr] items-start gap-[clamp(40px,6vw,80px)] max-md:grid-cols-1">
-              {/* Left — form */}
-              <Reveal>
+            {/* Left â€” form */}
+            <Reveal>
               <div className="flex flex-col">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Send a message
                 </span>
                 <p className="mb-7 max-w-[40ch] text-[1.18rem] leading-[1.75] text-secondary">
-                  Have a project, a role, or an idea — feel free to reach out, I will get
+                  Have a project, a role, or an idea â€” feel free to reach out, I will get
                   back to you.
                 </p>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="relative flex flex-col gap-3 overflow-hidden">
-                  {/* Honeypot */}
-                  <div className="absolute -left-[5000px]" aria-hidden="true">
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+                  {/* Honeypot â€” processed server-side by Formspree */}
+                  <div className="hidden" aria-hidden="true">
                     <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
                   </div>
 
@@ -121,18 +119,13 @@ export function ContactSection() {
                         type="text"
                         autoComplete="name"
                         placeholder="Your name"
-                        className={cn(
-                          'w-full min-h-[48px] rounded-md border bg-white/[0.014] px-4 py-[13px] text-[0.97rem] leading-[1.4] text-foreground caret-accent outline-none',
-                          'placeholder:text-white/64',
-                          'transition-all duration-[280ms]',
-                          'hover:border-border-hover hover:bg-white/[0.022]',
-                          'focus:border-white/38 focus:bg-white/[0.03] focus:[box-shadow:var(--focus-ring)]',
-                          errors.name ? 'border-error' : 'border-border',
-                        )}
+                        className={cn(inputBase, errors.name ? 'border-error' : 'border-border')}
                         {...register('name')}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-[0.75rem] text-error">{errors.name.message}</p>
+                        <p className="mt-1 text-[0.75rem] text-error" role="alert">
+                          {errors.name.message}
+                        </p>
                       )}
                     </div>
                     <div>
@@ -148,18 +141,13 @@ export function ContactSection() {
                         autoComplete="email"
                         inputMode="email"
                         placeholder="your@email.com"
-                        className={cn(
-                          'w-full min-h-[48px] rounded-md border bg-white/[0.014] px-4 py-[13px] text-[0.97rem] leading-[1.4] text-foreground caret-accent outline-none',
-                          'placeholder:text-white/64',
-                          'transition-all duration-[280ms]',
-                          'hover:border-border-hover hover:bg-white/[0.022]',
-                          'focus:border-white/38 focus:bg-white/[0.03] focus:[box-shadow:var(--focus-ring)]',
-                          errors.email ? 'border-error' : 'border-border',
-                        )}
+                        className={cn(inputBase, errors.email ? 'border-error' : 'border-border')}
                         {...register('email')}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-[0.75rem] text-error">{errors.email.message}</p>
+                        <p className="mt-1 text-[0.75rem] text-error" role="alert">
+                          {errors.email.message}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -176,17 +164,14 @@ export function ContactSection() {
                       placeholder="What would you like to talk about?"
                       rows={5}
                       className={cn(
-                        'w-full min-h-[132px] resize-y rounded-md border bg-white/[0.014] px-4 py-[11px] text-[0.97rem] leading-[1.4] text-foreground caret-accent outline-none',
-                        'placeholder:text-white/64',
-                        'transition-all duration-[280ms]',
-                        'hover:border-border-hover hover:bg-white/[0.022]',
-                        'focus:border-white/38 focus:bg-white/[0.03] focus:[box-shadow:var(--focus-ring)]',
+                        inputBase,
+                        'min-h-[132px] resize-y',
                         errors.message ? 'border-error' : 'border-border',
                       )}
                       {...register('message')}
                     />
                     {errors.message && (
-                      <p className="mt-1 text-[0.75rem] text-error">
+                      <p className="mt-1 text-[0.75rem] text-error" role="alert">
                         {errors.message.message}
                       </p>
                     )}
@@ -204,33 +189,39 @@ export function ContactSection() {
                   </Button>
 
                   {status === 'success' && (
-                    <p className="mt-3 rounded-md border border-success/25 bg-success/10 px-4 py-3 text-center text-[0.81rem] text-success shadow-[inset_0_1px_0_rgba(255,255,255,0.015)]">
+                    <p
+                      role="status"
+                      className="mt-3 rounded-md border border-success/25 bg-success/10 px-4 py-3 text-center text-[0.81rem] text-success"
+                    >
                       Message sent successfully! I&apos;ll get back to you soon.
                     </p>
                   )}
                   {status === 'error' && (
-                    <p className="mt-3 rounded-md border border-error/25 bg-error/10 px-4 py-3 text-center text-[0.81rem] text-error shadow-[inset_0_1px_0_rgba(255,255,255,0.015)]">
+                    <p
+                      role="alert"
+                      className="mt-3 rounded-md border border-error/25 bg-error/10 px-4 py-3 text-center text-[0.81rem] text-error"
+                    >
                       Something went wrong. Please try again or email me directly.
                     </p>
                   )}
                 </form>
               </div>
-              </Reveal>
+            </Reveal>
 
-              {/* Separator */}
-              <Reveal delay={0.06}>
+            {/* Right â€” direct channels */}
+            <Reveal delay={0.06}>
               <div className="border-l border-white/10 pl-[clamp(20px,3vw,40px)] max-md:border-l-0 max-md:pl-0 max-md:border-t max-md:border-white/10 max-md:pt-6">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Or reach out directly
                 </span>
                 <div className="flex flex-col gap-2">
-                  {CHANNELS.map((ch, i) => (
-                    <Reveal key={ch.label} delay={0.08 + i * 0.04}>
+                  {CHANNELS.map((ch) => (
                     <a
+                      key={ch.label}
                       href={ch.href}
                       target={ch.external ? '_blank' : undefined}
                       rel={ch.external ? 'noopener noreferrer' : undefined}
-                      className="group flex items-center gap-3.5 rounded-md border border-white/[0.058] bg-white/[0.022] p-[13px_15px] text-secondary transition-all duration-[180ms] ease-out-expo hover:-translate-y-[var(--lift-control)] hover:border-white/15 hover:bg-white/[0.055] hover:text-foreground hover:shadow-[0_8px_24px_rgba(242,242,242,0.08)]"
+                      className="group flex items-center gap-3.5 rounded-md border border-white/[0.058] bg-white/[0.022] p-[13px_15px] text-secondary transition-all duration-[180ms] ease-out-expo hover:-translate-y-px hover:border-white/15 hover:bg-white/[0.055] hover:text-foreground hover:shadow-[0_8px_24px_rgba(242,242,242,0.08)]"
                     >
                       <span className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] bg-white/8 text-accent transition-colors duration-[280ms] group-hover:bg-white/16">
                         <ch.icon className="h-4 w-4" />
@@ -245,12 +236,11 @@ export function ContactSection() {
                       </div>
                       <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-muted opacity-38 transition-all duration-[280ms] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-85" />
                     </a>
-                    </Reveal>
                   ))}
                 </div>
               </div>
-              </Reveal>
-            </div>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

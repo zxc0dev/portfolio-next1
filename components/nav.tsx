@@ -1,10 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 import { useLenis } from 'lenis/react'
 import { cn } from '@/lib/utils'
+import { ease, dur } from '@/lib/motion'
 
 const NAV_LINKS = [
   { label: 'GitHub', href: 'https://github.com/zxc0dev', external: true },
@@ -16,19 +17,29 @@ export function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const lenis = useLenis()
 
-  const scrollTo = (id: string) => {
+  // Close on Escape key
+  useEffect(() => {
+    if (!mobileOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [mobileOpen])
+
+  const scrollToTop = () => {
     setMobileOpen(false)
-    const el = document.getElementById(id)
-    if (el && lenis) lenis.scrollTo(el, { offset: -92 })
+    lenis?.scrollTo(0, { duration: 1.2 })
   }
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-100 py-4">
+    <nav className="fixed inset-x-0 top-0 z-100 py-4" aria-label="Main navigation">
       <div className="mx-auto flex min-h-[44px] max-w-[1360px] items-center gap-[clamp(16px,2.5vw,28px)] px-[clamp(20px,4vw,48px)]">
         {/* Logo */}
         <button
-          onClick={() => scrollTo('hero')}
+          onClick={scrollToTop}
           className="shrink-0 rounded-lg font-mono text-[1.1rem] font-bold tracking-[-0.02em] text-foreground transition-transform duration-[280ms] ease-out-expo hover:-translate-y-0.5 cursor-pointer"
+          aria-label="Scroll to top"
         >
           <span className="text-gradient">&lt;</span>
           zxc0
@@ -38,7 +49,7 @@ export function Nav() {
         </button>
 
         {/* Center links — desktop */}
-        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-[clamp(26px,5.2vw,64px)] md:flex">
+        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-[clamp(26px,5.2vw,64px)] md:flex" role="list">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
               <a
@@ -65,15 +76,17 @@ export function Nav() {
 
         {/* Mobile toggle */}
         <button
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={() => setMobileOpen((o) => !o)}
+          aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
           className={cn(
-            'ml-auto flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-[10px] md:hidden',
+            'ml-auto flex h-10 w-10 items-center justify-center rounded-[10px] md:hidden',
             'border border-border bg-elevated shadow-[0_8px_20px_rgba(0,0,0,0.16)]',
             'transition-all duration-[180ms] cursor-pointer',
-            'hover:bg-white/[0.03] hover:border-transparent',
+            'hover:bg-white/[0.03]',
             'gradient-border',
           )}
-          aria-label="Toggle navigation"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -83,28 +96,30 @@ export function Nav() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            id="mobile-menu"
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: dur.base, ease: ease.expo }}
             className="mx-4 mt-2 rounded-md border border-border bg-elevated/95 p-4 shadow-elevated backdrop-blur-2xl md:hidden"
           >
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  className="rounded-sm px-3 py-2 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
+                  className="rounded-sm px-3 py-2.5 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
+              <div className="my-1 h-px bg-border" />
               <a
                 href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/pavlo_popovych_data_analyst_resume.pdf`}
                 download
-                className="rounded-sm px-3 py-2 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
+                className="rounded-sm px-3 py-2.5 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 Resume

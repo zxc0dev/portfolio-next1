@@ -32,7 +32,7 @@ export function AboutSection() {
           <div className="flex flex-col">
             <Reveal>
               <div className="mb-6 flex flex-col gap-2.5">
-              <h3
+                <h3
                   className="font-bold leading-[1.26] tracking-[-0.025em] text-foreground text-wrap-balance flex flex-col gap-2"
                   style={{ fontSize: 'clamp(1.66rem, 1.55vw + 1rem, 1.96rem)' }}
                 >
@@ -76,21 +76,21 @@ export function AboutSection() {
                   I ask a lot of questions, partly Socratic<sup className="text-[0.7em]">*</sup>{' '}
                   habit, partly because the right question often does more work than the right
                   answer, and because ideas only matter if they prove their value in
-                  practice<sup className="text-[0.7em]">**</sup>. 
+                  practice<sup className="text-[0.7em]">**</sup>.
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
                 <p>
-                  Stepping from "true" philosophy, I also believe the only honest
+                  Stepping from &ldquo;true&rdquo; philosophy, I also believe the only honest
                   path to mastering a craft is through the kind of deliberate practice Anders
                   Ericsson described: focused, corrective, and sustained without burning out.
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
                 <p>
-                  Outside of data, I read broadly — philosophy, cognitive science, sometimes history, less for credentials 
-                  than for better mental furniture. And I usually have a side project running: 
-                  something I'm building to understand it, not necessarily to showcase it.
+                  Outside of data, I read broadly — philosophy, cognitive science, sometimes history, less for credentials
+                  than for better mental furniture. And I usually have a side project running:
+                  something I&apos;m building to understand it, not necessarily to showcase it.
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
@@ -104,7 +104,6 @@ export function AboutSection() {
                 </div>
               </Reveal>
             </div>
-
           </div>
 
           {/* Stack */}
