@@ -40,7 +40,7 @@ export function AboutSection() {
                     A data analyst who turns{' '}
                     <span className="text-gradient">complexity into clarity.</span>
                   </span>
-                  <span>What a clich&eacute;, huh? But it&apos;s true of me.</span>
+                  <span>What a clich&eacute;, huh?</span>
                 </h3>
                 <div className="flex flex-col items-start gap-1.5 font-mono text-[0.72rem] tracking-[0.06em]">
                   <span className="flex items-center gap-1.5 text-muted">
@@ -59,38 +59,37 @@ export function AboutSection() {
 
             <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.16rem] leading-[1.82] text-secondary">
               <Reveal delay={0.04}>
-                <p>I am Pavlo. I like data. Specifically: analytics and engineering.</p>
+                <p>I love data. Specifically: analytics and engineering. I enjoy architecting, transforming, optimizing, and analyzing it.</p>
               </Reveal>
               <Reveal delay={0.08}>
                 <p>
-                  I have 1.5+ years of on-site experience in electronics manufacturing at Foxconn,
-                  where I improved production-line pass rates and developed automation scripts that
-                  eliminated hours of manual work.
+                  My journey started at Foxconn, where I spent 1.5+ years embedded in electronics
+                  manufacturing. There I analyzed production-line data to improve pass rates and
+                  built automation scripts that cut hours of manual work down to minutes.
                 </p>
               </Reveal>
               <Reveal delay={0.12}>
                 <p>
-                  I possess a natural curiosity for how systems are built. I don&apos;t just follow
-                  tutorials; instead building end-to-end projects from the ground up to understand
-                  the structure behind it all. I take a First Principles approach, Platonic in its
-                  focus on the essence of a problem in order to help me with that.
+                  What drives how I work is a mix of philosophy and pragmatism. I approach problems
+                  through first principles: strip everything back to its essential structure,
+                  understand it from the ground up, then build the solution back up deliberately.
+                  I ask a lot of questions, partly Socratic<sup className="text-[0.7em]">*</sup>{' '}
+                  habit, partly because the right question often does more work than the right
+                  answer, and because ideas only matter if they prove their value in
+                  practice<sup className="text-[0.7em]">**</sup>. And I believe the only honest
+                  path to mastering a craft is through the kind of deliberate practice Anders
+                  Ericsson described: focused, corrective, and sustained without burning out.
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
-                <p>
-                  Also I&apos;m a firm believer that the only way to master a craft is through the
-                  kind of deliberate practice Anders Ericsson championed:
-                </p>
-              </Reveal>
-              <Reveal delay={0.2}>
-                <ul className="flex flex-col gap-1.5 pl-0 list-none">
-                  <li>&#8212;&nbsp;Relentless, but not to the point of killing interest.</li>
-                  <li>&#8212;&nbsp;Focused, but not so much that you miss your own mistakes.</li>
-                  <li>&#8212;&nbsp;Corrective, but not to the point of paralysis.</li>
-                </ul>
-              </Reveal>
-              <Reveal delay={0.24}>
-                <p>Anyway, enough text. I&apos;ll let the projects speak for themselves.</p>
+                <div className="flex flex-col gap-1">
+                  <span className="font-mono text-[0.69rem] tracking-[0.04em] text-muted">
+                    *&thinsp;the dude casually asking lots of questions
+                  </span>
+                  <span className="font-mono text-[0.69rem] tracking-[0.04em] text-muted">
+                    **&thinsp;jamesian cash-value principle
+                  </span>
+                </div>
               </Reveal>
             </div>
 
