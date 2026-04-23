@@ -72,13 +72,25 @@ export function AboutSection() {
                 <p>
                   What drives how I work is a mix of philosophy and pragmatism. I approach problems
                   through first principles: strip everything back to its essential structure,
-                  understand it from the ground up, then build the solution back up deliberately.
+                  understand it from the ground up.
                   I ask a lot of questions, partly Socratic<sup className="text-[0.7em]">*</sup>{' '}
                   habit, partly because the right question often does more work than the right
                   answer, and because ideas only matter if they prove their value in
-                  practice<sup className="text-[0.7em]">**</sup>. And I believe the only honest
+                  practice<sup className="text-[0.7em]">**</sup>. 
+                </p>
+              </Reveal>
+              <Reveal delay={0.16}>
+                <p>
+                  Stepping from "true" philosophy, I also believe the only honest
                   path to mastering a craft is through the kind of deliberate practice Anders
                   Ericsson described: focused, corrective, and sustained without burning out.
+                </p>
+              </Reveal>
+              <Reveal delay={0.16}>
+                <p>
+                  Outside of data, I read broadly — philosophy, cognitive science, sometimes history, less for credentials 
+                  than for better mental furniture. And I usually have a side project running: 
+                  something I'm building to understand it, not necessarily to showcase it.
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
