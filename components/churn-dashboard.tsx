@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLenis } from 'lenis/react'
 import { Target, Shield, Wifi, CreditCard, UserCheck } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
@@ -22,11 +22,11 @@ function InsightCallout({
 }) {
   return (
     <Reveal>
-      <div className="border-l-2 border-white/20 py-1 pl-5">
-        <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/60">
+      <div>
+        <span className="mb-1.5 block font-mono text-[0.67rem] font-semibold uppercase tracking-[0.14em] text-white/50">
           {label}
         </span>
-        <p className="mt-1.5 text-[1.02rem] leading-[1.72] text-white/80">
+        <p className="text-[1.2rem] leading-[1.8] text-white/90">
           {children}
         </p>
       </div>
@@ -88,18 +88,24 @@ const RECOMMENDATIONS = [
 /* ── Dashboard export ────────────────────────────────────────────────── */
 export function ChurnDashboard() {
   const lenis = useLenis()
+  const rootRef = useRef<HTMLDivElement>(null)
 
-  // Lenis.autoResize watches document.documentElement clientHeight via
-  // ResizeObserver. Because Lenis sets overflow:clip on <html>, clientHeight
-  // is fixed at viewport height and never fires when dynamic content grows.
-  // Calling resize() explicitly after mount forces Dimensions to re-read
-  // scrollHeight and recompute the scroll limit.
   useEffect(() => {
     lenis?.resize()
   }, [lenis])
 
+  // Re-measure when dashboard content grows (charts render asynchronously)
+  // so Lenis scroll limit always covers the full page height.
+  useEffect(() => {
+    const el = rootRef.current
+    if (!el || !lenis) return
+    const ro = new ResizeObserver(() => lenis.resize())
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [lenis])
+
   return (
-    <div className="flex flex-col gap-[clamp(24px,3vw,36px)]">
+    <div ref={rootRef} className="flex flex-col gap-[clamp(24px,3vw,36px)]">
       {/* Insight: Overview */}
       <InsightCallout label="Context">
         With an overall churn rate of ~26% — 1,869 of 7,032 customers lost — this
