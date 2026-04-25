@@ -81,7 +81,7 @@ export function Nav() {
           download
           className="group relative ml-auto hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
         >
-          Resume
+          R&eacute;sum&eacute;
           <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-muted transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
         </a>
 
@@ -133,7 +133,7 @@ export function Nav() {
                 className="rounded-sm px-3 py-2.5 text-[0.9rem] font-medium text-secondary transition-colors hover:bg-white/[0.04] hover:text-foreground"
                 onClick={() => setMobileOpen(false)}
               >
-                Resume
+                R&eacute;sum&eacute;
               </a>
             </div>
           </motion.div>

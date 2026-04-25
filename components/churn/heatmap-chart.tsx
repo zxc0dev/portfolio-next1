@@ -121,7 +121,7 @@ export const HeatmapChart = memo(function HeatmapChart() {
       echarts={echarts}
       option={option}
       style={{ height: 200, width: '100%' }}
-      opts={{ renderer: 'canvas' }}
+      opts={{ renderer: 'canvas', devicePixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 2 }}
       notMerge
       lazyUpdate
     />

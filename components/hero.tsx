@@ -3,10 +3,12 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import { ease, dur } from '@/lib/motion'
+import { useAppStore } from '@/stores/app-store'
 
 export function Hero() {
-  const ref = useRef<HTMLElement>(null)
+  const ref      = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-10%' })
+  const isLoaded = useAppStore((s) => s.isLoaded)
 
   return (
     <header
@@ -16,7 +18,7 @@ export function Hero() {
     >
       <motion.div
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isLoaded && isInView ? 'visible' : 'hidden'}
         variants={{
           hidden: {},
           visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },

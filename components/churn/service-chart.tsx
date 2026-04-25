@@ -99,7 +99,7 @@ export const ServiceChart = memo(function ServiceChart() {
       echarts={echarts}
       option={option}
       style={{ height: 300, width: '100%' }}
-      opts={{ renderer: 'canvas' }}
+      opts={{ renderer: 'canvas', devicePixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 2 }}
       notMerge
       lazyUpdate
     />

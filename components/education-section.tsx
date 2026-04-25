@@ -1,5 +1,6 @@
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
+import { TerminalQuery } from '@/components/terminal-query'
 import { education } from '@/data/education'
 
 export function EducationSection() {
@@ -9,6 +10,10 @@ export function EducationSection() {
       className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
+        <TerminalQuery
+          query={`SELECT * FROM certifications\nORDER BY date DESC;`}
+          rowsText="3 rows returned"
+        >
         <SectionHeader
           number="04"
           title="Certifications"
@@ -39,6 +44,7 @@ export function EducationSection() {
             </Reveal>
           ))}
         </div>
+        </TerminalQuery>
       </div>
     </section>
   )

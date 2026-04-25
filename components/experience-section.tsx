@@ -1,5 +1,6 @@
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
+import { TerminalQuery } from '@/components/terminal-query'
 import { cn } from '@/lib/utils'
 import { experience } from '@/data/experience'
 
@@ -10,6 +11,10 @@ export function ExperienceSection() {
       className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
+        <TerminalQuery
+          query={`SELECT * FROM experience\n  WHERE company = 'Foxconn';`}
+          rowsText="1 row returned"
+        >
         <SectionHeader
           number="03"
           title="Experience"
@@ -65,6 +70,7 @@ export function ExperienceSection() {
             </Reveal>
           ))}
         </div>
+        </TerminalQuery>
       </div>
     </section>
   )

@@ -38,7 +38,7 @@ function InsightCallout({
 function ChartHeader({ tag, title }: { tag: string; title: string }) {
   return (
     <div className="mb-3">
-      <p className="text-gradient mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em]">
+      <p className="mb-[5px] font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-muted">
         {tag}
       </p>
       <h3
@@ -123,7 +123,7 @@ export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
           {kpiRaw.cards.map((kpi, i) => (
             <Reveal key={kpi.label} delay={i * 0.04}>
               <div className="flex flex-col items-start gap-0.5 rounded-sm p-[10px_clamp(12px,1.2vw,16px)]">
-                <span className="text-gradient mb-0.5 block w-full font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] leading-[1.2]">
+                <span className="mb-0.5 block w-full font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] leading-[1.2] text-muted">
                   {kpi.label}
                 </span>
                 <span className="block w-full text-[1.28rem] font-semibold leading-[1.14] tracking-[-0.028em] text-foreground tabular-nums">

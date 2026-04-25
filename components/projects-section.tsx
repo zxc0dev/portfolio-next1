@@ -2,6 +2,7 @@
 import { Github, ExternalLink, Construction } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
+import { TerminalQuery } from '@/components/terminal-query'
 import { projects } from '@/data/projects'
 import { ChurnDashboard } from '@/components/churn/lazy-dashboard'
 
@@ -9,6 +10,13 @@ type DashboardComponent = ComponentType<{ why?: string }>
 
 const DASHBOARD_MAP: Record<string, DashboardComponent> = {
   churn: ChurnDashboard as DashboardComponent,
+}
+
+const SQL_NAMES: Record<string, string> = {
+  profesia: 'job_market_intelligence',
+  covid:    'covid_global_impact',
+  rfm:      'customer_rfm_segmentation',
+  churn:    'telecom_churn_prediction',
 }
 
 export function ProjectsSection() {
@@ -28,8 +36,16 @@ export function ProjectsSection() {
         <div className="ml-[42px] flex flex-col divide-y divide-border/60 max-md:ml-0">
           {projects.map((project) => {
             const Dashboard = DASHBOARD_MAP[project.slug]
+            const sqlName = SQL_NAMES[project.slug] ?? project.slug
+            const query = `SELECT * FROM projects\n            WHERE name = '${sqlName}';`
             return (
-            <article key={project.slug} className="py-[clamp(48px,5vw,72px)] first:pt-0">
+            <TerminalQuery
+              key={project.slug}
+              query={query}
+              rowsText="1 row returned"
+              className="py-[clamp(48px,5vw,72px)] first:pt-0"
+            >
+            <article>
               {/* Row 1: Title + Buttons */}
               <Reveal>
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -78,18 +94,18 @@ export function ProjectsSection() {
                 <div className="mt-8 grid grid-cols-[280px_1fr] items-start gap-[clamp(48px,10vw,120px)] max-md:grid-cols-1">
                   {/* Left: metadata */}
                   <dl className="flex flex-col gap-[2px]">
-                    <div className="font-mono text-[0.72rem] uppercase tracking-[0.13em] leading-[2]">
+                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
                       <span className="text-muted">Stack&ensp;</span>
                       <span className="text-foreground font-semibold">{project.tags.join(', ')}</span>
                     </div>
                     {project.dataset && (
-                      <div className="font-mono text-[0.72rem] uppercase tracking-[0.13em] leading-[2]">
+                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
                         <span className="text-muted">Data&ensp;</span>
                         <span className="text-foreground font-semibold">{project.dataset}</span>
                       </div>
                     )}
                     {project.dateRange && (
-                      <div className="font-mono text-[0.72rem] uppercase tracking-[0.13em] leading-[2]">
+                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
                         <span className="text-muted">Date&ensp;</span>
                         <span className="text-foreground font-semibold">{project.dateRange}</span>
                       </div>
@@ -111,6 +127,7 @@ export function ProjectsSection() {
                 </div>
               </Reveal>
             </article>
+            </TerminalQuery>
             )
           })}
         </div>

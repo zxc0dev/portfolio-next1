@@ -130,7 +130,7 @@ export const TenureChart = memo(function TenureChart() {
       echarts={echarts}
       option={option}
       style={{ height: 360, width: '100%' }}
-      opts={{ renderer: 'canvas' }}
+      opts={{ renderer: 'canvas', devicePixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 2 }}
       notMerge
       lazyUpdate
     />
