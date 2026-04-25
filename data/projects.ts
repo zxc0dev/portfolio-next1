@@ -1,7 +1,6 @@
 export interface Project {
   slug: string
   title: string
-  type?: string
   githubUrl: string | null
   isConfidential: boolean
   isWip: boolean
@@ -15,7 +14,6 @@ export const projects: Project[] = [
   {
     slug: 'profesia',
     title: 'Data Platform for Job Market Intelligence (Profesia.sk)',
-    type: 'Data Engineering',
     githubUrl: 'https://github.com/zxc0dev/profesia-job-market-intelligence',
     isConfidential: false,
     isWip: false,
@@ -27,7 +25,6 @@ export const projects: Project[] = [
   {
     slug: 'covid',
     title: 'Covid Global Impact Analysis',
-    type: 'Data Analysis',
     githubUrl: 'https://github.com/zxc0dev/covid-global-impact-analysis',
     isConfidential: false,
     isWip: false,
@@ -40,7 +37,6 @@ export const projects: Project[] = [
   {
     slug: 'rfm',
     title: 'Customer RFM Segmentation',
-    type: 'Data Analysis',
     githubUrl: 'https://github.com/zxc0dev/customer-rfm-segmentation-dashboard',
     isConfidential: false,
     isWip: false,
@@ -53,7 +49,6 @@ export const projects: Project[] = [
   {
     slug: 'churn',
     title: 'Telecom Customer Churn Prediction',
-    type: 'ML Pipeline',
     githubUrl: 'https://github.com/zxc0dev/telecom-customer-churn-prediction',
     isConfidential: false,
     isWip: false,

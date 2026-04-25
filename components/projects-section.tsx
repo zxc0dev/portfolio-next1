@@ -33,8 +33,8 @@ export function ProjectsSection() {
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div className="flex flex-wrap items-center gap-3">
                     <h3
-                      className="font-bold leading-[1.32] tracking-[-0.025em] text-wrap-balance"
-                      style={{ fontSize: 'clamp(1.8rem, 1.7vw + 1.1rem, 2.13rem)' }}
+                      className="font-bold leading-[1.28] tracking-[-0.025em] text-wrap-balance"
+                      style={{ fontSize: 'clamp(1.55rem, 1.3vw + 0.8rem, 1.9rem)' }}
                     >
                       {project.title}
                     </h3>
@@ -71,31 +71,37 @@ export function ProjectsSection() {
                 </Reveal>
               )}
 
-              {/* Row 3: Tech Stack + Date  |  Description */}
+              {/* Row 3: Metadata  |  Description */}
               <Reveal delay={0.06}>
-                <div className="mt-8 grid grid-cols-[340px_1fr] items-start gap-[clamp(60px,12vw,144px)] max-md:grid-cols-1">
-                  {/* Left: stack + date */}
-                  <dl className="grid grid-cols-[80px_1fr] gap-x-6 gap-y-2.5 items-baseline">
-                    <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted">Stack</dt>
-                    <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-secondary">{project.tags.join(', ')}</dd>
-                    {project.dataset && (<>
-                      <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted">Dataset</dt>
-                      <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-secondary">{project.dataset}</dd>
-                    </>)}
-                    {project.dateRange && (<>
-                      <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted">Date</dt>
-                      <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-secondary">{project.dateRange}</dd>
-                    </>)}
+                <div className="mt-8 grid grid-cols-[280px_1fr] items-start gap-[clamp(48px,10vw,120px)] max-md:grid-cols-1">
+                  {/* Left: metadata */}
+                  <dl className="flex flex-col gap-[2px]">
+                    <div className="font-mono text-[0.72rem] uppercase tracking-[0.13em] leading-[2]">
+                      <span className="text-muted">Stack&ensp;</span>
+                      <span className="text-foreground font-semibold">{project.tags.join(', ')}</span>
+                    </div>
+                    {project.dataset && (
+                      <div className="font-mono text-[0.72rem] uppercase tracking-[0.13em] leading-[2]">
+                        <span className="text-muted">Data&ensp;</span>
+                        <span className="text-foreground font-semibold">{project.dataset}</span>
+                      </div>
+                    )}
+                    {project.dateRange && (
+                      <div className="font-mono text-[0.72rem] uppercase tracking-[0.13em] leading-[2]">
+                        <span className="text-muted">Date&ensp;</span>
+                        <span className="text-foreground font-semibold">{project.dateRange}</span>
+                      </div>
+                    )}
                   </dl>
 
                   {/* Right: description */}
-                  <div className="pt-1">
+                  <div className="pt-0.5">
                     {project.description ? (
-                      <p className="text-[1.05rem] leading-[1.72] text-secondary text-wrap-pretty">
+                      <p className="text-[1.2rem] leading-[1.8] text-secondary text-wrap-pretty">
                         {project.description}
                       </p>
                     ) : (
-                      <p className="text-[1.05rem] leading-[1.72] text-muted/50 italic">
+                      <p className="text-[1.2rem] leading-[1.8] text-muted/50 italic">
                         Description coming soon.
                       </p>
                     )}

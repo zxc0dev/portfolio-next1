@@ -1,15 +1,26 @@
-import { MapPin, Languages } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 
-const STACK_GROUPS = [
+const INFO_GROUPS = [
   {
-    label: 'Languages & Libraries',
-    tags: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib', 'Seaborn', 'SQL', 'VBA'],
+    label: 'Location',
+    text: 'Slovakia, EU',
+  },
+  {
+    label: 'Languages',
+    text: 'English (C1), Russian (Native), Ukrainian (Native), Slovak (A2)',
+  },
+  {
+    label: 'Programming Languages',
+    text: 'Python, SQL, VBA',
+  },
+  {
+    label: 'Libraries',
+    text: 'Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn',
   },
   {
     label: 'Platforms & Tools',
-    tags: ['Power BI', 'dbt', 'Git', 'Linux', 'Excel', 'Power Query'],
+    text: 'Power BI, dbt, Git, Linux, Excel, Power Query',
   },
 ]
 
@@ -27,39 +38,25 @@ export function AboutSection() {
           className="mb-[clamp(20px,2.5vw,32px)]"
         />
 
-        <div className="ml-[42px] grid grid-cols-[1fr_340px] items-start gap-[clamp(40px,5vw,64px)] max-lg:grid-cols-1 max-md:ml-0">
+        <div className="ml-[42px] grid grid-cols-[1fr_300px] items-start gap-[clamp(40px,5vw,64px)] max-lg:grid-cols-1 max-md:ml-0">
           {/* Prose */}
           <div className="flex flex-col">
             <Reveal>
-              <div className="mb-6 flex flex-col gap-2.5">
-                <h3
-                  className="font-bold leading-[1.26] tracking-[-0.025em] text-foreground text-wrap-balance flex flex-col gap-2"
-                  style={{ fontSize: 'clamp(1.66rem, 1.55vw + 1rem, 1.96rem)' }}
-                >
-                  <span>
-                    A data analyst who turns{' '}
-                    <span className="text-gradient">complexity into clarity.</span>
-                  </span>
-                  <span>What a clich&eacute;, huh?</span>
-                </h3>
-                <div className="flex flex-col items-start gap-1.5 font-mono text-[0.72rem] tracking-[0.06em]">
-                  <span className="flex items-center gap-1.5 text-muted">
-                    <MapPin className="h-3.5 w-3.5 shrink-0 opacity-88" />
-                    Slovakia, EU
-                  </span>
-                  <span className="flex items-center gap-1.5 text-white/74">
-                    <Languages className="h-3.5 w-3.5 shrink-0 opacity-88" />
-                    <span className="text-wrap-pretty">
-                      English (C1), Russian (Native), Ukrainian (Native), Slovak (A2)
-                    </span>
-                  </span>
-                </div>
-              </div>
+              <h3
+                className="mb-7 font-[800] leading-[1.18] tracking-[-0.03em] text-foreground text-wrap-balance flex flex-col gap-2"
+                style={{ fontSize: 'clamp(1.62rem, 1.8vw + 0.4rem, 2.2rem)' }}
+              >
+                <span>
+                  A data analyst who turns{' '}
+                  <span className="text-gradient">complexity into clarity.</span>
+                </span>
+                <span>What a clich&eacute;, huh?</span>
+              </h3>
             </Reveal>
 
-            <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.16rem] leading-[1.82] text-secondary">
+            <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.2rem] leading-[1.82] text-secondary">
               <Reveal delay={0.04}>
-                <p>I love data. Specifically: analytics and engineering. I enjoy architecting, transforming, optimizing, and analyzing it.</p>
+                <p>Anyways, I love data. Specifically: analytics and engineering. I enjoy architecting, transforming, optimizing, and analyzing it.</p>
               </Reveal>
               <Reveal delay={0.08}>
                 <p>
@@ -106,28 +103,17 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Stack */}
-          <div className="flex flex-col gap-5 border-l border-white/10 pl-[clamp(28px,3.5vw,44px)] max-lg:border-l-0 max-lg:pl-0">
-            <Reveal>
-              <h3 className="text-[1.12rem] font-bold tracking-[-0.02em]">Core Stack</h3>
-            </Reveal>
-            {STACK_GROUPS.map((group, gIdx) => (
+          {/* Info Sidebar */}
+          <div className="flex flex-col gap-7 border-l border-white/10 pl-[clamp(28px,3.5vw,44px)] max-lg:border-l-0 max-lg:border-t max-lg:border-t-border max-lg:pt-8 max-lg:pl-0">
+            {INFO_GROUPS.map((group, gIdx) => (
               <Reveal key={group.label} delay={(gIdx + 1) * 0.04}>
                 <div>
-                  {gIdx > 0 && <div className="my-4 h-px bg-border" />}
-                  <span className="mb-2.5 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-muted">
+                  <span className="mb-1.5 block font-mono text-[0.67rem] font-semibold uppercase tracking-[0.14em] text-muted">
                     {group.label}
                   </span>
-                  <div className="flex flex-wrap gap-2">
-                    {group.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-pill border border-white/9 bg-white/[0.055] px-3 py-1.5 font-mono text-[0.69rem] tracking-[0.02em] text-white/84 transition-all duration-[180ms] ease-out-expo hover:-translate-y-px hover:border-white/22 hover:bg-white/11 hover:text-white/96 hover:shadow-[0_6px_16px_rgba(242,242,242,0.1)]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-[0.9rem] leading-[1.68] text-secondary">
+                    {group.text}
+                  </p>
                 </div>
               </Reveal>
             ))}

@@ -17,7 +17,7 @@ export function SectionHeader({ number, title, subtitle, className }: SectionHea
       <div className="flex flex-col gap-1.5">
         <h2
           className="relative block font-sans leading-[1.08] font-bold tracking-[-0.04em] text-wrap-balance"
-          style={{ fontSize: 'clamp(2.2rem, 2.8vw + 1rem, 3rem)' }}
+          style={{ fontSize: 'clamp(2.2rem, 2.2vw + 0.9rem, 2.8rem)' }}
         >
           {title}
           <span className="text-gradient absolute -bottom-2.5 left-0 block h-0.5 w-12 rounded-full opacity-60" />

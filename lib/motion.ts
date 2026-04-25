@@ -10,6 +10,6 @@ export const ease = {
 export const dur = {
   fast: 0.18,
   base: 0.28,
-  reveal: 0.72,
+  reveal: 1.1,
   hero: 1.0,
 }

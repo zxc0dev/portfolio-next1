@@ -9,6 +9,7 @@ interface RevealProps {
   children: React.ReactNode
   className?: string
   delay?: number
+  /** @deprecated No longer applied — reveal is pure opacity staging */
   direction?: 'up' | 'left' | 'right' | 'none'
 }
 
@@ -16,27 +17,15 @@ export function Reveal({
   children,
   className,
   delay = 0,
-  direction = 'up',
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' })
-
-  const offset = {
-    up: { y: 10 },
-    left: { x: -14 },
-    right: { x: 14 },
-    none: {},
-  }[direction]
-
-  const animateTo: Record<string, number> = { opacity: 1 }
-  if ('x' in offset) animateTo.x = 0
-  if ('y' in offset) animateTo.y = 0
+  const isInView = useInView(ref, { once: true, margin: '0px 0px -48px 0px' })
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, ...offset }}
-      animate={isInView ? animateTo : undefined}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : undefined}
       transition={{ duration: dur.reveal, ease: ease.expo, delay }}
       className={cn(className)}
     >

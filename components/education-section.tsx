@@ -18,21 +18,21 @@ export function EducationSection() {
 
         <div className="ml-[42px] flex flex-col divide-y divide-border/60 max-md:ml-0">
           {education.map((item, idx) => (
-            <Reveal key={item.title} delay={idx * 0.04} className="py-[clamp(28px,3.5vw,44px)] first:pt-0">
+            <Reveal key={item.title} delay={idx * 0.04} className="py-[clamp(16px,2vw,22px)] first:pt-0">
               <div className="relative pl-[clamp(15px,1.4vw,20px)]">
                 {/* Left accent line */}
                 <div className="absolute top-1 bottom-1 left-0 w-px rounded-full bg-gradient-to-b from-white/40 to-transparent" />
 
-                <h3 className="mb-[5px] text-[1.34rem] font-[650] leading-[1.35] tracking-[-0.02em] text-wrap-balance">
+                <h3 className="mb-[5px] text-[1.5rem] font-[650] leading-[1.3] tracking-[-0.02em] text-wrap-balance">
                   {item.title}
                 </h3>
-                <span className="text-gradient text-[0.95rem] font-semibold">
+                <span className="text-gradient text-[1rem] font-semibold">
                   {item.issuer}
                 </span>
                 <span className="mt-[3px] block font-mono text-[0.76rem] tracking-[0.08em] text-muted tabular-nums leading-[1.15]">
                   {item.date}
                 </span>
-                <p className="mt-3 text-[1.05rem] leading-[1.72] text-secondary text-wrap-pretty">
+                <p className="mt-3 text-[1.2rem] leading-[1.8] text-secondary text-wrap-pretty">
                   {item.detail}
                 </p>
               </div>
