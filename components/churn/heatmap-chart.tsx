@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import { echarts, PALETTE, tooltipStyle, axisLabelStyle, axisLineStyle } from './config'
 import type { EParam } from './config'
@@ -8,7 +8,7 @@ import heatmapRaw from '@/public/data/churn/churn_risk_heatmap.json'
 
 const CONTRACTS = ['Month-to-month', 'One year', 'Two year']
 
-export function HeatmapChart() {
+export const HeatmapChart = memo(function HeatmapChart() {
   const tenureBands = useMemo(
     () => [...new Set(heatmapRaw.data.map((d) => d.tenure))],
     [],
@@ -126,4 +126,4 @@ export function HeatmapChart() {
       lazyUpdate
     />
   )
-}
+})

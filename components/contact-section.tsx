@@ -63,7 +63,8 @@ export function ContactSection() {
     setStatus('idle')
     try {
       const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID
-      if (!formspreeId) { setStatus('error'); return }
+      // Reject missing or non-alphanumeric IDs to prevent path injection
+      if (!formspreeId || !/^[a-zA-Z0-9]+$/.test(formspreeId)) { setStatus('error'); return }
       const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -115,11 +116,13 @@ export function ContactSection() {
                         type="text"
                         autoComplete="name"
                         placeholder="Your name"
+                        aria-invalid={!!errors.name}
+                        aria-describedby={errors.name ? 'contact-name-error' : undefined}
                         className={cn(inputBase, errors.name ? 'border-error' : 'border-border')}
                         {...register('name')}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-[0.75rem] text-error" role="alert">
+                        <p id="contact-name-error" className="mt-1 text-[0.75rem] text-error" role="alert">
                           {errors.name.message}
                         </p>
                       )}
@@ -137,11 +140,13 @@ export function ContactSection() {
                         autoComplete="email"
                         inputMode="email"
                         placeholder="your@email.com"
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? 'contact-email-error' : undefined}
                         className={cn(inputBase, errors.email ? 'border-error' : 'border-border')}
                         {...register('email')}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-[0.75rem] text-error" role="alert">
+                        <p id="contact-email-error" className="mt-1 text-[0.75rem] text-error" role="alert">
                           {errors.email.message}
                         </p>
                       )}
@@ -159,6 +164,8 @@ export function ContactSection() {
                       id="contact-message"
                       placeholder="What would you like to talk about?"
                       rows={5}
+                      aria-invalid={!!errors.message}
+                      aria-describedby={errors.message ? 'contact-message-error' : undefined}
                       className={cn(
                         inputBase,
                         'min-h-[132px] resize-y',
@@ -167,7 +174,7 @@ export function ContactSection() {
                       {...register('message')}
                     />
                     {errors.message && (
-                      <p className="mt-1 text-[0.75rem] text-error" role="alert">
+                      <p id="contact-message-error" className="mt-1 text-[0.75rem] text-error" role="alert">
                         {errors.message.message}
                       </p>
                     )}

@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { subscribeWithSelector } from 'zustand/middleware'
 
 interface AppState {
   scrollProgress: number
@@ -7,9 +8,11 @@ interface AppState {
   setActiveSection: (section: string) => void
 }
 
-export const useAppStore = create<AppState>((set) => ({
-  scrollProgress: 0,
-  activeSection: 'hero',
-  setScrollProgress: (scrollProgress) => set({ scrollProgress }),
-  setActiveSection: (activeSection) => set({ activeSection }),
-}))
+export const useAppStore = create<AppState>()(
+  subscribeWithSelector((set) => ({
+    scrollProgress: 0,
+    activeSection: 'hero',
+    setScrollProgress: (scrollProgress) => set({ scrollProgress }),
+    setActiveSection: (activeSection) => set({ activeSection }),
+  })),
+)

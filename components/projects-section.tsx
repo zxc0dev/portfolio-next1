@@ -1,10 +1,11 @@
-﻿import { Github, Lock, ExternalLink, Construction } from 'lucide-react'
+﻿import type { ComponentType } from 'react'
+import { Github, Lock, ExternalLink, Construction } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 import { projects } from '@/data/projects'
 import { ChurnDashboard } from '@/components/churn/lazy-dashboard'
 
-const DASHBOARD_MAP: Record<string, React.ComponentType> = {
+const DASHBOARD_MAP: Record<string, ComponentType> = {
   churn: ChurnDashboard,
 }
 

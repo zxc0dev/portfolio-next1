@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import {
   echarts,
@@ -13,7 +13,7 @@ import {
 import type { EParam } from './config'
 import chargesRaw from '@/public/data/churn/monthly_charges_churn.json'
 
-export function ChargesChart() {
+export const ChargesChart = memo(function ChargesChart() {
   const option = useMemo<echarts.EChartsCoreOption>(
     () => ({
       tooltip: {
@@ -25,6 +25,7 @@ export function ChargesChart() {
         },
         formatter: (params: EParam | EParam[]) => {
           const p = Array.isArray(params) ? params[0] : params
+          if (!p) return ''
           const item = chargesRaw.data.find((d) => d.range === p.name)
           return `<div style="font-weight:600;margin-bottom:4px;color:${PALETTE.white94}">${p.name}</div><div style="color:${PALETTE.white70}">Churn rate: <span style="font-weight:600;color:${PALETTE.white94}">${p.value}%</span></div>${item ? `<div style="color:${PALETTE.white50};font-size:11px">${item.churned} of ${item.total} customers</div>` : ''}`
         },
@@ -84,4 +85,4 @@ export function ChargesChart() {
       lazyUpdate
     />
   )
-}
+})

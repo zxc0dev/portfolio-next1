@@ -1,4 +1,4 @@
-import { GraduationCap, Award, Construction } from 'lucide-react'
+import { GraduationCap, Award } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 import { cn } from '@/lib/utils'
@@ -50,12 +50,6 @@ export function EducationSection() {
                     >
                       {item.type === 'degree' ? 'Degree' : 'Certificate'}
                     </span>
-                    {item.isWip && (
-                      <span className="inline-flex items-center gap-1.5 rounded-pill border border-warning/30 bg-warning/[0.08] px-3 py-1 font-mono text-[0.63rem] font-semibold uppercase tracking-[0.1em] text-warning">
-                        <Construction className="h-3 w-3" />
-                        In Progress
-                      </span>
-                    )}
                     <span className="font-mono text-[0.72rem] tracking-[0.08em] text-muted tabular-nums leading-[1.15]">
                       {item.date}
                     </span>

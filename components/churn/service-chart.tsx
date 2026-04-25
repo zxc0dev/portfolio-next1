@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import {
   echarts,
@@ -13,7 +13,7 @@ import {
 import type { EParam } from './config'
 import serviceRaw from '@/public/data/churn/service_adoption_churn.json'
 
-export function ServiceChart() {
+export const ServiceChart = memo(function ServiceChart() {
   const option = useMemo<echarts.EChartsCoreOption>(
     () => ({
       tooltip: {
@@ -104,4 +104,4 @@ export function ServiceChart() {
       lazyUpdate
     />
   )
-}
+})

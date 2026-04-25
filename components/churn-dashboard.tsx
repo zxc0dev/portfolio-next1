@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+import { useLenis } from 'lenis/react'
 import { Target, Shield, Wifi, CreditCard, UserCheck } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import kpiRaw from '@/public/data/churn/kpi_cards.json'
@@ -85,6 +87,17 @@ const RECOMMENDATIONS = [
 
 /* ── Dashboard export ────────────────────────────────────────────────── */
 export function ChurnDashboard() {
+  const lenis = useLenis()
+
+  // Lenis.autoResize watches document.documentElement clientHeight via
+  // ResizeObserver. Because Lenis sets overflow:clip on <html>, clientHeight
+  // is fixed at viewport height and never fires when dynamic content grows.
+  // Calling resize() explicitly after mount forces Dimensions to re-read
+  // scrollHeight and recompute the scroll limit.
+  useEffect(() => {
+    lenis?.resize()
+  }, [lenis])
+
   return (
     <div className="flex flex-col gap-[clamp(24px,3vw,36px)]">
       {/* Insight: Overview */}

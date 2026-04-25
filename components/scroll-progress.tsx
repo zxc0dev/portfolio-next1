@@ -9,11 +9,14 @@ export function ScrollProgress() {
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    return useAppStore.subscribe((state) => {
-      if (ref.current) {
-        ref.current.style.width = `${state.scrollProgress * 100}%`
-      }
-    })
+    return useAppStore.subscribe(
+      (state) => state.scrollProgress,
+      (progress) => {
+        if (ref.current) {
+          ref.current.style.width = `${progress * 100}%`
+        }
+      },
+    )
   }, [])
 
   return (

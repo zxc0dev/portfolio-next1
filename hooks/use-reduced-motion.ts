@@ -1,19 +1,25 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
-export function useReducedMotion() {
-  // Always initialise to false (SSR-safe). The effect below syncs the real
-  // value after hydration, avoiding a server/client mismatch.
-  const [prefersReduced, setPrefersReduced] = useState(false)
+const MQ = '(prefers-reduced-motion: reduce)'
 
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReduced(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
+function subscribe(callback: () => void): () => void {
+  const mq = window.matchMedia(MQ)
+  mq.addEventListener('change', callback)
+  return () => mq.removeEventListener('change', callback)
+}
 
-  return prefersReduced
+function getSnapshot(): boolean {
+  return window.matchMedia(MQ).matches
+}
+
+function getServerSnapshot(): boolean {
+  return false
+}
+
+// Uses useSyncExternalStore so the correct value is read in a single render
+// pass — no useState(false) → useEffect flicker on mount.
+export function useReducedMotion(): boolean {
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 }

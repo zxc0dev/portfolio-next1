@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import {
   echarts,
@@ -13,7 +13,7 @@ import {
 import type { EParam } from './config'
 import tenureRaw from '@/public/data/churn/churn_by_tenure.json'
 
-export function TenureChart() {
+export const TenureChart = memo(function TenureChart() {
   const option = useMemo<echarts.EChartsCoreOption>(
     () => ({
       tooltip: {
@@ -135,4 +135,4 @@ export function TenureChart() {
       lazyUpdate
     />
   )
-}
+})

@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import {
   echarts,
@@ -14,7 +14,7 @@ import {
 import type { EParam } from './config'
 import driversRaw from '@/public/data/churn/churn_drivers.json'
 
-export function DriversChart() {
+export const DriversChart = memo(function DriversChart() {
   const data = useMemo(() => [...driversRaw.data].reverse(), [])
   const option = useMemo<echarts.EChartsCoreOption>(
     () => ({
@@ -27,6 +27,7 @@ export function DriversChart() {
         },
         formatter: (params: EParam | EParam[]) => {
           const p = Array.isArray(params) ? params[0] : params
+          if (!p) return ''
           const item = driversRaw.data.find((d) => d.driver === p.name)
           return `<div style="font-weight:600;margin-bottom:4px;color:${PALETTE.white94}">${p.name}</div><div style="color:${PALETTE.white70}">Weighted churn: <span style="font-weight:600;color:${PALETTE.white94}">${p.value}%</span></div>${item ? `<div style="color:${PALETTE.white50};font-size:11px;margin-top:4px">${item.signal}</div>` : ''}`
         },
@@ -91,4 +92,4 @@ export function DriversChart() {
       lazyUpdate
     />
   )
-}
+})

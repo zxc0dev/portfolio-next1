@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { memo, useMemo } from 'react'
 import ReactEChartsCore from 'echarts-for-react/lib/core'
 import {
   echarts,
@@ -13,7 +13,7 @@ import {
 import type { EParam } from './config'
 import paymentRaw from '@/public/data/churn/payment_method_churn.json'
 
-export function PaymentChart() {
+export const PaymentChart = memo(function PaymentChart() {
   const option = useMemo<echarts.EChartsCoreOption>(
     () => ({
       tooltip: {
@@ -95,4 +95,4 @@ export function PaymentChart() {
       lazyUpdate
     />
   )
-}
+})
