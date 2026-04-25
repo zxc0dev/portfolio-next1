@@ -44,7 +44,7 @@ export const DriversChart = memo(function DriversChart() {
         data: data.map((d) => d.driver),
         axisLabel: {
           ...axisLabelStyle,
-          fontSize: 11,
+          fontSize: 12,
           width: 140,
           overflow: 'truncate',
         },
@@ -73,7 +73,7 @@ export const DriversChart = memo(function DriversChart() {
             position: 'right',
             formatter: '{c}%',
             color: PALETTE.white70,
-            fontSize: 11,
+            fontSize: 12,
             fontFamily: 'var(--font-mono), monospace',
           },
         },

@@ -44,7 +44,7 @@ export const TenureChart = memo(function TenureChart() {
         itemHeight: 10,
         textStyle: {
           color: PALETTE.white50,
-          fontSize: 11,
+          fontSize: 12,
           fontFamily: 'var(--font-mono), monospace',
         },
         itemGap: 18,
@@ -63,7 +63,7 @@ export const TenureChart = memo(function TenureChart() {
           name: 'Customers',
           nameTextStyle: {
             color: PALETTE.white35,
-            fontSize: 10,
+            fontSize: 11,
             fontFamily: 'var(--font-mono), monospace',
           },
           axisLabel: axisLabelStyle,
@@ -75,7 +75,7 @@ export const TenureChart = memo(function TenureChart() {
           name: 'Churn %',
           nameTextStyle: {
             color: PALETTE.white35,
-            fontSize: 10,
+            fontSize: 11,
             fontFamily: 'var(--font-mono), monospace',
           },
           axisLabel: { ...axisLabelStyle, formatter: '{value}%' },

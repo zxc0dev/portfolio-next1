@@ -44,17 +44,17 @@ export function AboutSection() {
             <Reveal>
               <h3
                 className="mb-7 font-[800] leading-[1.18] tracking-[-0.03em] text-foreground text-wrap-balance flex flex-col gap-2"
-                style={{ fontSize: 'clamp(1.62rem, 1.8vw + 0.4rem, 2.2rem)' }}
+                style={{ fontSize: 'clamp(1.72rem, 1.9vw + 0.4rem, 2.3rem)' }}
               >
                 <span>
                   A data analyst who turns{' '}
                   <span className="text-gradient">complexity into clarity.</span>
                 </span>
-                <span>What a clich&eacute;, huh?</span>
+                <span>What a clich&eacute;&#8230;</span>
               </h3>
             </Reveal>
 
-            <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.2rem] leading-[1.82] text-secondary">
+            <div className="mb-4 flex max-w-[68ch] flex-col gap-5 text-[1.26rem] leading-[1.82] text-secondary">
               <Reveal delay={0.04}>
                 <p>Anyways, I love data. Specifically: analytics and engineering. I enjoy architecting, transforming, optimizing, and analyzing it.</p>
               </Reveal>

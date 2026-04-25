@@ -34,7 +34,7 @@ export const ChargesChart = memo(function ChargesChart() {
       xAxis: {
         type: 'category',
         data: chargesRaw.data.map((d) => d.range),
-        axisLabel: { ...axisLabelStyle, fontSize: 10 },
+        axisLabel: { ...axisLabelStyle, fontSize: 11 },
         axisLine: axisLineStyle,
         axisTick: { show: false },
       },
@@ -66,7 +66,7 @@ export const ChargesChart = memo(function ChargesChart() {
             position: 'top',
             formatter: '{c}%',
             color: PALETTE.white70,
-            fontSize: 10,
+            fontSize: 12,
             fontFamily: 'var(--font-mono), monospace',
           },
         },

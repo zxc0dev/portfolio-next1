@@ -41,7 +41,7 @@ export const PaymentChart = memo(function PaymentChart() {
         itemHeight: 10,
         textStyle: {
           color: PALETTE.white50,
-          fontSize: 11,
+          fontSize: 12,
           fontFamily: 'var(--font-mono), monospace',
         },
         itemGap: 18,
@@ -50,7 +50,7 @@ export const PaymentChart = memo(function PaymentChart() {
       xAxis: {
         type: 'category',
         data: paymentRaw.data.map((d) => d.method),
-        axisLabel: { ...axisLabelStyle, fontSize: 10, rotate: 18 },
+        axisLabel: { ...axisLabelStyle, fontSize: 11, rotate: 18 },
         axisLine: axisLineStyle,
         axisTick: { show: false },
       },

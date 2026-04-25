@@ -23,7 +23,7 @@ export function EducationSection() {
                 {/* Left accent line */}
                 <div className="absolute top-1 bottom-1 left-0 w-px rounded-full bg-gradient-to-b from-white/40 to-transparent" />
 
-                <h3 className="mb-[5px] text-[1.5rem] font-[650] leading-[1.3] tracking-[-0.02em] text-wrap-balance">
+                <h3 className="mb-[5px] text-[1.56rem] font-[650] leading-[1.3] tracking-[-0.02em] text-wrap-balance">
                   {item.title}
                 </h3>
                 <span className="text-gradient text-[1rem] font-semibold">
@@ -32,7 +32,7 @@ export function EducationSection() {
                 <span className="mt-[3px] block font-mono text-[0.76rem] tracking-[0.08em] text-muted tabular-nums leading-[1.15]">
                   {item.date}
                 </span>
-                <p className="mt-3 text-[1.2rem] leading-[1.8] text-secondary text-wrap-pretty">
+                <p className="mt-3 text-[1.26rem] leading-[1.8] text-secondary text-wrap-pretty">
                   {item.detail}
                 </p>
               </div>

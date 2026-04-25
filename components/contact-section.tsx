@@ -97,7 +97,7 @@ export function ContactSection() {
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Send a message
                 </span>
-                <p className="mb-7 max-w-[40ch] text-[1.2rem] leading-[1.8] text-secondary">
+                <p className="mb-7 max-w-[40ch] text-[1.26rem] leading-[1.8] text-secondary">
                   Have a project, a role, or an idea — feel free to reach out, I will get
                   back to you.
                 </p>

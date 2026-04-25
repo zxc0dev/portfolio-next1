@@ -23,10 +23,10 @@ function InsightCallout({
   return (
     <Reveal>
       <div>
-        <span className="mb-1.5 block font-mono text-[0.67rem] font-semibold uppercase tracking-[0.14em] text-white/50">
+          <span className="mb-1.5 block font-mono text-[0.67rem] font-semibold uppercase tracking-[0.14em] text-muted">
           {label}
         </span>
-        <p className="text-[1.2rem] leading-[1.8] text-white/90">
+        <p className="text-[1.22rem] leading-[1.8] text-secondary">
           {children}
         </p>
       </div>
@@ -86,7 +86,11 @@ const RECOMMENDATIONS = [
 ]
 
 /* ── Dashboard export ────────────────────────────────────────────────── */
-export function ChurnDashboard() {
+interface ChurnDashboardProps {
+  why?: string
+}
+
+export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
   const lenis = useLenis()
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -106,12 +110,12 @@ export function ChurnDashboard() {
 
   return (
     <div ref={rootRef} className="flex flex-col gap-[clamp(24px,3vw,36px)]">
-      {/* Insight: Overview */}
-      <InsightCallout label="Context">
-        With an overall churn rate of ~26% — 1,869 of 7,032 customers lost — this
-        dataset reveals significant retention challenges that justify targeted
-        intervention across contract, service, and payment dimensions.
-      </InsightCallout>
+      {/* Why this project */}
+      {why && (
+        <InsightCallout label="Why this project">
+          {why}
+        </InsightCallout>
+      )}
 
       {/* KPI Strip */}
       <Reveal>
@@ -125,7 +129,7 @@ export function ChurnDashboard() {
                 <span className="block w-full text-[1.28rem] font-semibold leading-[1.14] tracking-[-0.028em] text-foreground tabular-nums">
                   {kpi.value}
                 </span>
-                <span className="block w-full text-[0.82rem] leading-[1.52] text-white/60">
+                <span className="block w-full text-[0.88rem] leading-[1.52] text-muted">
                   {kpi.foot}
                 </span>
               </div>
@@ -133,6 +137,13 @@ export function ChurnDashboard() {
           ))}
         </div>
       </Reveal>
+
+      {/* Insight: Overview */}
+      <InsightCallout label="Context">
+        With an overall churn rate of ~26% — 1,869 of 7,032 customers lost — this
+        dataset reveals significant retention challenges that justify targeted
+        intervention across contract, service, and payment dimensions.
+      </InsightCallout>
 
       {/* Main chart: Lifecycle Risk Curve */}
       <Reveal delay={0.04}>
@@ -224,21 +235,21 @@ export function ChurnDashboard() {
       {/* Verdict Card — Retention Plan */}
       <Reveal delay={0.04}>
         <div className="p-[clamp(20px,2.5vw,32px)]">
-          <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-white/60">
+          <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted">
             Retention Plan — 5 Actionable Recommendations
           </span>
           <div className="mt-5 flex flex-col gap-4">
             {RECOMMENDATIONS.map((rec, i) => (
               <Reveal key={rec.title} delay={0.04 + i * 0.03}>
                 <div className="flex gap-3.5">
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white/8 text-white/70">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white/8 text-muted">
                     <rec.icon className="h-3.5 w-3.5" />
                   </span>
                   <div>
-                    <span className="text-[0.95rem] font-semibold text-foreground">
+                    <span className="text-[1rem] font-semibold text-foreground">
                       {rec.title}
                     </span>
-                    <p className="mt-0.5 text-[0.88rem] leading-[1.65] text-white/60">
+                    <p className="mt-0.5 text-[0.94rem] leading-[1.72] text-secondary">
                       {rec.detail}
                     </p>
                   </div>

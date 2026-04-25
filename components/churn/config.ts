@@ -77,7 +77,7 @@ export const tooltipStyle = {
 
 export const axisLabelStyle = {
   color: PALETTE.white50,
-  fontSize: 11,
+  fontSize: 12,
   fontFamily: 'var(--font-mono), monospace',
 }
 

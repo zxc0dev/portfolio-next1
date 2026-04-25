@@ -41,7 +41,7 @@ export const HeatmapChart = memo(function HeatmapChart() {
       xAxis: {
         type: 'category',
         data: tenureBands,
-        axisLabel: { ...axisLabelStyle, fontSize: 10 },
+        axisLabel: { ...axisLabelStyle, fontSize: 11 },
         axisLine: axisLineStyle,
         axisTick: { show: false },
         name: 'Tenure (months)',
@@ -49,14 +49,14 @@ export const HeatmapChart = memo(function HeatmapChart() {
         nameGap: 34,
         nameTextStyle: {
           color: PALETTE.white35,
-          fontSize: 10,
+          fontSize: 11,
           fontFamily: 'var(--font-mono), monospace',
         },
       },
       yAxis: {
         type: 'category',
         data: CONTRACTS,
-        axisLabel: { ...axisLabelStyle, fontSize: 10 },
+        axisLabel: { ...axisLabelStyle, fontSize: 11 },
         axisLine: { show: false },
         axisTick: { show: false },
       },

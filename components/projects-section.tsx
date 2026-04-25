@@ -5,8 +5,10 @@ import { Reveal } from '@/components/reveal'
 import { projects } from '@/data/projects'
 import { ChurnDashboard } from '@/components/churn/lazy-dashboard'
 
-const DASHBOARD_MAP: Record<string, ComponentType> = {
-  churn: ChurnDashboard,
+type DashboardComponent = ComponentType<{ why?: string }>
+
+const DASHBOARD_MAP: Record<string, DashboardComponent> = {
+  churn: ChurnDashboard as DashboardComponent,
 }
 
 export function ProjectsSection() {
@@ -34,7 +36,7 @@ export function ProjectsSection() {
                   <div className="flex flex-wrap items-center gap-3">
                     <h3
                       className="font-bold leading-[1.28] tracking-[-0.025em] text-wrap-balance"
-                      style={{ fontSize: 'clamp(1.55rem, 1.3vw + 0.8rem, 1.9rem)' }}
+                      style={{ fontSize: 'clamp(1.6rem, 1.3vw + 0.85rem, 1.96rem)' }}
                     >
                       {project.title}
                     </h3>
@@ -66,7 +68,7 @@ export function ProjectsSection() {
               {Dashboard && (
                 <Reveal delay={0.04}>
                   <div className="mt-5">
-                    <Dashboard />
+                    <Dashboard why={project.why} />
                   </div>
                 </Reveal>
               )}
@@ -94,14 +96,14 @@ export function ProjectsSection() {
                     )}
                   </dl>
 
-                  {/* Right: description */}
-                  <div className="pt-0.5">
+                  {/* Right: description + why */}
+                  <div className="pt-0.5 flex flex-col gap-6">
                     {project.description ? (
-                      <p className="text-[1.2rem] leading-[1.8] text-secondary text-wrap-pretty">
+                      <p className="text-[1.26rem] leading-[1.8] text-secondary text-wrap-pretty">
                         {project.description}
                       </p>
                     ) : (
-                      <p className="text-[1.2rem] leading-[1.8] text-muted/50 italic">
+                      <p className="text-[1.26rem] leading-[1.8] text-muted/50 italic">
                         Description coming soon.
                       </p>
                     )}

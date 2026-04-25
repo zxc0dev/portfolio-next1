@@ -38,7 +38,7 @@ export function ExperienceSection() {
               />
 
               <div className="mb-3.5">
-                <h3 className="mb-[5px] text-[1.5rem] font-semibold leading-[1.3] tracking-[-0.02em] text-wrap-balance">
+                <h3 className="mb-[5px] text-[1.56rem] font-semibold leading-[1.3] tracking-[-0.02em] text-wrap-balance">
                   {item.title}
                 </h3>
                 <span className="text-gradient text-[1rem] font-semibold">
@@ -53,9 +53,9 @@ export function ExperienceSection() {
                 {item.details.map((detail) => (
                   <li
                     key={detail.label}
-                    className="relative mb-2 pl-4 text-[1.2rem] leading-[1.8] text-secondary text-wrap-pretty before:absolute before:left-0 before:top-[0.82em] before:h-1 before:w-1 before:rounded-full before:bg-accent"
+                    className="relative mb-2 pl-4 text-[1.26rem] leading-[1.8] text-secondary text-wrap-pretty before:absolute before:left-0 before:top-[0.82em] before:h-1 before:w-1 before:rounded-full before:bg-accent"
                   >
-                    <strong className="text-[1.2rem] font-semibold text-foreground">
+                    <strong className="text-[1.26rem] font-semibold text-foreground">
                       {detail.label}:
                     </strong>{' '}
                     {detail.text}

@@ -41,7 +41,7 @@ export const ServiceChart = memo(function ServiceChart() {
         itemHeight: 10,
         textStyle: {
           color: PALETTE.white50,
-          fontSize: 11,
+          fontSize: 12,
           fontFamily: 'var(--font-mono), monospace',
         },
         itemGap: 18,
@@ -50,7 +50,7 @@ export const ServiceChart = memo(function ServiceChart() {
       xAxis: {
         type: 'category',
         data: serviceRaw.data.map((d) => d.service),
-        axisLabel: { ...axisLabelStyle, fontSize: 10, rotate: 22 },
+        axisLabel: { ...axisLabelStyle, fontSize: 11, rotate: 22 },
         axisLine: axisLineStyle,
         axisTick: { show: false },
       },
