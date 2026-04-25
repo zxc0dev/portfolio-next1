@@ -28,11 +28,15 @@ export function Reveal({
     none: {},
   }[direction]
 
+  const animateTo: Record<string, number> = { opacity: 1 }
+  if ('x' in offset) animateTo.x = 0
+  if ('y' in offset) animateTo.y = 0
+
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, ...offset }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : undefined}
+      animate={isInView ? animateTo : undefined}
       transition={{ duration: dur.reveal, ease: ease.expo, delay }}
       className={cn(className)}
     >

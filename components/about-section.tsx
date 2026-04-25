@@ -86,14 +86,14 @@ export function AboutSection() {
                   Ericsson described: focused, corrective, and sustained without burning out.
                 </p>
               </Reveal>
-              <Reveal delay={0.16}>
+              <Reveal delay={0.20}>
                 <p>
                   Outside of data, I read broadly — philosophy, cognitive science, sometimes history, less for credentials
                   than for better mental furniture. And I usually have a side project running:
                   something I&apos;m building to understand it, not necessarily to showcase it.
                 </p>
               </Reveal>
-              <Reveal delay={0.16}>
+              <Reveal delay={0.24}>
                 <div className="flex flex-col gap-1">
                   <span className="font-mono text-[0.69rem] tracking-[0.04em] text-muted">
                     *&thinsp;the dude casually asking lots of questions

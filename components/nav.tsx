@@ -27,6 +27,17 @@ export function Nav() {
     return () => document.removeEventListener('keydown', onKey)
   }, [mobileOpen])
 
+  // Stop/resume Lenis smooth scroll while mobile menu is open so background
+  // content doesn't scroll behind the overlay.
+  useEffect(() => {
+    if (mobileOpen) {
+      lenis?.stop()
+    } else {
+      lenis?.start()
+    }
+    return () => { lenis?.start() }
+  }, [mobileOpen, lenis])
+
   const scrollToTop = () => {
     setMobileOpen(false)
     lenis?.scrollTo(0, { duration: 1.2 })

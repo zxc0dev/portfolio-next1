@@ -28,7 +28,7 @@ export function PaymentChart() {
           const name = p[0]?.axisValue ?? ''
           let html = `<div style="font-weight:600;margin-bottom:4px;color:${PALETTE.white94}">${name}</div>`
           p.forEach((s: EParam) => {
-            html += `<div style="display:flex;align-items:center;gap:6px;margin:2px 0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${s.color}"></span><span style="color:${PALETTE.white70}">${s.seriesName}:</span><span style="font-weight:600;color:${PALETTE.white94}">${s.value.toLocaleString()}</span></div>`
+            html += `<div style="display:flex;align-items:center;gap:6px;margin:2px 0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${s.color}"></span><span style="color:${PALETTE.white70}">${s.seriesName}:</span><span style="font-weight:600;color:${PALETTE.white94}">${(s.value ?? 0).toLocaleString()}</span></div>`
           })
           return html
         },

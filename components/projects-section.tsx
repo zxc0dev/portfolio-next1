@@ -23,7 +23,9 @@ export function ProjectsSection() {
         />
 
         <div className="ml-[42px] flex flex-col divide-y divide-border/60 max-md:ml-0">
-          {projects.map((project) => (
+          {projects.map((project) => {
+            const Dashboard = DASHBOARD_MAP[project.slug]
+            return (
             <article key={project.slug} className="py-[clamp(48px,5vw,72px)] first:pt-0">
               {/* Row 1: Title + Buttons */}
               <Reveal>
@@ -66,17 +68,13 @@ export function ProjectsSection() {
               </Reveal>
 
               {/* Row 2: Live Dashboard */}
-              {(() => {
-                const Dashboard = DASHBOARD_MAP[project.slug]
-                if (!Dashboard) return null
-                return (
-                  <Reveal delay={0.04}>
-                    <div className="mt-5">
-                      <Dashboard />
-                    </div>
-                  </Reveal>
-                )
-              })()}
+              {Dashboard && (
+                <Reveal delay={0.04}>
+                  <div className="mt-5">
+                    <Dashboard />
+                  </div>
+                </Reveal>
+              )}
 
               {/* Row 3: Tech Stack + Date  |  Description */}
               <Reveal delay={0.06}>
@@ -110,7 +108,8 @@ export function ProjectsSection() {
                 </div>
               </Reveal>
             </article>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

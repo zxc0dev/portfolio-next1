@@ -30,7 +30,7 @@ export function TenureChart() {
           p.forEach((s: EParam) => {
             const unit = s.seriesName === 'Churn Rate' ? '%' : ''
             const val =
-              typeof s.value === 'number' ? s.value.toLocaleString() : s.value
+              typeof s.value === 'number' ? s.value.toLocaleString() : (s.value ?? '—')
             html += `<div style="display:flex;align-items:center;gap:6px;margin:3px 0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${s.color}"></span><span style="color:${PALETTE.white70}">${s.seriesName}:</span><span style="font-weight:600;color:${PALETTE.white94}">${val}${unit}</span></div>`
           })
           return html

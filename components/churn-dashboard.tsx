@@ -210,7 +210,7 @@ export function ChurnDashboard() {
           </span>
           <div className="mt-5 flex flex-col gap-4">
             {RECOMMENDATIONS.map((rec, i) => (
-              <Reveal key={i} delay={0.04 + i * 0.03}>
+              <Reveal key={rec.title} delay={0.04 + i * 0.03}>
                 <div className="flex gap-3.5">
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white/8 text-white/70">
                     <rec.icon className="h-3.5 w-3.5" />

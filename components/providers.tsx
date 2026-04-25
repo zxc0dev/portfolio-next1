@@ -18,7 +18,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <ReactLenis
       root
       options={{
-        lerp: prefersReduced ? 1 : 0.08,
+        lerp: prefersReduced ? 1 : 0.18,
         smoothWheel: !prefersReduced,
         autoResize: true,
       }}

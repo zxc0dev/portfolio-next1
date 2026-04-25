@@ -28,7 +28,9 @@ export function HeatmapChart() {
       tooltip: {
         ...tooltipStyle,
         formatter: (p: EParam) => {
-          const [ti, ci, val] = p.data
+          const raw = p.data
+          if (!Array.isArray(raw) || raw.length < 3) return ''
+          const [ti, ci, val] = raw as [number, number, number]
           const item = heatmapRaw.data.find(
             (d) => d.tenure === tenureBands[ti] && d.contract === CONTRACTS[ci],
           )
@@ -86,7 +88,8 @@ export function HeatmapChart() {
           label: {
             show: true,
             formatter: (p: EParam) => {
-              const val = p.data[2]
+              const val = Array.isArray(p.data) ? (p.data as number[])[2] : undefined
+              if (val == null) return ''
               return val > 30 ? `{dark|${val}%}` : `{light|${val}%}`
             },
             rich: {

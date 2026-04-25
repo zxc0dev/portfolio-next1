@@ -24,9 +24,15 @@ echarts.use([
 
 export { echarts }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export type EParam = Record<string, any>
-/* eslint-enable @typescript-eslint/no-explicit-any */
+export interface EParam {
+  color?: string
+  seriesName?: string
+  value?: number | string | number[]
+  axisValue?: string
+  name?: string
+  percent?: number
+  data?: number[]
+}
 
 export const PALETTE = {
   white100: 'rgba(255,255,255,1)',

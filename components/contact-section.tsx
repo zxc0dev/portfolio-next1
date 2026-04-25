@@ -60,6 +60,7 @@ export function ContactSection() {
   } = useForm<ContactFormData>({ resolver: zodResolver(contactSchema) })
 
   const onSubmit = async (data: ContactFormData) => {
+    setStatus('idle')
     try {
       const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID
       if (!formspreeId) { setStatus('error'); return }
@@ -89,23 +90,18 @@ export function ContactSection() {
 
         <div className="ml-[42px] max-md:ml-0">
           <div className="grid grid-cols-[1.35fr_1fr] items-start gap-[clamp(40px,6vw,80px)] max-md:grid-cols-1">
-            {/* Left â€” form */}
+            {/* Left — form */}
             <Reveal>
               <div className="flex flex-col">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Send a message
                 </span>
                 <p className="mb-7 max-w-[40ch] text-[1.18rem] leading-[1.75] text-secondary">
-                  Have a project, a role, or an idea â€” feel free to reach out, I will get
+                  Have a project, a role, or an idea — feel free to reach out, I will get
                   back to you.
                 </p>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-                  {/* Honeypot â€” processed server-side by Formspree */}
-                  <div className="hidden" aria-hidden="true">
-                    <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
-                  </div>
-
                   <div className="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
                     <div>
                       <label
@@ -208,7 +204,7 @@ export function ContactSection() {
               </div>
             </Reveal>
 
-            {/* Right â€” direct channels */}
+            {/* Right — direct channels */}
             <Reveal delay={0.06}>
               <div className="border-l border-white/10 pl-[clamp(20px,3vw,40px)] max-md:border-l-0 max-md:pl-0 max-md:border-t max-md:border-white/10 max-md:pt-6">
                 <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
