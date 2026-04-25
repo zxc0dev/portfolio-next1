@@ -114,7 +114,7 @@ export function AboutSection() {
             {STACK_GROUPS.map((group, gIdx) => (
               <Reveal key={group.label} delay={(gIdx + 1) * 0.04}>
                 <div>
-                  {gIdx > 0 && <div className="my-4 h-px bg-border-subtle" />}
+                  {gIdx > 0 && <div className="my-4 h-px bg-border" />}
                   <span className="mb-2.5 block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.15em] text-muted">
                     {group.label}
                   </span>

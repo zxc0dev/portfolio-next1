@@ -124,7 +124,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <Reveal delay={0.1}>
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border-subtle pt-6">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
             <p className="font-mono text-[0.73rem] tracking-[0.04em] text-muted opacity-50">
               &copy; {new Date().getFullYear()} Pavlo Popovych. All rights reserved.
             </p>

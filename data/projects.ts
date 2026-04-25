@@ -13,6 +13,31 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'profesia',
+    title: 'Data Platform for Job Market Intelligence (Profesia.sk)',
+    type: 'Data Engineering',
+    githubUrl: 'https://github.com/zxc0dev/profesia-job-market-intelligence',
+    isConfidential: false,
+    isWip: false,
+    dateRange: 'Mar 2026 – Present',
+    description:
+      'Designed and built an end-to-end data platform ingesting structured job listings from Profesia.sk — Slovakia\'s largest job board. The pipeline extracts, normalises, and loads postings into a modelled warehouse layer, enabling labour-market trend analysis across regions, industries, and skill categories. Insights surface demand shifts, salary bands, and emerging role patterns across the Slovak job market.',
+    tags: ['Python', 'SQL', 'dbt', 'Power BI'],
+  },
+  {
+    slug: 'covid',
+    title: 'Covid Global Impact Analysis',
+    type: 'Data Analysis',
+    githubUrl: 'https://github.com/zxc0dev/covid-global-impact-analysis',
+    isConfidential: false,
+    isWip: false,
+    dateRange: 'Feb 2026 – Present',
+    description:
+      'Multi-dimensional analysis of the Covid-19 pandemic\'s global footprint across 10 datasets covering cases, deaths, vaccinations, mobility, economic indicators, healthcare capacity, policy responses, and demographic factors. SQL-driven data integration and Python modelling surface cross-country patterns in outbreak severity, intervention timing, and recovery trajectories — translating raw epidemiological and socioeconomic signals into a coherent, evidence-backed narrative.',
+    dataset: '10 public datasets — epidemiological, economic & policy sources',
+    tags: ['Python', 'SQL', 'Pandas', 'Power BI'],
+  },
+  {
     slug: 'rfm',
     title: 'Customer RFM Segmentation',
     type: 'Data Analysis',
@@ -37,18 +62,5 @@ export const projects: Project[] = [
       'Built a full ML pipeline on 7,000+ telecom customer records to predict churn before it happens. After extensive EDA, five engineered features and four classifiers were evaluated; XGBoost achieved 0.84 ROC-AUC with 0.80 recall. Findings were translated into a structured retention plan covering contract migration incentives, onboarding touchpoints, and targeted outreach for high-risk fiber cohorts.',
     dataset: 'Kaggle Telco Churn — 7 043 customers, 21 features',
     tags: ['Python', 'Scikit-learn', 'XGBoost', 'Power BI'],
-  },
-  {
-    slug: 'forecasting',
-    title: 'Supply Chain Demand Forecasting',
-    type: 'Forecasting',
-    githubUrl: 'https://github.com/zxc0dev/supply-chain-demand-forecasting',
-    isConfidential: false,
-    isWip: false,
-    dateRange: 'Feb 2026 – Present',
-    description:
-      'End-to-end SKU-level demand forecasting pipeline. Pulls historical transaction data via SQL, engineers lag and seasonality features, and trains Python predictive models to reduce overstock and stockout events across the supply chain.',
-    dataset: 'Internal warehouse exports \u2014 SKU-level daily sales',
-    tags: ['Python', 'SQL', 'Scikit-learn'],
   },
 ]

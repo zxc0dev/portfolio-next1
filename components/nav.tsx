@@ -69,7 +69,7 @@ export function Nav() {
                 className="group relative py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-accent-3 transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-muted transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
               </a>
             </li>
           ))}
@@ -82,7 +82,7 @@ export function Nav() {
           className="group relative ml-auto hidden py-2 text-[0.9rem] font-medium leading-none tracking-[0.04em] text-secondary transition-colors duration-[280ms] hover:text-foreground md:inline-flex"
         >
           Resume
-          <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-accent-3 transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
+          <span className="absolute bottom-0 left-0 h-[1.5px] w-0 rounded-full bg-gradient-to-r from-foreground to-muted transition-all duration-[280ms] ease-out-expo group-hover:w-full" />
         </a>
 
         {/* Mobile toggle */}

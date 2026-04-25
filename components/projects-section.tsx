@@ -1,5 +1,5 @@
 ﻿import type { ComponentType } from 'react'
-import { Github, Lock, ExternalLink, Construction } from 'lucide-react'
+import { Github, ExternalLink, Construction } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 import { projects } from '@/data/projects'
@@ -46,23 +46,17 @@ export function ProjectsSection() {
                     )}
                   </div>
                   <div className="flex shrink-0 flex-wrap items-center gap-2">
-                    {project.githubUrl && !project.isConfidential && (
+                    {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-1.5 font-mono text-[0.78rem] tracking-[0.04em] text-white transition-all duration-[220ms] ease-out-expo hover:text-foreground"
+                        className="group inline-flex items-center gap-1.5 font-mono text-[0.78rem] tracking-[0.04em] text-foreground transition-all duration-[220ms] ease-out-expo"
                       >
                         <Github className="h-[14px] w-[14px] opacity-70 transition-opacity duration-[180ms] group-hover:opacity-100" />
                         <span className="border-b border-white/0 transition-[border-color] duration-[220ms] group-hover:border-white/30">View on GitHub</span>
                         <ExternalLink className="h-[11px] w-[11px] opacity-0 -translate-y-px translate-x-[-2px] transition-all duration-[180ms] group-hover:opacity-60 group-hover:translate-x-0" />
                       </a>
-                    )}
-                    {project.isConfidential && (
-                      <span className="inline-flex cursor-not-allowed items-center gap-2 rounded-sm border border-white/7 bg-white/[0.01] px-[11px] py-2.5 font-mono text-[0.72rem] font-semibold tracking-[0.025em] text-white/50 gradient-border">
-                        <Lock className="h-[15px] w-[15px] opacity-60" />
-                        <span>Client Project</span>
-                      </span>
                     )}
                   </div>
                 </div>
@@ -82,15 +76,15 @@ export function ProjectsSection() {
                 <div className="mt-8 grid grid-cols-[340px_1fr] items-start gap-[clamp(60px,12vw,144px)] max-md:grid-cols-1">
                   {/* Left: stack + date */}
                   <dl className="grid grid-cols-[80px_1fr] gap-x-6 gap-y-2.5 items-baseline">
-                    <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-white/40">Stack</dt>
-                    <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-white/90">{project.tags.join(', ')}</dd>
+                    <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted">Stack</dt>
+                    <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-secondary">{project.tags.join(', ')}</dd>
                     {project.dataset && (<>
-                      <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-white/40">Dataset</dt>
-                      <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-white/90">{project.dataset}</dd>
+                      <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted">Dataset</dt>
+                      <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-secondary">{project.dataset}</dd>
                     </>)}
                     {project.dateRange && (<>
-                      <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-white/40">Date</dt>
-                      <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-white/90">{project.dateRange}</dd>
+                      <dt className="font-mono text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-muted">Date</dt>
+                      <dd className="m-0 text-[0.95rem] font-medium leading-[1.7] text-secondary">{project.dateRange}</dd>
                     </>)}
                   </dl>
 
@@ -101,7 +95,7 @@ export function ProjectsSection() {
                         {project.description}
                       </p>
                     ) : (
-                      <p className="text-[1.05rem] leading-[1.72] text-white/22 italic">
+                      <p className="text-[1.05rem] leading-[1.72] text-muted/50 italic">
                         Description coming soon.
                       </p>
                     )}

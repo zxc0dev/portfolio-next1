@@ -38,15 +38,6 @@ export function Reveal({
       initial={{ opacity: 0, ...offset }}
       animate={isInView ? animateTo : undefined}
       transition={{ duration: dur.reveal, ease: ease.expo, delay }}
-      // Keeping will-change set permanently on revealed elements ensures the
-      // element stays on a single GPU compositor layer from pre-animation
-      // through rest state. Without this, browsers promote the layer when
-      // opacity < 1 (animation in progress) and then dissolve it when opacity
-      // reaches 1 — that dissolution re-enables subpixel AA and triggers a
-      // fractional glyph-position recalculation, visible as a blurry-to-sharp
-      // snap with a small upward shift. Maintaining the layer prevents the
-      // mode switch entirely.
-      style={{ willChange: 'transform, opacity' }}
       className={cn(className)}
     >
       {children}
