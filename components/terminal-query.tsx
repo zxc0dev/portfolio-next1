@@ -1,22 +1,20 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { motion } from 'motion/react'
+import { motion, AnimatePresence } from 'motion/react'
 import { useLenis } from 'lenis/react'
 import { useAppStore } from '@/stores/app-store'
 import { cn } from '@/lib/utils'
 
 type Phase = 'idle' | 'typing' | 'status' | 'revealed'
 
+let activeTerminalId: string | null = null
+
 interface TerminalQueryProps {
-  /** SQL query text — use \n for line wraps */
   query: string
-  /** Rows returned description, e.g. "3 rows returned" */
   rowsText?: string
   children: React.ReactNode
   className?: string
-  /** Total typing animation duration in ms */
-  typeDuration?: number
 }
 
 export function TerminalQuery({
@@ -24,50 +22,97 @@ export function TerminalQuery({
   rowsText = '1 row returned',
   children,
   className,
-  typeDuration = 500,
 }: TerminalQueryProps) {
   const lenis        = useLenis()
   const isLoaded     = useAppStore((s) => s.isLoaded)
   const containerRef = useRef<HTMLDivElement>(null)
+  const idRef        = useRef(`tq-${Math.random().toString(36).slice(2)}`)
   const phaseRef     = useRef<Phase>('idle')
+  const isLockedRef  = useRef(false)
+  const guardRef     = useRef<ReturnType<typeof setInterval> | null>(null)
+  const savedYRef    = useRef(0)
+  const rafRef       = useRef<number | null>(null)
 
-  const [phase, setPhaseState]     = useState<Phase>('idle')
-  const [charCount, setCharCount]  = useState(0)
-  const [statusVisible, setStatus] = useState(false)
+  // Wheel energy accumulator — filled by wheel/touch events, drained by RAF
+  const wheelEnergyRef  = useRef(0)
+  const charBudgetRef   = useRef(0)
+  const charCountRef    = useRef(0)
 
-  // Keep ref in sync so IntersectionObserver callback can read current phase
+  const [phase,         setPhaseState] = useState<Phase>('idle')
+  const [charCount,     setCharCount]  = useState(0)
+  const [statusVisible, setStatus]     = useState(false)
+  const [isInView,      setInView]     = useState(false)
+
   const setPhase = useCallback((p: Phase) => {
     phaseRef.current = p
     setPhaseState(p)
   }, [])
 
-  // Finish immediately — used for wheel bypass
+  const releaseGate = useCallback(() => {
+    if (activeTerminalId === idRef.current) activeTerminalId = null
+  }, [])
+
+  const lockScroll = useCallback(() => {
+    if (isLockedRef.current) return
+    isLockedRef.current = true
+    savedYRef.current   = window.scrollY
+    lenis?.stop()
+    guardRef.current = setInterval(() => {
+      if (Math.abs(window.scrollY - savedYRef.current) > 1) {
+        window.scrollTo({ top: savedYRef.current, behavior: 'instant' })
+      }
+    }, 16)
+  }, [lenis])
+
+  const unlockScroll = useCallback(() => {
+    if (!isLockedRef.current) return
+    isLockedRef.current = false
+    if (guardRef.current) { clearInterval(guardRef.current); guardRef.current = null }
+    lenis?.start()
+  }, [lenis])
+
   const finish = useCallback(() => {
     if (phaseRef.current === 'revealed') return
+    if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    charCountRef.current = query.length
     setCharCount(query.length)
     setStatus(true)
     setPhase('revealed')
-    lenis?.start()
-  }, [query.length, lenis, setPhase])
+    releaseGate()
+    unlockScroll()
+  }, [query.length, setPhase, releaseGate, unlockScroll])
 
-  // IntersectionObserver — start typing when section enters viewport
+  // ── IntersectionObserver ──────────────────────────────────────────────────
+
   useEffect(() => {
     if (!isLoaded) return
     const el = containerRef.current
     if (!el) return
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && phaseRef.current === 'idle') {
-          setPhase('typing')
-        }
-      },
-      { threshold: 0.25, rootMargin: '0px 0px -80px 0px' },
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.0, rootMargin: '0px 0px -160px 0px' },
     )
     obs.observe(el)
     return () => obs.disconnect()
-  }, [isLoaded, setPhase])
+  }, [isLoaded])
 
-  // Wheel bypass — fast scroll skips animation immediately
+  // ── Claim global gate ─────────────────────────────────────────────────────
+
+  useEffect(() => {
+    if (!isLoaded || !isInView || phase !== 'idle') return
+    const tryClaim = () => {
+      if (phaseRef.current !== 'idle') return
+      if (activeTerminalId && activeTerminalId !== idRef.current) return
+      activeTerminalId = idRef.current
+      setPhase('typing')
+    }
+    tryClaim()
+    const iv = setInterval(tryClaim, 90)
+    return () => clearInterval(iv)
+  }, [isLoaded, isInView, phase, setPhase])
+
+  // ── Hard flick bypass ─────────────────────────────────────────────────────
+
   useEffect(() => {
     if (phase !== 'typing' && phase !== 'status') return
     const handler = (e: WheelEvent) => {
@@ -77,51 +122,124 @@ export function TerminalQuery({
     return () => window.removeEventListener('wheel', handler)
   }, [phase, finish])
 
-  // Phase: typing — lock scroll, advance char by char
+  // ── Phase: typing ─────────────────────────────────────────────────────────
+  // Scroll is locked so scrollY never changes.
+  // Instead we listen to raw wheel/touch delta and use that as energy
+  // to advance the char counter — scroll drives typing, not position.
+
   useEffect(() => {
     if (phase !== 'typing') return
-    lenis?.stop()
-    if (charCount >= query.length) {
-      const t = setTimeout(() => {
-        setStatus(true)
-        setPhase('status')
-      }, 110)
-      return () => clearTimeout(t)
-    }
-    const charMs = Math.max(typeDuration / query.length, 7)
-    const t = setTimeout(() => setCharCount((c) => c + 1), charMs)
-    return () => clearTimeout(t)
-  }, [phase, charCount, query.length, typeDuration, lenis, setPhase])
 
-  // Phase: status → revealed — unlock scroll after brief pause
+    lockScroll()
+    charBudgetRef.current  = 0
+    wheelEnergyRef.current = 0
+    charCountRef.current   = charCount // sync on entry
+
+    // ── Input listeners — fill the energy bucket ──────────────────────────
+    const CHARS_PER_PX = 0.45 // tune: lower = more scrolling needed per char
+
+    const normalizeDelta = (deltaY: number, deltaMode: number) => {
+      // WheelEvent delta can be in pixels (0), lines (1), or pages (2).
+      if (deltaMode === 1) return deltaY * 16
+      if (deltaMode === 2) return deltaY * window.innerHeight
+      return deltaY
+    }
+
+    const onWheel = (e: WheelEvent) => {
+      // Only downward scroll advances typing
+      const dy = normalizeDelta(e.deltaY, e.deltaMode)
+      if (dy > 0) wheelEnergyRef.current += dy
+    }
+
+    let lastTouchY = 0
+    const onTouchStart = (e: TouchEvent) => {
+      lastTouchY = e.touches[0].clientY
+    }
+    const onTouchMove = (e: TouchEvent) => {
+      const dy = lastTouchY - e.touches[0].clientY // positive = scrolling down
+      lastTouchY = e.touches[0].clientY
+      if (dy > 0) wheelEnergyRef.current += dy * 3 // touch needs amplification
+    }
+
+    // Capture phase helps when smooth-scroll libraries stop propagation later.
+    window.addEventListener('wheel',      onWheel,      { passive: true, capture: true })
+    window.addEventListener('touchstart', onTouchStart, { passive: true, capture: true })
+    window.addEventListener('touchmove',  onTouchMove,  { passive: true, capture: true })
+
+    // ── RAF loop — drain energy into chars ────────────────────────────────
+    const tick = () => {
+      if (wheelEnergyRef.current > 0) {
+        // Convert energy to char budget
+        charBudgetRef.current += wheelEnergyRef.current * CHARS_PER_PX
+        // Decay energy so it feels natural, not instant
+        wheelEnergyRef.current *= 0.6
+
+        // Drain budget — cap at 4 chars/frame so bursts aren't jarring
+        const advance = Math.min(Math.floor(charBudgetRef.current), 4)
+        if (advance > 0) {
+          charBudgetRef.current -= advance
+          const next = Math.min(charCountRef.current + advance, query.length)
+          charCountRef.current = next
+          setCharCount(next)
+        }
+
+        if (charCountRef.current >= query.length) {
+          setTimeout(() => { setStatus(true); setPhase('status') }, 110)
+          return // stop RAF
+        }
+      }
+
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      window.removeEventListener('wheel',      onWheel,      true)
+      window.removeEventListener('touchstart', onTouchStart, true)
+      window.removeEventListener('touchmove',  onTouchMove,  true)
+    }
+  }, [phase, lockScroll, setPhase, query.length, charCount])
+
+  // ── Phase: status → revealed ──────────────────────────────────────────────
+
   useEffect(() => {
     if (phase !== 'status') return
     const t = setTimeout(() => {
       setPhase('revealed')
-      lenis?.start()
-    }, 380)
+      releaseGate()
+      unlockScroll()
+    }, 420)
     return () => clearTimeout(t)
-  }, [phase, lenis, setPhase])
+  }, [phase, setPhase, releaseGate, unlockScroll])
 
-  const displayedText = query.slice(0, charCount)
+  // ── Safety cleanup ────────────────────────────────────────────────────────
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+      releaseGate()
+      unlockScroll()
+    }
+  }, [releaseGate, unlockScroll])
 
   return (
     <div ref={containerRef} className={cn(className)}>
-      {/* Terminal prompt + query line */}
       <div className="mb-6 font-mono text-[0.78rem] leading-[1.72]">
         <div className="whitespace-pre">
-          <span style={{ color: 'rgba(255,255,255,0.28)' }}>portfolio=# </span>
+          <span style={{ color: 'rgba(255,255,255,0.28)' }}>portfolio=#&nbsp;</span>
           {phase !== 'idle' && (
-            <span className="text-foreground">{displayedText}</span>
+            <span className="text-foreground">{query.slice(0, charCount)}</span>
           )}
-          {/* Blinking cursor — visible in all phases */}
-          <span
-            className="inline-block ml-px w-[6px] h-[0.88em] bg-foreground/50 align-middle animate-[blink_0.9s_step-end_infinite]"
-            aria-hidden="true"
-          />
+          {phase !== 'revealed' && (
+            <span
+              className="inline-block ml-px w-[6px] h-[0.88em] bg-foreground/50 align-middle animate-[blink_0.9s_step-end_infinite]"
+              aria-hidden="true"
+            />
+          )}
         </div>
 
-        {/* Status line — appears after typing completes */}
         {statusVisible && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -129,13 +247,22 @@ export function TerminalQuery({
             transition={{ duration: 0.2 }}
             style={{ color: 'rgba(255,255,255,0.3)' }}
           >
-            {`-- \u2713  ${rowsText}`}
+            {`-- ✓  ${rowsText}`}
           </motion.div>
         )}
       </div>
 
-      {/* Section content — mounted only after query executes */}
-      {phase === 'revealed' && children}
+      <AnimatePresence>
+        {phase === 'revealed' && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
