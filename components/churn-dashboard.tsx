@@ -54,31 +54,26 @@ function ChartHeader({ tag, title }: { tag: string; title: string }) {
 /* ── Verdict card ────────────────────────────────────────────────────── */
 const RECOMMENDATIONS = [
   {
-    icon: UserCheck,
     title: 'Eliminate the early-tenure danger zone',
     detail:
       'Proactive onboarding for months 0–5 with check-in calls at month 1 & 3, a welcome bundle discount, and a clear upgrade path to annual contracts.',
   },
   {
-    icon: Target,
     title: 'Migrate month-to-month → longer contracts',
     detail:
       'Time-limited incentive (locked-in rate, one-time bill credit) to flip high-risk M2M customers to 1-year contracts. Even a partial shift reduces weighted churn from 23.5% toward the 2.4% seen on annual plans.',
   },
   {
-    icon: Shield,
     title: 'Bundle add-on services by default',
     detail:
       'Include online security and tech support in mid-tier plans. Customers with these services show 4–8% weighted churn vs 17–21% without.',
   },
   {
-    icon: Wifi,
     title: 'Address fiber optic dissatisfaction',
     detail:
       'Fiber optic users without tech support are the highest-risk cohort. Deploy proactive tech support outreach and audit pricing vs. competitor offerings.',
   },
   {
-    icon: CreditCard,
     title: 'Automate payments to reduce friction',
     detail:
       'Electronic check users churn at ~4× the rate of automatic payment users. Incentivize switching with a $5/month discount for auto-pay enrollment.',
@@ -140,9 +135,8 @@ export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
 
       {/* Insight: Overview */}
       <InsightCallout label="Context">
-        With an overall churn rate of ~26% — 1,869 of 7,032 customers lost — this
-        dataset reveals significant retention challenges that justify targeted
-        intervention across contract, service, and payment dimensions.
+        With an overall churn rate of ~26%, 1,869 of 7,032 customers lost, the telecom company
+        faces a need for targeted retention strategies.
       </InsightCallout>
 
       {/* Main chart: Lifecycle Risk Curve */}
@@ -158,9 +152,8 @@ export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
 
       {/* Insight: Tenure finding */}
       <InsightCallout label="Key Finding">
-        54.7% of month-to-month customers churn within the first 5 months. This
-        early-tenure window represents the single greatest retention opportunity —
-        after month 12, churn drops below 20%.
+        The above chart reveals a churn trend, with the highest churn risk concentrated in the early tenure 0-5 months (54.7% churn rate),
+        and drops significantly the longer customers stay 6-12 months (36%), 13-24 months (28%), and 61-72 months (6.6%).
       </InsightCallout>
 
       {/* Split view: Drivers + Heatmap */}
@@ -186,10 +179,10 @@ export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
       </div>
 
       {/* Insight: Contract & service */}
-      <InsightCallout label="Pattern">
+      <InsightCallout label="Contract & Service Impact">
         Contract type is the strongest churn lever: two-year contracts show ~2–3%
-        churn compared to ~43% for month-to-month. Service engagement (online
-        security, tech support) further separates retained from churned customers.
+        churn compared to ~43% for month-to-month. Among top churn drivers are MoM contract, no online security,
+        no tech support, fiber optic service, no partner, and electronic check payment.
       </InsightCallout>
 
       {/* Split view: Service Adoption + Payment Method */}
@@ -215,10 +208,9 @@ export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
       </div>
 
       {/* Insight: Payment friction */}
-      <InsightCallout label="Signal">
-        Customers without add-on services show 4–8× higher churn. Electronic check
-        users churn at ~4× the rate of automatic payment users — payment friction is
-        a surprisingly strong and actionable signal.
+      <InsightCallout label="Electronic Payment Friction">
+        Electronic check users churn at ~4× the rate of automatic payment users 
+        payment friction is a surprisingly strong and actionable signal.
       </InsightCallout>
 
       {/* Monthly Charges */}
@@ -236,7 +228,7 @@ export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
       <Reveal delay={0.04}>
         <div className="p-[clamp(20px,2.5vw,32px)]">
           <span className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted">
-            Retention Plan — 5 Actionable Recommendations
+            Retention Plan or 5 Actionable Recommendations I Came Up With
           </span>
           <div className="mt-5 flex flex-col gap-4">
             {RECOMMENDATIONS.map((rec, i) => (
