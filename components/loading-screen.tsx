@@ -42,10 +42,10 @@ export function LoadingScreen() {
   useEffect(() => {
     if (phase !== 'shell') return
     if (shellChars >= SHELL.length) {
-      const t = setTimeout(() => setPhase('query'), 210)
+      const t = setTimeout(() => setPhase('query'), 260)
       return () => clearTimeout(t)
     }
-    const t = setTimeout(() => setShellChars((c) => c + 1), 9)
+    const t = setTimeout(() => setShellChars((c) => c + 1), 20)
     return () => clearTimeout(t)
   }, [phase, shellChars])
 
@@ -53,10 +53,10 @@ export function LoadingScreen() {
   useEffect(() => {
     if (phase !== 'query') return
     if (queryChars >= QUERY.length) {
-      const t = setTimeout(() => setPhase('status'), 140)
+      const t = setTimeout(() => setPhase('status'), 200)
       return () => clearTimeout(t)
     }
-    const t = setTimeout(() => setQueryChars((c) => c + 1), 21)
+    const t = setTimeout(() => setQueryChars((c) => c + 1), 40)
     return () => clearTimeout(t)
   }, [phase, queryChars])
 
@@ -64,10 +64,10 @@ export function LoadingScreen() {
   useEffect(() => {
     if (phase !== 'status') return
     if (statusCount >= STATUS.length) {
-      const t = setTimeout(() => setExiting(true), 480)
+      const t = setTimeout(() => setExiting(true), 580)
       return () => clearTimeout(t)
     }
-    const t = setTimeout(() => setStatusCount((n) => n + 1), 230)
+    const t = setTimeout(() => setStatusCount((n) => n + 1), 400)
     return () => clearTimeout(t)
   }, [phase, statusCount])
 

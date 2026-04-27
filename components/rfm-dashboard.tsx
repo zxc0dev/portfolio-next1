@@ -9,7 +9,7 @@ import { TopProductsChart } from '@/components/rfm/top-products-chart'
 import { CountryChart } from '@/components/rfm/country-chart'
 import { SegmentDistChart } from '@/components/rfm/segment-dist-chart'
 import { SegmentMonetaryChart } from '@/components/rfm/segment-monetary-chart'
-import { AovScatterChart } from '@/components/rfm/aov-scatter-chart'
+import { SegmentRevenueChart } from '@/components/rfm/segment-revenue-chart'
 
 /* ── KPI data ────────────────────────────────────────────────────────── */
 const KPI_CARDS = [
@@ -34,8 +34,8 @@ const KPI_CARDS = [
   {
     icon: Globe,
     label: 'UK Revenue Share',
-    value: '82.77%',
-    foot: 'remaining 17.23% across 39 countries',
+    value: '82.82%',
+    foot: 'remaining 17.18% across 39 countries',
   },
 ]
 
@@ -197,7 +197,7 @@ export function RfmDashboard({ why }: RfmDashboardProps = {}) {
       {/* Insight: geo concentration */}
       <InsightCallout label="UK Dominance">
         The United Kingdom contributes{' '}
-        <strong className="text-foreground font-semibold">82.77%</strong> of total cleaned
+        <strong className="text-foreground font-semibold">82.82%</strong> of total cleaned
         revenue — a concentration that is large but less extreme than initial raw-data estimates
         suggested (~88%). EIRE, the Netherlands, Germany, and France form a distant second tier.
         Non-UK markets collectively offer meaningful growth headroom: any improvement in
@@ -245,26 +245,27 @@ export function RfmDashboard({ why }: RfmDashboardProps = {}) {
         meaningful portion of this cohort into the Champion tier.
       </InsightCallout>
 
-      {/* ── Chart 6: AOV vs Return Ratio ──────────────────────────────── */}
+      {/* ── Chart 6: Revenue Contribution by RFM Segment ──────────────── */}
       <Reveal delay={0.04}>
         <div>
           <ChartHeader
-            tag="Behavioural Landscape"
-            title="Average Order Value vs. Return Ratio — by RFM segment"
+            tag="Revenue Contribution"
+            title="Share of total revenue by RFM segment"
           />
-          <AovScatterChart />
+          <SegmentRevenueChart />
         </div>
       </Reveal>
 
-      {/* Insight: AOV scatter */}
-      <InsightCallout label="Return Behaviour">
-        Most segments cluster in the low-AOV, near-zero return-ratio quadrant, indicating a
-        healthy transactional baseline. Outliers with high AOV and elevated return ratios signal
-        potential bulk-order reversals or catalogue errors that warrant operational review.
-        Segments flagged as <em className="text-foreground not-italic font-medium">Can&apos;t Lose</em> and{' '}
-        <em className="text-foreground not-italic font-medium">At Risk</em> show the widest
-        return-ratio spread — these customers are still purchasing but showing friction signals
-        that precede full churn if left unaddressed.
+      {/* Insight: segment revenue */}
+      <InsightCallout label="Revenue Concentration">
+        <strong className="text-foreground font-semibold">Champions</strong> and{' '}
+        <strong className="text-foreground font-semibold">Loyal Customers</strong> together
+        account for the majority of total revenue despite representing fewer than half of all
+        customers — the classic Pareto dynamic in e-commerce. Segments like{' '}
+        <em className="text-foreground not-italic font-medium">Hibernating</em> and{' '}
+        <em className="text-foreground not-italic font-medium">About to Sleep</em> hold
+        disproportionately low revenue share relative to their customer count, making them
+        high-priority targets for reactivation campaigns with a clear ceiling on the upside.
       </InsightCallout>
     </div>
   )

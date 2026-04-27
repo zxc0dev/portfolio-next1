@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { ReactLenis } from 'lenis/react'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useScrollProgress } from '@/hooks/use-scroll-progress'
@@ -16,8 +17,19 @@ function ScrollManager() {
 // preventing ReactLenis from unnecessarily re-initialising Lenis.
 const quarticOut = (t: number) => 1 - Math.pow(1 - t, 4)
 
+function useBlockMiddleMouse() {
+  useEffect(() => {
+    const block = (e: MouseEvent) => {
+      if (e.button === 1) e.preventDefault()
+    }
+    document.addEventListener('mousedown', block)
+    return () => document.removeEventListener('mousedown', block)
+  }, [])
+}
+
 export function Providers({ children }: { children: React.ReactNode }) {
   const prefersReduced = useReducedMotion()
+  useBlockMiddleMouse()
 
   return (
     <ReactLenis

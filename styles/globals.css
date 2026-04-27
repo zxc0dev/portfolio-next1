@@ -141,33 +141,21 @@
   }
 }
 
-/* ─── Scrollbar ────────────────────────────────────────────────────────── */
+/* ─── Scrollbar — hidden (Lenis handles all scrolling) ────────────────── */
+html,
+body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.28);
-  border-radius: 999px;
-  transition: background 0.2s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.52);
-}
-
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
 * {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.28) rgba(255, 255, 255, 0.02);
+  scrollbar-width: none;
 }
 
 /* ─── Utility Classes ──────────────────────────────────────────────────── */

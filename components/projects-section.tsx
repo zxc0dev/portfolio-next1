@@ -91,42 +91,26 @@ export function ProjectsSection() {
                 </Reveal>
               )}
 
-              {/* Row 3: Metadata  |  Description */}
+              {/* Row 3: Metadata — full width */}
               <Reveal delay={0.06}>
-                <div className="mt-8 grid grid-cols-[280px_1fr] items-start gap-[clamp(48px,10vw,120px)] max-md:grid-cols-1">
-                  {/* Left: metadata */}
-                  <dl className="flex flex-col gap-[2px]">
-                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                      <span className="text-muted">Stack&ensp;</span>
-                      <span className="text-foreground font-semibold">{project.tags.join(', ')}</span>
-                    </div>
-                    {project.dataset && (
-                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                        <span className="text-muted">Data&ensp;</span>
-                        <span className="text-foreground font-semibold">{project.dataset}</span>
-                      </div>
-                    )}
-                    {project.dateRange && (
-                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                        <span className="text-muted">Date&ensp;</span>
-                        <span className="text-foreground font-semibold">{project.dateRange}</span>
-                      </div>
-                    )}
-                  </dl>
-
-                  {/* Right: description + why */}
-                  <div className="pt-0.5 flex flex-col gap-6">
-                    {project.description ? (
-                      <p className="text-[1.26rem] leading-[1.8] text-secondary text-wrap-pretty">
-                        {project.description}
-                      </p>
-                    ) : (
-                      <p className="text-[1.26rem] leading-[1.8] text-muted/50 italic">
-                        Description coming soon.
-                      </p>
-                    )}
+                <dl className="mt-6 flex flex-col gap-0">
+                  <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
+                    <span className="text-muted">Stack&ensp;</span>
+                    <span className="text-foreground font-semibold">{project.tags.join(', ')}</span>
                   </div>
-                </div>
+                  {project.dataset && (
+                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
+                      <span className="text-muted">Data&ensp;</span>
+                      <span className="text-foreground font-semibold">{project.dataset}</span>
+                    </div>
+                  )}
+                  {project.dateRange && (
+                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
+                      <span className="text-muted">Date&ensp;</span>
+                      <span className="text-foreground font-semibold">{project.dateRange}</span>
+                    </div>
+                  )}
+                </dl>
               </Reveal>
             </article>
             </TerminalQuery>

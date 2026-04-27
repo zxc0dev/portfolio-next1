@@ -69,6 +69,8 @@ export function TerminalQuery({
     isLockedRef.current = false
     if (guardRef.current) { clearInterval(guardRef.current); guardRef.current = null }
     lenis?.start()
+    // Re-measure page height after revealed content enters the DOM
+    setTimeout(() => lenis?.resize(), 60)
   }, [lenis])
 
   const finish = useCallback(() => {
