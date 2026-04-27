@@ -10,6 +10,15 @@ const compat = new FlatCompat({ baseDirectory: __dirname })
 const eslintConfig = [
   { ignores: ['next-env.d.ts', '.next/**', 'out/**', 'node_modules/**'] },
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
+  {
+    rules: {
+      // Allow variables/parameters prefixed with _ to be unused (standard TS convention)
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' },
+      ],
+    },
+  },
 ]
 
 export default eslintConfig

@@ -19,39 +19,40 @@ export const SegmentDistChart = memo(function SegmentDistChart() {
       },
       legend: {
         show: true,
-        orient: 'vertical',
-        right: 0,
-        top: 'middle',
+        orient: 'horizontal',
+        bottom: 4,
+        left: 'center',
         itemWidth: 8,
         itemHeight: 8,
+        // rich text styles must live inside textStyle.rich (not at legend root)
         textStyle: {
           color: PALETTE.white70,
-          fontSize: 12,
+          fontSize: 11,
           fontFamily: 'var(--font-mono), monospace',
+          rich: {
+            name: {
+              color: PALETTE.white70,
+              fontSize: 11,
+              fontFamily: 'var(--font-mono), monospace',
+            },
+            pct: {
+              color: PALETTE.white50,
+              fontSize: 10,
+              fontFamily: 'var(--font-mono), monospace',
+            },
+          },
         },
-        itemGap: 14,
+        itemGap: 18,
         formatter: (name: string) => {
           const item = distRaw.data.find((d) => d.segment === name)
           return `{name|${name}}  {pct|${item?.pct}%}`
-        },
-        rich: {
-          name: {
-            color: PALETTE.white70,
-            fontSize: 12,
-            fontFamily: 'var(--font-mono), monospace',
-          },
-          pct: {
-            color: PALETTE.white50,
-            fontSize: 11,
-            fontFamily: 'var(--font-mono), monospace',
-          },
         },
       },
       series: [
         {
           type: 'pie',
-          radius: ['52%', '80%'],
-          center: ['38%', '50%'],
+          radius: ['50%', '78%'],
+          center: ['50%', '44%'],
           data: distRaw.data.map((d, i) => ({
             value: d.count,
             name: d.segment,
@@ -93,7 +94,7 @@ export const SegmentDistChart = memo(function SegmentDistChart() {
     <ReactEChartsCore
       echarts={echarts}
       option={option}
-      style={{ height: 280, width: '100%' }}
+      style={{ height: 300, width: '100%' }}
       opts={{
         renderer: 'canvas',
         devicePixelRatio: typeof window !== 'undefined' ? window.devicePixelRatio : 2,

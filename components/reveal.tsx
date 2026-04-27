@@ -10,8 +10,6 @@ interface RevealProps {
   children: React.ReactNode
   className?: string
   delay?: number
-  /** @deprecated No longer applied — reveal is pure opacity staging */
-  direction?: 'up' | 'left' | 'right' | 'none'
 }
 
 export function Reveal({

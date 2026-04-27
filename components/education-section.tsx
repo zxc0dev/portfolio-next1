@@ -11,7 +11,7 @@ export function EducationSection() {
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <TerminalQuery
-          query={`SELECT * FROM certifications\n  ORDER BY date DESC;`}
+          query={`SELECT * FROM certifications\n            ORDER BY date DESC;`}
           rowsText="3 rows returned"
         >
         <SectionHeader

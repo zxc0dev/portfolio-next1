@@ -3,6 +3,7 @@ import { Github, ExternalLink, Construction } from 'lucide-react'
 import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 import { TerminalQuery } from '@/components/terminal-query'
+import { ErrorBoundary } from '@/components/error-boundary'
 import { projects } from '@/data/projects'
 import { ChurnDashboard } from '@/components/churn/lazy-dashboard'
 import { RfmDashboard } from '@/components/rfm/lazy-dashboard'
@@ -86,7 +87,9 @@ export function ProjectsSection() {
               {Dashboard && (
                 <Reveal delay={0.04}>
                   <div className="mt-5">
-                    <Dashboard why={project.why} />
+                    <ErrorBoundary label={project.title}>
+                      <Dashboard why={project.why} />
+                    </ErrorBoundary>
                   </div>
                 </Reveal>
               )}

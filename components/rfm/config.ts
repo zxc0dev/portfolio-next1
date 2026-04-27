@@ -8,7 +8,6 @@ import {
   GridComponent,
   TooltipComponent,
   LegendComponent,
-  DataZoomComponent,
   TitleComponent,
 } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
@@ -21,7 +20,6 @@ echarts.use([
   GridComponent,
   TooltipComponent,
   LegendComponent,
-  DataZoomComponent,
   TitleComponent,
   CanvasRenderer,
 ])

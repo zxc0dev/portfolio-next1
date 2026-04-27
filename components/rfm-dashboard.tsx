@@ -77,8 +77,9 @@ function ChartHeader({ tag, title }: { tag: string; title: string }) {
 }
 
 /* ── Dashboard export ────────────────────────────────────────────────── */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function RfmDashboard(_props: { why?: string } = {}) {
+// The `why` prop is accepted to satisfy the shared DashboardComponent type
+// used in projects-section; the copy is hardcoded inside this component.
+export function RfmDashboard({ why: _why }: { why?: string } = {}) {
   const lenis = useLenis()
   const rootRef = useRef<HTMLDivElement>(null)
 

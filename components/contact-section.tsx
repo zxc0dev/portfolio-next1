@@ -84,7 +84,7 @@ export function ContactSection() {
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <TerminalQuery
-          query={`SELECT * FROM contact\n  WHERE available = TRUE;`}
+          query={`SELECT * FROM contact\n            WHERE available = TRUE;`}
           rowsText="1 row returned"
         >
         <SectionHeader

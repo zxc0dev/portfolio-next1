@@ -12,7 +12,7 @@ export function ExperienceSection() {
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <TerminalQuery
-          query={`SELECT * FROM experience\n  WHERE company = 'Foxconn';`}
+          query={`SELECT * FROM experience\n            WHERE company = 'Foxconn';`}
           rowsText="1 row returned"
         >
         <SectionHeader

@@ -1,15 +1,39 @@
 'use client'
 
 import { useEffect } from 'react'
-import { ReactLenis } from 'lenis/react'
+import { ReactLenis, useLenis } from 'lenis/react'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useScrollProgress } from '@/hooks/use-scroll-progress'
 import { useActiveSection } from '@/hooks/use-active-section'
+import { useAppStore } from '@/stores/app-store'
 
 function ScrollManager() {
   useScrollProgress()
   useActiveSection()
+  useScrollResetOnLoad()
   return null
+}
+
+/**
+ * When the loading screen finishes and `isLoaded` transitions false → true,
+ * immediately snap Lenis (and the native scroll) to the very top.
+ *
+ * Without this, a hard-refresh mid-page can leave Lenis at whatever Y the
+ * browser scroll-restored to, causing terminal-query IntersectionObservers
+ * to fire for elements that are out-of-viewport — trapping the user between
+ * two queries.
+ */
+function useScrollResetOnLoad() {
+  const lenis = useLenis()
+
+  useEffect(() => {
+    return useAppStore.subscribe(
+      (s) => s.isLoaded,
+      (isLoaded) => {
+        if (isLoaded) lenis?.scrollTo(0, { immediate: true })
+      },
+    )
+  }, [lenis])
 }
 
 // Quartic ease-out: reaches the exact target at t=1 — no fractional snap.
