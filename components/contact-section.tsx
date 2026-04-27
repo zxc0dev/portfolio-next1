@@ -99,10 +99,10 @@ export function ContactSection() {
             {/* Left — form */}
             <Reveal>
               <div className="flex flex-col">
-                <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
+                <span className="mb-5 inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Send a message
                 </span>
-                <p className="mb-7 max-w-[40ch] text-[1.26rem] leading-[1.8] text-secondary">
+                <p className="mb-6 max-w-[40ch] text-[1.26rem] leading-[1.8] text-secondary">
                   Have a project, a role, or an idea — feel free to reach out, I will get
                   back to you.
                 </p>
@@ -219,7 +219,7 @@ export function ContactSection() {
             {/* Right — direct channels */}
             <Reveal delay={0.06}>
               <div className="border-l border-white/10 pl-[clamp(20px,3vw,40px)] max-md:border-l-0 max-md:pl-0 max-md:border-t max-md:border-white/10 max-md:pt-6">
-                <span className="mb-[18px] inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
+                <span className="mb-5 inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Or reach out directly
                 </span>
                 <div className="flex flex-col gap-2">

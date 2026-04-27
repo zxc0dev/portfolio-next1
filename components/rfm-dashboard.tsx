@@ -77,11 +77,8 @@ function ChartHeader({ tag, title }: { tag: string; title: string }) {
 }
 
 /* ── Dashboard export ────────────────────────────────────────────────── */
-interface RfmDashboardProps {
-  why?: string
-}
-
-export function RfmDashboard({ why }: RfmDashboardProps = {}) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function RfmDashboard(_props: { why?: string } = {}) {
   const lenis = useLenis()
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -99,7 +96,16 @@ export function RfmDashboard({ why }: RfmDashboardProps = {}) {
 
   return (
     <div ref={rootRef} className="flex flex-col gap-[clamp(24px,3vw,36px)]">
-      {why && <InsightCallout label="Why this project">{why}</InsightCallout>}
+      {/* Why this project */}
+      <InsightCallout label="Why this project">
+        RFM segmentation converts raw purchase history into actionable customer tiers without
+        any additional data. The goal was to build an end-to-end pipeline — from messy
+        transaction logs through feature engineering and K-Means clustering to an interactive
+        dashboard — and to answer a practical question: which customers drive revenue, which
+        are slipping, and how much is at risk? The Online Retail II dataset, covering two
+        years of real UK e-commerce orders, offered the volume and variety needed to make the
+        segments commercially meaningful.
+      </InsightCallout>
 
       {/* KPI Strip */}
       <Reveal>
@@ -121,15 +127,6 @@ export function RfmDashboard({ why }: RfmDashboardProps = {}) {
           ))}
         </div>
       </Reveal>
-
-      {/* Insight: dataset context */}
-      <InsightCallout label="Dataset Overview">
-        The Online Retail II UCI dataset covers 25 months of UK-based e-commerce transactions
-        (Dec 2009 – Dec 2011). After removing guest orders, exact duplicates, and cancellations,
-        797,815 clean rows remain — anchoring RFM scores on 5,939 identifiable customers. The
-        raw data contained 22.77% missing customer IDs, which means the RFM model reflects
-        tracked buyers only; guest-order revenue is excluded from customer-level analysis.
-      </InsightCallout>
 
       {/* ── Chart 1: Revenue Trend ─────────────────────────────────────── */}
       <Reveal delay={0.04}>

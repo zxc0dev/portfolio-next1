@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { inter, jetbrainsMono } from '@/lib/fonts'
 import { Providers } from '@/components/providers'
 import { ScrollProgress } from '@/components/scroll-progress'
+import { DecorativeScrollbar } from '@/components/decorative-scrollbar'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -57,6 +58,7 @@ export default function RootLayout({
       <body className="flex min-h-svh flex-col bg-background font-sans text-foreground antialiased">
         <Providers>
           <ScrollProgress />
+          <DecorativeScrollbar />
           {children}
         </Providers>
       </body>

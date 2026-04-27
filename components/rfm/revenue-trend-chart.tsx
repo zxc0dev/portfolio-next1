@@ -34,15 +34,6 @@ export const RevenueTrendChart = memo(function RevenueTrendChart() {
         },
       },
       grid: { top: 28, right: 20, bottom: 56, left: 64, containLabel: false },
-      dataZoom: [
-        {
-          type: 'inside',
-          start: 0,
-          end: 100,
-          zoomOnMouseWheel: false,
-          moveOnMouseMove: false,
-        },
-      ],
       xAxis: {
         type: 'category',
         data: months,

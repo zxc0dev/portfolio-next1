@@ -228,7 +228,7 @@ export function TerminalQuery({
 
   return (
     <div ref={containerRef} className={cn(className)}>
-      <div className="mb-6 font-mono text-[0.78rem] leading-[1.72]">
+      <div className="mb-[clamp(20px,2.5vw,32px)] font-mono text-[0.78rem] leading-[1.72]">
         <div className="whitespace-pre">
           <span style={{ color: 'rgba(255,255,255,0.28)' }}>portfolio=#&nbsp;</span>
           {phase !== 'idle' && (
