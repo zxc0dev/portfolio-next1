@@ -54,26 +54,31 @@ function ChartHeader({ tag, title }: { tag: string; title: string }) {
 /* ── Verdict card ────────────────────────────────────────────────────── */
 const RECOMMENDATIONS = [
   {
+    icon: Target,
     title: 'Eliminate the early-tenure danger zone',
     detail:
       'Proactive onboarding for months 0–5 with check-in calls at month 1 & 3, a welcome bundle discount, and a clear upgrade path to annual contracts.',
   },
   {
+    icon: Shield,
     title: 'Migrate month-to-month → longer contracts',
     detail:
       'Time-limited incentive (locked-in rate, one-time bill credit) to flip high-risk M2M customers to 1-year contracts. Even a partial shift reduces weighted churn from 23.5% toward the 2.4% seen on annual plans.',
   },
   {
+    icon: Wifi,
     title: 'Bundle add-on services by default',
     detail:
       'Include online security and tech support in mid-tier plans. Customers with these services show 4–8% weighted churn vs 17–21% without.',
   },
   {
+    icon: UserCheck,
     title: 'Address fiber optic dissatisfaction',
     detail:
       'Fiber optic users without tech support are the highest-risk cohort. Deploy proactive tech support outreach and audit pricing vs. competitor offerings.',
   },
   {
+    icon: CreditCard,
     title: 'Automate payments to reduce friction',
     detail:
       'Electronic check users churn at ~4× the rate of automatic payment users. Incentivize switching with a $5/month discount for auto-pay enrollment.',

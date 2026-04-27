@@ -5,11 +5,13 @@ import { Reveal } from '@/components/reveal'
 import { TerminalQuery } from '@/components/terminal-query'
 import { projects } from '@/data/projects'
 import { ChurnDashboard } from '@/components/churn/lazy-dashboard'
+import { RfmDashboard } from '@/components/rfm/lazy-dashboard'
 
 type DashboardComponent = ComponentType<{ why?: string }>
 
 const DASHBOARD_MAP: Record<string, DashboardComponent> = {
   churn: ChurnDashboard as DashboardComponent,
+  rfm: RfmDashboard as DashboardComponent,
 }
 
 const SQL_NAMES: Record<string, string> = {
