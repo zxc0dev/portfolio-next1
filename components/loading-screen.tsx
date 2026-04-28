@@ -10,7 +10,7 @@ const QUERY = 'SELECT * FROM hero;'
 const STATUS = [
   ':: connecting to data warehouse...',
   ':: running query...',
-  '-- 1 row returned',
+  '-- 1 row returned in 1.78s',
 ]
 
 type Phase = 'shell' | 'query' | 'status'
