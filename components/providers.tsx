@@ -11,6 +11,7 @@ function ScrollManager() {
   useScrollProgress()
   useActiveSection()
   useScrollResetOnLoad()
+  useResizeOnCertsDone()
   return null
 }
 
@@ -31,6 +32,27 @@ function useScrollResetOnLoad() {
       (s) => s.isLoaded,
       (isLoaded) => {
         if (isLoaded) lenis?.scrollTo(0, { immediate: true })
+      },
+    )
+  }, [lenis])
+}
+
+/**
+ * When gated sections (Projects, Contact) first render after certificatesDone,
+ * the document height increases but Lenis does not automatically recalculate
+ * its scroll range (autoResize only fires on viewport resize, not DOM changes).
+ * Force a resize() so Lenis picks up the new scrollable height.
+ */
+function useResizeOnCertsDone() {
+  const lenis = useLenis()
+
+  useEffect(() => {
+    return useAppStore.subscribe(
+      (s) => s.certificatesDone,
+      (done) => {
+        if (!done) return
+        // Double rAF: first frame React commits, second frame browser paints
+        requestAnimationFrame(() => requestAnimationFrame(() => lenis?.resize()))
       },
     )
   }, [lenis])

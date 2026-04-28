@@ -5,9 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { useState } from 'react'
 import { Mail, Linkedin, Github, ArrowUpRight } from 'lucide-react'
-import { SectionHeader } from '@/components/section-header'
 import { Reveal } from '@/components/reveal'
 import { TerminalQuery } from '@/components/terminal-query'
+import { useLenis } from 'lenis/react'
+import { motion } from 'motion/react'
+import { useAppStore } from '@/stores/app-store'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -52,6 +54,8 @@ const inputBase = cn(
 )
 
 export function ContactSection() {
+  const certificatesDone = useAppStore((s) => s.certificatesDone)
+  const lenis = useLenis()
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const {
     register,
@@ -77,23 +81,25 @@ export function ContactSection() {
     }
   }
 
+  if (!certificatesDone) return null
+
   return (
-    <section
+    <motion.section
       id="contact"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="relative py-[clamp(100px,12vw,160px)] scroll-mt-[92px]"
     >
       <div className="mx-auto max-w-[1360px] px-[clamp(20px,4vw,48px)]">
         <TerminalQuery
-          query={`SELECT * FROM contact\n            WHERE available = TRUE;`}
-          rowsText="1 row returned"
+          query="ping zxc0.dev"
+          rowsText="host reachable, awaiting response"
+          prompt="[zxc0dev@portfolio ~]$ "
+          prelude={{ prompt: 'portfolio> ', text: 'exit' }}
+          lockScroll
+          onRevealed={() => requestAnimationFrame(() => requestAnimationFrame(() => lenis?.resize()))}
         >
-        <SectionHeader
-          number="05"
-          title="Let's Talk"
-          subtitle="How to reach me"
-          className="mb-[clamp(20px,2.5vw,32px)]"
-        />
-
         <div className="ml-[42px] max-md:ml-0">
           <div className="grid grid-cols-[1.35fr_1fr] items-start gap-[clamp(40px,6vw,80px)] max-md:grid-cols-1">
             {/* Left — form */}
@@ -102,7 +108,7 @@ export function ContactSection() {
                 <span className="mb-5 inline-block font-mono text-[0.68rem] font-semibold uppercase tracking-[0.2em] opacity-90">
                   Send a message
                 </span>
-                <p className="mb-6 max-w-[40ch] text-[1.26rem] leading-[1.8] text-secondary">
+                <p className="mb-6 max-w-[40ch] text-[0.95rem] leading-[1.82] text-secondary">
                   Have a project, a role, or an idea — feel free to reach out, I will get
                   back to you.
                 </p>
@@ -187,7 +193,7 @@ export function ContactSection() {
 
                   <Button
                     type="submit"
-                    variant="primary"
+                    variant="ghost"
                     size="lg"
                     className="mt-1.5 w-full"
                     disabled={isSubmitting}
@@ -252,6 +258,6 @@ export function ContactSection() {
         </div>
         </TerminalQuery>
       </div>
-    </section>
+    </motion.section>
   )
 }

@@ -4,11 +4,8 @@ import { useEffect } from 'react'
 import { useAppStore } from '@/stores/app-store'
 
 const SECTIONS = [
-  'hero',
   'about',
   'projects',
-  'experience',
-  'education',
   'contact',
 ]
 
