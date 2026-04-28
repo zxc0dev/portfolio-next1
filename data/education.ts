@@ -13,7 +13,7 @@ export const education: EducationItem[] = [
     issuer: 'Coursera · IBM',
     date: 'Sep 2025 – Feb 2026',
     detail:
-      'End-to-end data science methodology — Excel, Python, SQL, data visualization, machine learning.',
+      'End-to-end data science methodology: Excel, Python, SQL, data visualization, machine learning.',
   },
   {
     type: 'cert',
@@ -21,7 +21,7 @@ export const education: EducationItem[] = [
     issuer: 'Coursera · DeepLearning.AI',
     date: 'Apr 2025 – Jul 2025',
     detail:
-      'Supervised & unsupervised learning, neural networks, recommender systems, and reinforcement learning — taught by Andrew Ng.',
+      'Supervised & unsupervised learning, neural networks, recommender systems, and reinforcement learning, taught by Andrew Ng.',
   },
   {
     type: 'cert',
@@ -29,6 +29,6 @@ export const education: EducationItem[] = [
     issuer: 'Coursera · University of Michigan',
     date: 'Feb 2026 – Present',
     detail:
-      'Statistical analysis, hypothesis testing, and data visualization using Python — taught by the University of Michigan faculty.',
+      'Statistical analysis, hypothesis testing, and data visualization using Python, taught by the University of Michigan faculty.',
   },
 ]
