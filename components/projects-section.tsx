@@ -8,11 +8,11 @@ import { projects } from '@/data/projects'
 import { ChurnDashboard } from '@/components/churn/lazy-dashboard'
 import { RfmDashboard } from '@/components/rfm/lazy-dashboard'
 
-type DashboardComponent = ComponentType<{ why?: string }>
+type DashboardComponent = ComponentType
 
 const DASHBOARD_MAP: Record<string, DashboardComponent> = {
   churn: ChurnDashboard as DashboardComponent,
-  rfm: RfmDashboard as DashboardComponent,
+  rfm:   RfmDashboard   as DashboardComponent,
 }
 
 const SQL_NAMES: Record<string, string> = {
@@ -83,38 +83,53 @@ export function ProjectsSection() {
                 </div>
               </Reveal>
 
-              {/* Row 2: Live Dashboard */}
+              {/* Row 2: Why + Metadata (side by side) */}
+              <Reveal delay={0.04}>
+                <div className="mt-6 grid grid-cols-[1fr_clamp(180px,22ch,260px)] items-start gap-[clamp(28px,4vw,56px)] max-md:grid-cols-1 max-md:gap-4">
+                  {/* Why this project */}
+                  {project.why && (
+                    <div>
+                      <span className="mb-1.5 block font-mono text-[0.67rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                        Why this project
+                      </span>
+                      <p className="text-[1.18rem] leading-[1.8] text-secondary">
+                        {project.why}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Metadata */}
+                  <dl className="flex flex-col gap-0">
+                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
+                      <span className="text-muted">Stack&ensp;</span>
+                      <span className="text-foreground font-semibold">{project.tags.join(', ')}</span>
+                    </div>
+                    {project.dataset && (
+                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
+                        <span className="text-muted">Data&ensp;</span>
+                        <span className="text-foreground font-semibold">{project.dataset}</span>
+                      </div>
+                    )}
+                    {project.dateRange && (
+                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
+                        <span className="text-muted">Date&ensp;</span>
+                        <span className="text-foreground font-semibold">{project.dateRange}</span>
+                      </div>
+                    )}
+                  </dl>
+                </div>
+              </Reveal>
+
+              {/* Row 3: Live Dashboard */}
               {Dashboard && (
-                <Reveal delay={0.04}>
-                  <div className="mt-5">
+                <Reveal delay={0.08}>
+                  <div className="mt-7">
                     <ErrorBoundary label={project.title}>
-                      <Dashboard why={project.why} />
+                      <Dashboard />
                     </ErrorBoundary>
                   </div>
                 </Reveal>
               )}
-
-              {/* Row 3: Metadata — full width */}
-              <Reveal delay={0.06}>
-                <dl className="mt-6 flex flex-col gap-0">
-                  <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                    <span className="text-muted">Stack&ensp;</span>
-                    <span className="text-foreground font-semibold">{project.tags.join(', ')}</span>
-                  </div>
-                  {project.dataset && (
-                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                      <span className="text-muted">Data&ensp;</span>
-                      <span className="text-foreground font-semibold">{project.dataset}</span>
-                    </div>
-                  )}
-                  {project.dateRange && (
-                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                      <span className="text-muted">Date&ensp;</span>
-                      <span className="text-foreground font-semibold">{project.dateRange}</span>
-                    </div>
-                  )}
-                </dl>
-              </Reveal>
             </article>
             </TerminalQuery>
             )

@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useAppStore } from '@/stores/app-store'
 
-const SHELL = 'zxc0@localhost:~$ psql -d portfolio'
+const SHELL = '[zxc0@arch ~]$ psql -d portfolio'
 const QUERY = 'SELECT * FROM hero;'
 
 const STATUS = [
-  '-- Connecting to data warehouse...',
-  '-- Running query...',
-  '-- \u2713  1 row returned in 1.78s',
+  ':: connecting to data warehouse...',
+  ':: running query...',
+  ':: ✓  1 row returned in 1.78s',
 ]
 
 type Phase = 'shell' | 'query' | 'status'
@@ -87,17 +87,26 @@ export function LoadingScreen() {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-0 z-[9999] flex items-center justify-start bg-background px-[clamp(28px,8vw,96px)]"
         >
-          <div className="w-full max-w-[520px]">
-            {/* Decorative dots */}
-            <div className="mb-6 flex gap-[7px]" aria-hidden="true">
-              <span className="h-[10px] w-[10px] rounded-full bg-white/[0.07]" />
-              <span className="h-[10px] w-[10px] rounded-full bg-white/[0.07]" />
-              <span className="h-[10px] w-[10px] rounded-full bg-white/[0.07]" />
+          <div className="w-full max-w-[540px]">
+
+            {/* ── Terminal title bar ─────────────────────────────────────── */}
+            <div className="mb-5 flex items-center gap-2" aria-hidden="true">
+              <span className="h-[11px] w-[11px] rounded-full bg-white/[0.09]" />
+              <span className="h-[11px] w-[11px] rounded-full bg-white/[0.09]" />
+              <span className="h-[11px] w-[11px] rounded-full bg-white/[0.09]" />
+              <span className="ml-3 font-mono text-[0.67rem] tracking-[0.06em] text-white/20">
+                zxc0@arch — psql
+              </span>
+            </div>
+
+            {/* ── System info line ───────────────────────────────────────── */}
+            <div className="mb-4 font-mono text-[0.7rem] leading-[1.6] text-white/[0.22]">
+              arch linux x86_64 · bash 5.2 · {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
             </div>
 
             <div className="font-mono text-[0.8rem] leading-[1.8]">
               {/* Shell line */}
-              <div style={{ color: 'rgba(255,255,255,0.42)' }}>
+              <div className="text-secondary">
                 {SHELL.slice(0, shellChars)}
                 {phase === 'shell' && <Cursor />}
               </div>
@@ -105,13 +114,13 @@ export function LoadingScreen() {
               {/* Query line */}
               {phase !== 'shell' && (
                 <div className="mt-px">
-                  <span style={{ color: 'rgba(255,255,255,0.3)' }}>portfolio=# </span>
+                  <span className="text-white/[0.28]">portfolio=# </span>
                   <span className="text-foreground">{QUERY.slice(0, queryChars)}</span>
                   <Cursor />
                 </div>
               )}
 
-              {/* Status lines */}
+              {/* Status lines — :: prefix style */}
               {statusCount > 0 && (
                 <div className="mt-4 flex flex-col">
                   {STATUS.slice(0, statusCount).map((line, i) => (
@@ -120,8 +129,7 @@ export function LoadingScreen() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.22 }}
-                      className={i === STATUS.length - 1 ? 'text-foreground font-medium' : ''}
-                      style={i < STATUS.length - 1 ? { color: 'rgba(255,255,255,0.35)' } : undefined}
+                      className={i === STATUS.length - 1 ? 'text-foreground font-medium' : 'text-white/[0.35]'}
                     >
                       {line}
                     </motion.div>

@@ -86,11 +86,7 @@ const RECOMMENDATIONS = [
 ]
 
 /* ── Dashboard export ────────────────────────────────────────────────── */
-interface ChurnDashboardProps {
-  why?: string
-}
-
-export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
+export function ChurnDashboard() {
   const lenis = useLenis()
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -110,13 +106,6 @@ export function ChurnDashboard({ why }: ChurnDashboardProps = {}) {
 
   return (
     <div ref={rootRef} className="flex flex-col gap-[clamp(24px,3vw,36px)]">
-      {/* Why this project */}
-      {why && (
-        <InsightCallout label="Why this project">
-          {why}
-        </InsightCallout>
-      )}
-
       {/* KPI Strip */}
       <Reveal>
         <div className="grid grid-cols-4 gap-[clamp(8px,1vw,12px)] max-md:grid-cols-2 max-sm:grid-cols-1">

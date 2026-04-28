@@ -77,9 +77,7 @@ function ChartHeader({ tag, title }: { tag: string; title: string }) {
 }
 
 /* ── Dashboard export ────────────────────────────────────────────────── */
-// The `why` prop is accepted to satisfy the shared DashboardComponent type
-// used in projects-section; the copy is hardcoded inside this component.
-export function RfmDashboard({ why: _why }: { why?: string } = {}) {
+export function RfmDashboard() {
   const lenis = useLenis()
   const rootRef = useRef<HTMLDivElement>(null)
 
@@ -97,17 +95,6 @@ export function RfmDashboard({ why: _why }: { why?: string } = {}) {
 
   return (
     <div ref={rootRef} className="flex flex-col gap-[clamp(24px,3vw,36px)]">
-      {/* Why this project */}
-      <InsightCallout label="Why this project">
-        RFM segmentation converts raw purchase history into actionable customer tiers without
-        any additional data. The goal was to build an end-to-end pipeline — from messy
-        transaction logs through feature engineering and K-Means clustering to an interactive
-        dashboard — and to answer a practical question: which customers drive revenue, which
-        are slipping, and how much is at risk? The Online Retail II dataset, covering two
-        years of real UK e-commerce orders, offered the volume and variety needed to make the
-        segments commercially meaningful.
-      </InsightCallout>
-
       {/* KPI Strip */}
       <Reveal>
         <div className="grid grid-cols-4 gap-[clamp(8px,1vw,12px)] max-md:grid-cols-2 max-sm:grid-cols-1">

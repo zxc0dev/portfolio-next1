@@ -5,7 +5,6 @@ import { ExperienceSection } from '@/components/experience-section'
 import { AboutSection } from '@/components/about-section'
 import { EducationSection } from '@/components/education-section'
 import { ContactSection } from '@/components/contact-section'
-import { Footer } from '@/components/footer'
 import { LoadingScreen } from '@/components/loading-screen'
 
 export default function HomePage() {
@@ -21,7 +20,6 @@ export default function HomePage() {
         <EducationSection />
         <ContactSection />
       </main>
-      <Footer />
     </>
   )
 }

@@ -3,14 +3,14 @@
 import { useEffect, useRef } from 'react'
 import { useAppStore } from '@/stores/app-store'
 
-const THUMB_H = 44 // px — fixed height matching screenshot reference
+const THUMB_H  = 44 // px — fixed height
+const PADDING  = 6  // px — inset from track edges so thumb never overflows
 
 /**
- * Decorative custom-styled scrollbar, flush to the right viewport edge,
- * identical position to a native OS scrollbar.
+ * Decorative custom-styled scrollbar, flush to the right viewport edge.
  *
  * • Fixed-size thumb (never grows/shrinks)
- * • CSS transition on transform for smooth motion
+ * • Padded track so thumb stays within visible bounds at 0% and 100%
  * • pointer-events-none — purely visual, never interactive
  */
 export function DecorativeScrollbar() {
@@ -22,8 +22,8 @@ export function DecorativeScrollbar() {
       (progress) => {
         const el = thumbRef.current
         if (!el) return
-        const maxSlide = window.innerHeight - THUMB_H
-        const offset   = Math.round(progress * maxSlide)
+        const maxSlide = window.innerHeight - THUMB_H - PADDING * 2
+        const offset   = PADDING + Math.round(progress * maxSlide)
         el.style.transform = `translateY(${offset}px)`
       },
     )
@@ -42,7 +42,7 @@ export function DecorativeScrollbar() {
         style={{
           height: THUMB_H,
           background: 'rgba(255,255,255,0.38)',
-          transition: 'transform 80ms linear',
+          transition: 'transform 48ms linear',
           willChange: 'transform',
         }}
       />
