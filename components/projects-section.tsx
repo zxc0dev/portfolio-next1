@@ -85,7 +85,7 @@ export function ProjectsSection() {
 
               {/* Row 2: Why + Metadata (side by side) */}
               <Reveal delay={0.04}>
-                <div className="mt-6 grid grid-cols-[1fr_clamp(180px,22ch,260px)] items-start gap-[clamp(28px,4vw,56px)] max-md:grid-cols-1 max-md:gap-4">
+                <div className="mt-6 grid grid-cols-[1fr_clamp(280px,38ch,440px)] items-start gap-[clamp(28px,4vw,56px)] max-md:grid-cols-1 max-md:gap-4">
                   {/* Why this project */}
                   {project.why && (
                     <div>
@@ -99,7 +99,7 @@ export function ProjectsSection() {
                   )}
 
                   {/* Metadata */}
-                  <dl className="flex flex-col divide-y divide-border/70">
+                  <dl className="flex flex-col divide-y divide-border/70 border-l border-white/10 pl-[clamp(20px,3vw,40px)] max-md:border-l-0 max-md:pl-0 max-md:border-t max-md:border-white/10 max-md:pt-6">
                     <div className="py-3">
                       <dt className="mb-[3px] font-mono text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-muted">
                         Stack

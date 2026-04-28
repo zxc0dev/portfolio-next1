@@ -75,7 +75,7 @@ export function AboutSection() {
                   I ask a lot of questions, partly Socratic<sup className="text-[0.7em]">*</sup>{' '}
                   habit, partly because the right question often does more work than the right
                   answer, and because ideas only matter if they prove their value in
-                  practice<sup className="text-[0.7em]">**</sup>.
+                  practice.
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
@@ -96,9 +96,6 @@ export function AboutSection() {
                 <div className="flex flex-col gap-1">
                   <span className="font-mono text-[0.69rem] tracking-[0.04em] text-muted">
                     *&thinsp;the dude casually asking lots of questions
-                  </span>
-                  <span className="font-mono text-[0.69rem] tracking-[0.04em] text-muted">
-                    **&thinsp;jamesian cash-value principle
                   </span>
                 </div>
               </Reveal>
