@@ -154,7 +154,7 @@ export function TerminalQuery({
     // every render (removing charCount from deps makes this effect run only
     // on phase transitions, not on every character advance).
 
-    const CHARS_PER_PX = 0.45
+    const CHARS_PER_PX = 0.14
 
     const normalizeDelta = (deltaY: number, deltaMode: number) => {
       if (deltaMode === 1) return deltaY * 16
@@ -284,7 +284,7 @@ export function TerminalQuery({
             transition={{ duration: 0.2 }}
             className="text-white/[0.3]"
           >
-            {`-- ✓  ${rowsText}`}
+            {`-- ${rowsText}`}
           </motion.div>
         )}
       </div>

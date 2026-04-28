@@ -99,21 +99,33 @@ export function ProjectsSection() {
                   )}
 
                   {/* Metadata */}
-                  <dl className="flex flex-col gap-0">
-                    <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                      <span className="text-muted">Stack&ensp;</span>
-                      <span className="text-foreground font-semibold">{project.tags.join(', ')}</span>
+                  <dl className="flex flex-col divide-y divide-border/70">
+                    <div className="py-3">
+                      <dt className="mb-[3px] font-mono text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                        Stack
+                      </dt>
+                      <dd className="text-[0.88rem] leading-[1.55] text-secondary">
+                        {project.tags.join(', ')}
+                      </dd>
                     </div>
                     {project.dataset && (
-                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                        <span className="text-muted">Data&ensp;</span>
-                        <span className="text-foreground font-semibold">{project.dataset}</span>
+                      <div className="py-3">
+                        <dt className="mb-[3px] font-mono text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                          Dataset
+                        </dt>
+                        <dd className="text-[0.88rem] leading-[1.55] text-secondary">
+                          {project.dataset}
+                        </dd>
                       </div>
                     )}
                     {project.dateRange && (
-                      <div className="font-mono text-[0.78rem] uppercase tracking-[0.13em] leading-[2]">
-                        <span className="text-muted">Date&ensp;</span>
-                        <span className="text-foreground font-semibold">{project.dateRange}</span>
+                      <div className="py-3">
+                        <dt className="mb-[3px] font-mono text-[0.64rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                          Period
+                        </dt>
+                        <dd className="text-[0.88rem] leading-[1.55] text-secondary">
+                          {project.dateRange}
+                        </dd>
                       </div>
                     )}
                   </dl>

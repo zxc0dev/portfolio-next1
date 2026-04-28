@@ -99,11 +99,6 @@ export function LoadingScreen() {
               </span>
             </div>
 
-            {/* ── System info line ───────────────────────────────────────── */}
-            <div className="mb-4 font-mono text-[0.7rem] leading-[1.6] text-white/[0.22]">
-              arch linux x86_64 · bash 5.2 · {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-            </div>
-
             <div className="font-mono text-[0.8rem] leading-[1.8]">
               {/* Shell line */}
               <div className="text-secondary">

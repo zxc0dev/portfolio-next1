@@ -51,9 +51,21 @@ function useBlockMiddleMouse() {
   }, [])
 }
 
+// Prevent the browser from restoring the previous scroll position on hard
+// refresh, which would cause IntersectionObservers to fire for off-screen
+// elements before the loading screen finishes.
+function useDisableBrowserScrollRestoration() {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      history.scrollRestoration = 'manual'
+    }
+  }, [])
+}
+
 export function Providers({ children }: { children: React.ReactNode }) {
   const prefersReduced = useReducedMotion()
   useBlockMiddleMouse()
+  useDisableBrowserScrollRestoration()
 
   return (
     <ReactLenis
